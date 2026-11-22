@@ -33,3 +33,7 @@ The original project code and documentation use MIT. Contributions to those file
 ## Scope and discussion
 
 For large architectural changes, new dependencies, or changes to contribution arithmetic, open an issue first so the visual and conceptual intent can be discussed. Be kind, specific, and constructive when reviewing experiments. Different visual approaches are welcome here.
+
+## Recognizing contribution
+
+The [human guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md) and [human journal](docs/HUMAN_VALUE_BLOCKS.md) show how we can recognize direction, design, testing, implementation oversight, and publishing—not just code typed. The [robot guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md) keeps estimated AI expansion alongside the human input. These are draft recognition tools; code contributions do not require a particular multiplier or a recorded block allocation.

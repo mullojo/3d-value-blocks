@@ -2,6 +2,12 @@
 
 Value Blocks is an open-source, MIT-licensed New Game economy visual experiment. Bitcoin gifts support continued design, development, documentation, and exploration of ways to recognize human contributions.
 
+## Human contribution already given
+
+The [draft human journal](docs/HUMAN_VALUE_BLOCKS.md) recognizes **21 human blocks ≈ 21 hours · $2,100 of base human value** through November 22, 2026. That is a recognition baseline, not an outstanding funding balance; received gifts have not been reconciled here.
+
+A separate [robot expansion model](docs/ROBOT_VALUE_BLOCKS.md) explores the additional effort saved with AI. Its reference value is separate from the human baseline and is not another support request.
+
 ## Give with Bitcoin
 
 The project’s current receiving address is:

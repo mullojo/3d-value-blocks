@@ -1,0 +1,296 @@
+{
+  "snapshotCommit": "5570a3d611ced84b624cc7b4220e6c5a64f7a3d9",
+  "method": "Tracked root .js/.css/.html and checks/scripts .cjs at the frozen snapshot. Non-whitespace Unicode characters divided by 80 are text-volume units, not semantic lines of code.",
+  "exclusions": [
+    "vendor/",
+    "archived/",
+    "images",
+    "SVG QR artifacts",
+    "JSON data",
+    "documentation",
+    "this ledger and its checker"
+  ],
+  "totals": {
+    "bytes": 442644,
+    "physicalLines": 3599,
+    "nonblankLines": 3533,
+    "nonWhitespaceCharacters": 405076,
+    "files": 39,
+    "sourceUnits80Characters": 5063.45
+  },
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 29926,
+      "physicalLines": 336,
+      "nonblankLines": 334,
+      "nonWhitespaceCharacters": 26364
+    },
+    {
+      "path": "block-colors.js",
+      "bytes": 4104,
+      "physicalLines": 32,
+      "nonblankLines": 31,
+      "nonWhitespaceCharacters": 3949
+    },
+    {
+      "path": "build-queue.js",
+      "bytes": 2332,
+      "physicalLines": 41,
+      "nonblankLines": 41,
+      "nonWhitespaceCharacters": 1818
+    },
+    {
+      "path": "checks/build-queue.cjs",
+      "bytes": 2325,
+      "physicalLines": 36,
+      "nonblankLines": 36,
+      "nonWhitespaceCharacters": 2004
+    },
+    {
+      "path": "checks/count-groups.cjs",
+      "bytes": 978,
+      "physicalLines": 8,
+      "nonblankLines": 8,
+      "nonWhitespaceCharacters": 932
+    },
+    {
+      "path": "checks/film-credits.cjs",
+      "bytes": 5558,
+      "physicalLines": 34,
+      "nonblankLines": 33,
+      "nonWhitespaceCharacters": 5402
+    },
+    {
+      "path": "checks/film-finale.cjs",
+      "bytes": 2252,
+      "physicalLines": 15,
+      "nonblankLines": 15,
+      "nonWhitespaceCharacters": 2183
+    },
+    {
+      "path": "checks/gallery.cjs",
+      "bytes": 1739,
+      "physicalLines": 28,
+      "nonblankLines": 28,
+      "nonWhitespaceCharacters": 1575
+    },
+    {
+      "path": "checks/geometry.cjs",
+      "bytes": 3460,
+      "physicalLines": 57,
+      "nonblankLines": 55,
+      "nonWhitespaceCharacters": 3006
+    },
+    {
+      "path": "checks/gpu-renderer.cjs",
+      "bytes": 5399,
+      "physicalLines": 64,
+      "nonblankLines": 64,
+      "nonWhitespaceCharacters": 5163
+    },
+    {
+      "path": "checks/inputs.cjs",
+      "bytes": 9724,
+      "physicalLines": 68,
+      "nonblankLines": 66,
+      "nonWhitespaceCharacters": 9310
+    },
+    {
+      "path": "checks/journal.cjs",
+      "bytes": 2395,
+      "physicalLines": 26,
+      "nonblankLines": 25,
+      "nonWhitespaceCharacters": 2290
+    },
+    {
+      "path": "checks/repository.cjs",
+      "bytes": 4716,
+      "physicalLines": 82,
+      "nonblankLines": 82,
+      "nonWhitespaceCharacters": 4015
+    },
+    {
+      "path": "checks/time-layout.cjs",
+      "bytes": 5794,
+      "physicalLines": 71,
+      "nonblankLines": 68,
+      "nonWhitespaceCharacters": 5537
+    },
+    {
+      "path": "checks/types-reactivity.cjs",
+      "bytes": 2502,
+      "physicalLines": 20,
+      "nonblankLines": 20,
+      "nonWhitespaceCharacters": 2414
+    },
+    {
+      "path": "checks/types.cjs",
+      "bytes": 7317,
+      "physicalLines": 36,
+      "nonblankLines": 33,
+      "nonWhitespaceCharacters": 7088
+    },
+    {
+      "path": "film-credits.css",
+      "bytes": 18129,
+      "physicalLines": 150,
+      "nonblankLines": 144,
+      "nonWhitespaceCharacters": 16982
+    },
+    {
+      "path": "film-credits.js",
+      "bytes": 20034,
+      "physicalLines": 125,
+      "nonblankLines": 123,
+      "nonWhitespaceCharacters": 18401
+    },
+    {
+      "path": "film-finale.js",
+      "bytes": 8477,
+      "physicalLines": 56,
+      "nonblankLines": 55,
+      "nonWhitespaceCharacters": 7885
+    },
+    {
+      "path": "gallery.css",
+      "bytes": 7990,
+      "physicalLines": 6,
+      "nonblankLines": 6,
+      "nonWhitespaceCharacters": 7861
+    },
+    {
+      "path": "gallery.html",
+      "bytes": 31499,
+      "physicalLines": 303,
+      "nonblankLines": 303,
+      "nonWhitespaceCharacters": 27243
+    },
+    {
+      "path": "gallery.js",
+      "bytes": 3924,
+      "physicalLines": 62,
+      "nonblankLines": 62,
+      "nonWhitespaceCharacters": 3376
+    },
+    {
+      "path": "geometry.js",
+      "bytes": 1964,
+      "physicalLines": 41,
+      "nonblankLines": 41,
+      "nonWhitespaceCharacters": 1560
+    },
+    {
+      "path": "gpu-renderer.js",
+      "bytes": 18816,
+      "physicalLines": 300,
+      "nonblankLines": 300,
+      "nonWhitespaceCharacters": 16566
+    },
+    {
+      "path": "index.html",
+      "bytes": 31388,
+      "physicalLines": 183,
+      "nonblankLines": 177,
+      "nonWhitespaceCharacters": 27368
+    },
+    {
+      "path": "input-model.js",
+      "bytes": 10406,
+      "physicalLines": 69,
+      "nonblankLines": 69,
+      "nonWhitespaceCharacters": 9495
+    },
+    {
+      "path": "inputs.css",
+      "bytes": 17763,
+      "physicalLines": 107,
+      "nonblankLines": 101,
+      "nonWhitespaceCharacters": 16679
+    },
+    {
+      "path": "inputs.js",
+      "bytes": 26173,
+      "physicalLines": 82,
+      "nonblankLines": 82,
+      "nonWhitespaceCharacters": 24681
+    },
+    {
+      "path": "journal.css",
+      "bytes": 16264,
+      "physicalLines": 129,
+      "nonblankLines": 126,
+      "nonWhitespaceCharacters": 15227
+    },
+    {
+      "path": "journal.js",
+      "bytes": 19554,
+      "physicalLines": 121,
+      "nonblankLines": 119,
+      "nonWhitespaceCharacters": 18009
+    },
+    {
+      "path": "scripts/build-film-qr.cjs",
+      "bytes": 3245,
+      "physicalLines": 20,
+      "nonblankLines": 20,
+      "nonWhitespaceCharacters": 3038
+    },
+    {
+      "path": "scripts/build-gallery.cjs",
+      "bytes": 1471,
+      "physicalLines": 21,
+      "nonblankLines": 21,
+      "nonWhitespaceCharacters": 1300
+    },
+    {
+      "path": "scripts/build-support-qr.cjs",
+      "bytes": 1444,
+      "physicalLines": 27,
+      "nonblankLines": 27,
+      "nonWhitespaceCharacters": 1230
+    },
+    {
+      "path": "scripts/check.cjs",
+      "bytes": 763,
+      "physicalLines": 15,
+      "nonblankLines": 15,
+      "nonWhitespaceCharacters": 662
+    },
+    {
+      "path": "special-blocks.css",
+      "bytes": 12561,
+      "physicalLines": 99,
+      "nonblankLines": 98,
+      "nonWhitespaceCharacters": 11819
+    },
+    {
+      "path": "styles.css",
+      "bytes": 26576,
+      "physicalLines": 271,
+      "nonblankLines": 258,
+      "nonWhitespaceCharacters": 23948
+    },
+    {
+      "path": "time-layout.js",
+      "bytes": 7237,
+      "physicalLines": 116,
+      "nonblankLines": 116,
+      "nonWhitespaceCharacters": 6427
+    },
+    {
+      "path": "types.css",
+      "bytes": 21106,
+      "physicalLines": 183,
+      "nonblankLines": 177,
+      "nonWhitespaceCharacters": 19832
+    },
+    {
+      "path": "types.js",
+      "bytes": 45339,
+      "physicalLines": 159,
+      "nonblankLines": 154,
+      "nonWhitespaceCharacters": 42437
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "prepared": "2026-11-22",
+  "source": "Accessible local project chat; completed turns before the current record-preparation request.",
+  "timezone": "America/Los_Angeles",
+  "completedTurns": 49,
+  "assistantTurnaroundSeconds": 19234,
+  "interpretation": "Request-to-completion windows include tools, latency and noncoding work. They are not human attention or pure model compute. Daily first/last windows include gaps.",
+  "days": [
+    {
+      "date": "2026-11-04",
+      "completedTurns": 7,
+      "firstRequestLocal": "2026-11-04, 13:55:09",
+      "lastCompletionLocal": "2026-11-04, 19:03:34",
+      "assistantTurnaroundSeconds": 2422
+    },
+    {
+      "date": "2026-11-13",
+      "completedTurns": 1,
+      "firstRequestLocal": "2026-11-13, 14:20:12",
+      "lastCompletionLocal": "2026-11-13, 14:20:39",
+      "assistantTurnaroundSeconds": 27
+    },
+    {
+      "date": "2026-11-16",
+      "completedTurns": 7,
+      "firstRequestLocal": "2026-11-16, 17:14:54",
+      "lastCompletionLocal": "2026-11-16, 21:27:59",
+      "assistantTurnaroundSeconds": 5955
+    },
+    {
+      "date": "2026-11-17",
+      "completedTurns": 8,
+      "firstRequestLocal": "2026-11-17, 19:12:25",
+      "lastCompletionLocal": "2026-11-17, 21:28:17",
+      "assistantTurnaroundSeconds": 3305
+    },
+    {
+      "date": "2026-11-18",
+      "completedTurns": 9,
+      "firstRequestLocal": "2026-11-18, 10:28:16",
+      "lastCompletionLocal": "2026-11-18, 16:48:36",
+      "assistantTurnaroundSeconds": 3567
+    },
+    {
+      "date": "2026-11-20",
+      "completedTurns": 10,
+      "firstRequestLocal": "2026-11-20, 09:33:10",
+      "lastCompletionLocal": "2026-11-20, 20:47:27",
+      "assistantTurnaroundSeconds": 2805
+    },
+    {
+      "date": "2026-11-21",
+      "completedTurns": 1,
+      "firstRequestLocal": "2026-11-21, 21:28:26",
+      "lastCompletionLocal": "2026-11-21, 21:29:09",
+      "assistantTurnaroundSeconds": 43
+    },
+    {
+      "date": "2026-11-22",
+      "completedTurns": 6,
+      "firstRequestLocal": "2026-11-22, 12:34:17",
+      "lastCompletionLocal": "2026-11-22, 14:11:43",
+      "assistantTurnaroundSeconds": 1110
+    }
+  ]
+}
