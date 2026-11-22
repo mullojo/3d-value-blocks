@@ -90,6 +90,8 @@ The 30.0× average is rounded: 629 / 21 ≈ 29.952. Setting the prototype’s wh
 
 ## A source-volume rate cross-check
 
+For a complementary character-rate model, see [Robot expansion: from human bandwidth to a larger field of work](ROBOT_EXPANSION_MENTAL_MODEL.md). Its 70× raw / 700× availability example uses different assumptions and units from the project-specific budgets here; it does not revise this ledger.
+
 Take 5,063.45 retained source-text units and try three assumed manual net production rates. These are knobs for reasoning, not measured industry rates. They concern already-scoped source production, not the full design/research/debugging loop.
 
 | Assumed manual text units/hour | Source-production hours |

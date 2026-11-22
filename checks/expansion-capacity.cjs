@@ -1,0 +1,30 @@
+const assert = require('node:assert/strict');
+const { calculate, fixedWorkloadGain } = require('../scripts/robot-expansion-capacity.cjs');
+const input = require('../docs/value-block-records/expansion-capacity-model.json');
+const result = calculate(input);
+const close = (actual,expected) => assert(Math.abs(actual-expected)<1e-8, `${actual} != ${expected}`);
+assert.equal(result.humanCharactersPerSecond,5);
+assert.equal(result.aiCharactersPerSecond,350);
+assert.equal(result.rawEmissionRatio,70);
+assert.equal(result.equalWindowUsefulCapacityRatio,700);
+close(result.rows[0].humanTypingHours,35/18);
+close(result.rows[0].aiSingleStreamEmissionHours*3600,100);
+close(result.rows[3].humanTypingHours,1944.4444444444443);
+close(result.rows[3].humanCalendarDays,810.1851851851852);
+close(result.rows[3].humanScheduledWorkdays,2430.5555555555557);
+for (const row of result.rows) {
+  close(row.humanTypingHours/row.aiSingleStreamEmissionHours,70);
+  close(row.humanElapsedHours/row.aiElapsedHours,700);
+}
+assert.equal(calculate({...input,aiTokensPerSecond:130}).rawEmissionRatio,91);
+assert.equal(calculate({...input,humanTypingDuty:1}).equalWindowUsefulCapacityRatio,70);
+assert.equal(calculate({...input,aiGeneratingDuty:.5}).equalWindowUsefulCapacityRatio,350);
+assert.equal(calculate({...input,aiGeneratingDuty:.1}).equalWindowUsefulCapacityRatio,70);
+assert.equal(calculate({...input,aiUsefulYield:.25}).equalWindowUsefulCapacityRatio,175);
+assert.equal(calculate({...input,effectiveIndependentWorkers:4}).equalWindowUsefulCapacityRatio,2800);
+close(fixedWorkloadGain(700,0),700);
+close(fixedWorkloadGain(700,1),1);
+close(fixedWorkloadGain(700,.01),87.60951188986233);
+for (const change of [{humanWordsPerMinute:0},{humanTypingDuty:0},{aiGeneratingDuty:2},{aiUsefulYield:-1},{lineCounts:[0]},{lineCounts:[]}]) assert.throws(()=>calculate({...input,...change}),RangeError);
+assert.throws(()=>fixedWorkloadGain(700,1.1),RangeError);
+console.log('Capacity model passed: exact 70×/700× ratios, four volumes, clock interpretations, yield/duty/worker sensitivity, fixed-workload bottlenecks and input bounds.');

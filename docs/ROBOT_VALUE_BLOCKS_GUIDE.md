@@ -54,6 +54,8 @@ A source/rate calculation estimates a slice of implementation work. **Do not add
 
 ## Machine speed and human gain are different
 
+The [expansion mental model](ROBOT_EXPANSION_MENTAL_MODEL.md) works through human typing bandwidth, AI emission, duty cycles, useful-output yield, and independent workers. It includes editable inputs and a local calculator, with an explicit bridge from capacity to effort-saved blocks.
+
 If timestamps exist, assistant request-to-completion windows can provide another descriptive measure. Those windows include tools, browser checks, latency, and revisions. They are not pure inference time, and they can overlap a person’s review or other activity.
 
 A project’s retained source divided by those windows is an artifact-throughput proxy. It is not a typing-speed benchmark, not a count of all generated/rejected code, and not the same as W/H. A shorter machine run does not erase the human judgment that made its output useful.

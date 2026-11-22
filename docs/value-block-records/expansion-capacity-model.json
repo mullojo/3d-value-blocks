@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "status": "Illustrative assumptions from a contributor-supplied discussion; not measured frontier-model performance or average human typing speed.",
+  "humanWordsPerMinute": 60,
+  "charactersPerWord": 5,
+  "charactersPerLine": 35,
+  "aiTokensPerSecond": 100,
+  "charactersPerToken": 3.5,
+  "humanTypingDuty": 0.1,
+  "aiGeneratingDuty": 1,
+  "humanUsefulYield": 1,
+  "aiUsefulYield": 1,
+  "effectiveIndependentWorkers": 1,
+  "calendarHoursPerDay": 24,
+  "humanWorkdayHours": 8,
+  "lineCounts": [1000, 10000, 100000, 1000000]
+}

@@ -80,6 +80,7 @@ The companion AI model explores about **11×–98× total-output scenarios**, wi
 
 - [Human contribution journal](docs/HUMAN_VALUE_BLOCKS.md) · [Reusable human-block guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md)
 - [Robot expansion estimates](docs/ROBOT_VALUE_BLOCKS.md) · [Starter robot-block guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md)
+- [Robot expansion mental model](docs/ROBOT_EXPANSION_MENTAL_MODEL.md): human bandwidth, AI capacity, availability, and useful work.
 
 For the underlying numbers and evidence, explore the [structured contribution ledger](docs/value-block-records/ledger.json), [source inventory](docs/value-block-records/source-inventory.json), and [chat chronology](docs/value-block-records/chat-evidence.json).
 
