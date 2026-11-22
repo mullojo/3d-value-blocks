@@ -81,6 +81,8 @@ The companion AI model explores about **11×–98× total-output scenarios**, wi
 - [Human contribution journal](docs/HUMAN_VALUE_BLOCKS.md) · [Reusable human-block guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md)
 - [Robot expansion estimates](docs/ROBOT_VALUE_BLOCKS.md) · [Starter robot-block guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md)
 
+For the underlying numbers and evidence, explore the [structured contribution ledger](docs/value-block-records/ledger.json), [source inventory](docs/value-block-records/source-inventory.json), and [chat chronology](docs/value-block-records/chat-evidence.json).
+
 ## Support this open-source experiment
 
 Bitcoin giving helps support Value Blocks as an open-source New Game economy project: design exploration, implementation, documentation, and continued experiments in recognizing human value.
@@ -100,6 +102,7 @@ Scan with a Bitcoin wallet, or copy the address. No amount is prefilled. See [SU
 - [Documentation index](docs/README.md)
 - [Architecture and local state](docs/ARCHITECTURE.md)
 - [Preserved playground development notes](docs/PLAYGROUND_GUIDE.md)
+- [Publishing with GitHub Desktop and GitHub Pages](docs/PUBLISHING.md)
 - [Embedded Bitcoin Human Value Blocks: draft concepts](docs/embedded-bitcoin-human-value-blocks/README.md)
 - [Third-party notices and asset sources](THIRD_PARTY_NOTICES.md)
 
