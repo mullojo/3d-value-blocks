@@ -1,0 +1,18 @@
+# Local editor, OS and scratch files
+.DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.log
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Historical local review captures; curated public images live in docs/images/.
+/preview*.png
+/preview*.jpg
+/checks/*browser-results.json
+/checks/*browser-performance.json

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A local material and motion study for three-dimensional value blocks.">
+  <title>Value Blocks — Material playground</title>
+  <link rel="stylesheet" href="vendor/tailwind.css">
+  <link rel="stylesheet" href="styles.css?v=5-value-studies">
+  <link rel="stylesheet" href="journal.css?v=6-journal-5">
+  <link rel="stylesheet" href="film-credits.css?v=9-qr-style">
+  <link rel="stylesheet" href="special-blocks.css?v=2-variants">
+  <link rel="stylesheet" href="types.css?v=6-multiples">
+  <link rel="stylesheet" href="inputs.css?v=16-entry-colors">
+  <script src="vendor/vue.global.prod.js"></script>
+  <script src="build-queue.js" defer></script>
+  <script src="geometry.js?v=5-value-studies" defer></script>
+  <script src="time-layout.js" defer></script>
+  <script src="gpu-renderer.js?v=5-value-studies" defer></script>
+  <script src="film-finale.js?v=9-qr-style" defer></script>
+  <script src="film-credits.js?v=15-copy" defer></script>
+  <script src="journal.js?v=17-lived-entries" defer></script>
+  <script src="input-model.js?v=17-lived-entries" defer></script>
+  <script src="block-colors.js?v=16-entry-colors" defer></script>
+  <script src="inputs.js?v=18-live-quantity" defer></script>
+  <script src="types.js?v=9-clean-crystal" defer></script>
+  <script src="app.js?v=20-lazy-types" defer></script>
+</head>
+<body>
+<div id="app" v-cloak>
+<div class="playground" :data-theme="theme" :style="material">
+  <header class="flex items-center justify-between gap-4">
+    <a class="wordmark" href="./index.html"><span class="brand-cube">◈</span> VALUE BLOCKS <span class="edition">/ LAB 004</span></a>
+    <button class="theme-button" @click="theme = theme === 'dark' ? 'light' : 'dark'" :aria-label="`Switch to ${theme === 'dark' ? 'light' : 'dark'} background`"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><template v-if="theme === 'dark'"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></template><path v-else d="M20.9 13.3A9 9 0 0 1 10.7 3.1 9 9 0 1 0 20.9 13.3Z"></path></svg><span>{{ theme === 'dark' ? 'Light' : 'Dark' }} canvas</span></button>
+  </header>
+
+  <main>
+    <section class="intro flex items-end justify-between gap-5">
+      <div><p class="eyebrow">{{ activePane === 'types' ? 'EXPERIMENT 11 — THREE KINDS OF CONTRIBUTION' : activePane === 'inputs' ? 'EXPERIMENT 10 — THE GOOD, RECORDED' : activePane === 'journal' ? 'EXPERIMENT 06 — EVERY BLOCK HAS A STORY' : sceneMode === 'time' ? 'EXPERIMENT 04 — THE SHAPE OF TIME' : 'EXPERIMENT 03 — A HUNDRED THOUSAND POSSIBILITIES' }}</p><h1>A value block.<br>A lot of possibility.</h1><p class="subtitle">Color, light, and a new dimension of value.</p></div>
+      <span class="local-badge"><i></i> LOCAL PLAYGROUND</span>
+    </section>
+
+    <div class="experiment-bar"><div><span class="eyebrow">ARRANGE VALUE BY</span><p>{{ activePane === 'types' ? 'Human value. Resources given. Effort saved.' : activePane === 'inputs' ? 'Record what matters.' : activePane === 'journal' ? 'Every block has a story. Give it a place.' : sceneMode === 'time' ? 'A day becomes a week. A year takes shape.' : 'One primitive. Every scale.' }}</p></div><div class="segmented experiment-switch" aria-label="Arrangement mode"><button @click="setSceneMode('counts')" :class="{active:activePane === 'blocks' && sceneMode === 'counts'}" :aria-pressed="activePane === 'blocks' && sceneMode === 'counts'">Counts</button><button @click="setSceneMode('time')" :class="{active:activePane === 'blocks' && sceneMode === 'time'}" :aria-pressed="activePane === 'blocks' && sceneMode === 'time'">Time</button><button @click="activePane='journal'" :class="{active:activePane === 'journal'}" :aria-pressed="activePane === 'journal'">Journal</button><button @click="activePane='inputs'" :class="{active:activePane === 'inputs'}" :aria-pressed="activePane === 'inputs'">Inputs</button><button @click="activePane='types'" :class="{active:activePane === 'types'}" :aria-pressed="activePane === 'types'">Types</button></div></div>
+    <types-lab v-if="typesVisited" v-show="activePane === 'types'" :visible="activePane === 'types'"></types-lab>
+    <inputs-lab v-show="activePane === 'inputs'" :model-value="blockValue"></inputs-lab>
+    <journal-lab :visible="activePane === 'journal'" v-show="activePane === 'journal'" v-model="blockValue" @inspect="inspectJournal"></journal-lab>
+    <div v-show="activePane === 'blocks'" class="workspace" :class="{'time-workspace':sceneMode === 'time'}">
+      <section class="stage-panel" aria-label="Interactive 3D cube preview">
+        <div class="stage-top flex items-center justify-between"><span class="eyebrow">{{ sceneMode === 'time' ? timeScope.toUpperCase() + ' / ' + timeModel.days.length + (timeModel.days.length === 1 ? ' DAY' : ' DAYS') : layout === 'single' ? 'THE PRIMITIVE' : 'BUILDING WITH BLOCKS' }}</span><span class="specimen">{{ sceneMode === 'time' ? timeModel.title : colorMode === 'solid' ? family + ' / ' + shade : colorMode === 'rainbow' ? 'rainbow / ' + groupShade : colorMode === 'gradient' ? family + ' / height gradient' : 'saved palette' }}</span></div>
+        <div class="viewport" ref="viewport" tabindex="0" @keydown="viewKey" @pointerdown="startDrag" @pointermove="drag" @pointerup="stopDrag" @pointercancel="stopDrag" @lostpointercapture="stopDrag" :class="{ dragging, panning:dragMode === 'pan' }" aria-label="3D blocks. Drag to orbit, Shift-drag or arrow keys to pan. Plus and minus to zoom. Zero to fit.">
+          <div class="ambient-glow"></div>
+          <div class="scene-camera" :style="{transform:`translate(${panX}px, ${panY}px)`}">
+          <div v-if="sceneMode === 'time' && ground" class="time-floor-wrap" aria-hidden="true"><svg class="time-floor" :viewBox="`0 0 ${stageSize.width} ${stageSize.height}`"><polygon v-for="board in timeBoards" :key="board.id" :points="board.points" class="time-board"></polygon><polygon v-for="pad in timePads" :key="pad.id" :points="pad.points" :class="['time-cell',{blank:!pad.date,selected:pad.date === selectedDate,weekend:pad.weekend}]"></polygon></svg></div>
+          <div v-if="sceneMode === 'counts' && useGpu && ground" class="gpu-shadow" aria-hidden="true"></div>
+          <canvas ref="gpuCanvas" class="gpu-canvas" v-show="useGpu" aria-label="GPU rendered value blocks"></canvas>
+          <div v-if="!useGpu" class="orbit" :style="{ transform: `scale3d(${sceneScale}, ${sceneScale}, ${sceneScale})` }">
+            <div class="world" :style="{ transform: `rotateX(${rotationX}deg) rotateY(${rotationY}deg)` }">
+              <div class="ground" v-if="ground && sceneMode === 'counts'"></div>
+              <div class="assembly" :class="{ floating: motion === 'float' && !reducedMotion }">
+                <div class="spin" :class="{ spinning: motion === 'spin' && !reducedMotion }">
+                  <value-cube v-for="block in renderedBlocks" :key="`${epoch}-${block.id}`" :block="block" :edges="edges" :finish="finish"></value-cube>
+                </div>
+              </div>
+            </div>
+          </div>
+          <svg v-if="sceneMode === 'time'" class="time-leaders" :viewBox="`0 0 ${stageSize.width} ${stageSize.height}`" aria-hidden="true"><line v-for="label in timeLabels" :key="label.id || label.iso" :x1="label.anchorX" :y1="label.anchorY" :x2="label.x" :y2="label.y"></line></svg><div class="time-labels" v-if="sceneMode === 'time'"><span v-for="label in timeWeekLabels" :key="label.label" class="time-weekday-label" :style="{left:label.x+'px',top:label.y+'px'}">{{ label.label }}</span><button v-for="label in timeLabels" :key="label.id || label.iso" :class="['time-scene-label',label.kind,{selected:label.iso === selectedDate,'compact-count':label.compact}]" :style="{left:label.x+'px',top:label.y+'px'}" :title="label.kind === 'month' ? 'Open '+label.label : ValueBlockTime.shortDate(label.iso)+' · '+label.count+' / 27 blocks'" :aria-label="label.kind === 'month' ? 'Open '+label.label : ValueBlockTime.shortDate(label.iso)+' · '+label.count+' blocks'" @pointerdown.stop @click.stop="label.kind === 'month' ? openTimeDate(label.date,'month') : selectTimeDate(label.iso)"><b class="time-label-count">{{ label.count.toLocaleString() }}</b><small v-if="!label.compact" class="time-label-date">{{ label.label }}</small></button></div>
+          </div>
+          <div class="pan-controls" aria-label="Pan view" @pointerdown.stop>
+            <button class="pan-up" aria-label="Pan up" title="Pan up (↑)" @click="panBy(0,-40)">↑</button>
+            <button class="pan-left" aria-label="Pan left" title="Pan left (←)" @click="panBy(-40,0)">←</button>
+            <button class="pan-center" aria-label="Center view" title="Center view, keeping zoom" @click="centerPan">⌾</button>
+            <button class="pan-right" aria-label="Pan right" title="Pan right (→)" @click="panBy(40,0)">→</button>
+            <button class="pan-down" aria-label="Pan down" title="Pan down (↓)" @click="panBy(0,40)">↓</button>
+            <button class="pan-mode" :aria-pressed="dragMode === 'pan'" @click="dragMode=dragMode === 'pan'?'orbit':'pan'" title="Toggle drag to pan; Shift-drag always pans">Pan</button>
+          </div>
+          <aside v-if="sceneMode === 'time' && timeScope === 'month' && monthTotalsView !== 'floating'" class="month-corner" aria-label="Month totals calendar" @pointerdown.stop>
+            <button class="month-corner-toggle" :aria-expanded="monthCornerOpen" @click="monthCornerOpen=!monthCornerOpen"><span>DAILY TOTALS</span><span>{{ monthCornerOpen ? '−' : '+' }}</span></button>
+            <div v-if="monthCornerOpen" class="month-corner-grid">
+              <span v-for="name in weekdayNames" :key="name" class="corner-weekday">{{ name.slice(0,1) }}</span>
+              <template v-for="(day,i) in monthCalendar" :key="i"><button v-if="day" :class="['corner-day',{selected:day.iso === selectedDate}]" :aria-label="'Inspect '+ValueBlockTime.shortDate(day.iso)+' · '+day.count+' blocks'" :aria-pressed="day.iso === selectedDate" @click="selectTimeDate(day.iso)"><small>{{ day.number }}</small><b>{{ day.count }}</b></button><span v-else></span></template>
+            </div>
+          </aside>
+          <span class="axis-label">Y ↑<br><span>Z ↙ &nbsp; ↗ X</span></span>
+        </div>
+        <div class="stage-bottom flex items-end justify-between gap-4"><div><span class="drag-icon">↔</span><span class="hint">{{ dragMode === 'pan' ? 'Drag to pan' : 'Drag to orbit' }}</span><span class="hint muted"> · Shift-drag / arrows pan</span></div><div class="view-actions"><div class="zoom-controls" aria-label="View zoom"><button aria-label="Zoom out" title="Zoom out (−)" :disabled="zoom <= .05" @click="changeZoom(-1)">−</button><output aria-label="Zoom level">{{ Math.round(zoom * 100) }}%</output><button aria-label="Zoom in" title="Zoom in (+)" :disabled="zoom >= 8" @click="changeZoom(1)">+</button><button class="zoom-fit" title="Fit view (0)" @click="fitView">Fit</button></div><button class="small-button" @click="resetView">↺ Reset view</button></div></div>
+        <div class="scene-toolbar flex items-center justify-between gap-3">
+          <div v-if="sceneMode === 'counts'" class="segmented layouts" aria-label="Block arrangement"><button v-for="option in layouts" :key="option.id" :class="{ active: layout === option.id }" :aria-pressed="layout === option.id" :disabled="['year','sixtyK','hundredK'].includes(option.id) && !useGpu" @click="layout = option.id">{{ option.label }}</button></div>
+          <div v-if="sceneMode === 'time'" class="segmented time-scopes" aria-label="Time period"><button v-for="scope in ['day','week','month','year']" :key="scope" :class="{active:timeScope === scope}" :aria-pressed="timeScope === scope" :disabled="scope === 'year' && !gpuAvailable" @click="setTimeScope(scope)">{{ scope }}</button></div>
+          <span class="block-count">{{ desiredCount.toLocaleString() }} BLOCK{{ desiredCount !== 1 ? 'S' : '' }} · {{ sceneMode === 'time' ? timeModel.average.toFixed(1) + ' / DAY' : bounds.join(' × ') }}</span>
+        </div>
+        <div class="fill-controls">
+          <section class="value-simulation" aria-label="Value simulation">
+            <div class="simulation-heading"><span class="eyebrow">{{ sceneMode === 'time' ? timeScope.toUpperCase() : 'COUNT' }} VALUE STUDY</span><span>{{ valueSummary.blocks.toLocaleString() }} blocks</span></div>
+            <div class="simulation-totals"><div><small>Modeled value</small><strong>{{ currency(valueSummary.value) }}</strong></div><div><small>Estimated time</small><strong>{{ valueSummary.hours.toLocaleString() }} <em>{{ valueSummary.hours === 1 ? 'hr' : 'hrs' }}</em></strong></div></div>
+            <label class="slider-label" for="block-value">Simulated value / block <output>{{ currency(blockValue) }}</output></label><input id="block-value" type="range" min="100" max="1000" step="25" v-model.number="blockValue">
+            <p class="control-note">Base {{ currency(valueSummary.base) }} at $100/block · ~1 hour/block. Value simulation: $100–$1,000 per block.</p>
+          </section>
+          <div v-if="sceneMode === 'counts'" class="time-layout-options count-layout-options"><label>Count shape<select v-model="countShape"><option value="volume">Growing volume</option><option value="columns">27-block towers</option><option value="cubits">Cubit groups · 27</option></select></label><label v-if="countShape !== 'volume'">Group spacing<select v-model="countSpacing"><option value="compact">Compact</option><option value="airy">Airy</option></select></label><div class="time-camera-buttons"><button class="small-button" @click="setCountView()">↗ 3D view</button><button class="small-button" @click="setCountView(true)">⊞ Top view</button></div></div>
+          <p v-if="sceneMode === 'counts' && countModel" class="control-note">{{ countModel.groups.toLocaleString() }} groups · fill each 27-block group from the bottom before starting the next.</p>
+          <div v-if="sceneMode === 'time'" class="time-navigation"><button class="period-arrow" aria-label="Previous period" @click="navigateTime(-1)">←</button><div><span class="eyebrow">{{ timeScope === 'day' ? 'ONE DAY, ONE CUBIT' : timeScope === 'year' ? 'TWELVE MONTHS, ONE YEAR' : 'A PLACE FOR EVERY DAY' }}</span><h2>{{ timeModel.title }}</h2></div><button class="period-arrow" aria-label="Next period" @click="navigateTime(1)">→</button></div>
+          <div v-if="sceneMode === 'time'" class="time-layout-options"><span v-if="timeScope === 'day'" class="time-shape-pill">Daily cubit · 3 × 3 × 3</span><label v-else>Shape<select v-model="timeShape"><option value="columns">Daily towers</option><option value="cubits">Daily cubits</option></select></label><label v-if="timeScope === 'year'">Year layout<select v-model="timeYearLayout"><option value="quarters">Quarters · 3 × 4</option><option value="gallery">Gallery · 4 × 3</option></select></label><label v-if="timeScope !== 'day'">Spacing<select v-model="timeSpacing"><option value="compact">Compact</option><option value="airy">Airy</option></select></label><label v-if="timeScope === 'month'">Month totals<select v-model="monthTotalsView"><option value="floating">Above stacks</option><option value="calendar">Corner calendar</option><option value="both">Both</option></select></label><div class="time-camera-buttons"><button class="small-button" @click="setTimeView()">↗ 3D view</button><button class="small-button" @click="setTimeView(true)">⊞ Top view</button></div></div>
+          <p v-if="sceneMode === 'time'" class="time-caption">{{ timeScope === 'day' ? 'Start in the back corner. Nine blocks per layer. Three layers make a perfect cubit.' : timeScope === 'year' ? 'Each board is a real month. Select a month name to step closer.' : timeScope === 'month' ? 'One date, one stack. Choose totals above stacks, in the corner calendar, or both.' : 'One date, one stack. Select a date badge or a calendar day to inspect it.' }}</p>
+          <div v-if="sceneMode === 'counts'" class="fill-title"><div><span class="eyebrow">{{ layout === 'cubit' ? 'THE PERFECT CUBIT' : 'GROW A WORLD' }}</span><p>{{ layout === 'cubit' ? '3 × 3 × 3. Twenty-seven possibilities.' : 'Build upward. Spread outward. Find the shape of value.' }}</p></div><button class="small-button" @click="shuffle">↻ Reshuffle</button></div>
+          <div class="renderer-row"><label for="renderer-mode">Renderer</label><select id="renderer-mode" v-model="rendererMode"><option value="gpu" :disabled="!gpuAvailable">GPU · up to 100,000</option><option value="css">CSS · original style</option></select></div>
+          <p class="control-note">{{ gpuAvailable ? 'CSS keeps the original look; GPU unlocks groups above 1,000.' : 'GPU is unavailable in this browser; the original CSS renderer is ready.' }}</p>
+          <p v-if="sceneMode === 'counts'" class="control-note">27/day = 9,855 per person-year · 100,000 ≈ 10.1 person-years.</p>
+<div v-if="sceneMode === 'counts'" class="count-input-row"><label for="exact-count">Exact block count</label><input id="exact-count" type="number" min="1" :max="maxCount" :value="desiredCount" @change="count = Math.max(1,Math.min(maxCount,Math.floor(Number($event.target.value)||1))); layout = 'fill'"></div>
+          <label v-if="sceneMode === 'counts'" class="slider-label" for="fill-count">Random fill <output>{{ count.toLocaleString() }} / {{ maxCount.toLocaleString() }}</output></label><input v-if="sceneMode === 'counts'" id="fill-count" type="range" min="1" :max="maxCount" step="1" v-model.number="count" @input="layout = 'fill'">
+          <div class="build-progress" :data-landed="progress.landed" :data-active="progress.active" :data-target="desiredCount"><span>{{ useGpu && gpuStats.phase === 'preparing' ? 'PREPARING ' + Math.round(gpuStats.prepared / Math.max(1,desiredCount) * 100) + '%' : building ? 'BUILDING' : 'COMPLETE' }} · {{ progress.landed.toLocaleString() }} / {{ desiredCount.toLocaleString() }}<span v-if="progress.active"> · {{ progress.active }} arriving</span></span><div class="build-track" role="progressbar" aria-label="Blocks landed" :aria-valuenow="progress.landed" :aria-valuemax="Math.max(1,desiredCount)" aria-valuemin="0"><i :style="{width: `${progress.landed / Math.max(1,desiredCount) * 100}%`}"></i></div></div>
+          <label class="slider-label" for="build-pace">Build pace <output>{{ Math.round(effectiveRate).toLocaleString() }} blocks/s · ~{{ buildEstimate }}s total</output></label><input id="build-pace" type="range" min="12" max="40" step="1" v-model.number="buildRate">
+          <div v-if="useGpu" class="gpu-metrics" :data-phase="gpuStats.phase" :data-faces="gpuStats.faces" :data-draw-calls="gpuStats.drawCalls" :data-fps="gpuStats.fps"><span>GPU · {{ gpuStats.faces.toLocaleString() }} faces</span><span>{{ gpuStats.drawCalls }} {{ gpuStats.drawCalls === 1 ? 'draw call' : 'draw calls' }}</span><span>{{ building || motion !== 'still' ? (gpuStats.fps ? gpuStats.fps + ' fps' : 'Measuring…') : 'Idle · draws on demand' }}</span><span>Prep {{ gpuStats.prepareMs }} ms</span></div>
+          <p v-if="gpuStats.error" class="control-note" role="status">{{ gpuStats.error }}</p>
+          <div class="fill-options"><label><input type="checkbox" v-model="dropEnabled" role="switch"> Drop into place</label><button class="small-button" @click="replayDrop" :disabled="!dropEnabled || reducedMotion">↓ Replay drop</button><label><input type="checkbox" v-model="autoFit" role="switch"> Auto fit</label></div>
+        </div>
+      </section>
+
+      <aside class="controls">
+        <div class="control-heading flex items-center justify-between"><h2>Make it yours.</h2><span class="eyebrow">LIVE MATERIAL</span></div>
+        <section v-if="sceneMode === 'time'" class="control-section time-settings">
+          <h3 class="mb-4">01 <span>Calendar study</span></h3>
+          <label class="time-field">Anchor date<input type="date" :value="timeAnchor" min="2000-01-01" max="2100-12-31" @change="setTimeAnchor($event.target.value)"></label>
+          <label class="time-field">Week starts<select v-model.number="timeFirst"><option :value="1">Monday</option><option :value="0">Sunday</option></select></label>
+          <label class="time-field">Color by<select v-model="timeColorMode"><option value="random">Random blocks</option><option value="gradient">Daily total gradient</option><option value="weekday">Day of week</option><option value="month">Month</option><option value="material">Material palette</option></select></label>
+          <div class="estimate-range"><label>Daily minimum<input type="number" min="0" max="27" :value="timeMin" @input="updateTimeRange('min',$event.target.value)"></label><label>Daily maximum<input type="number" min="0" max="27" :value="timeMax" @input="updateTimeRange('max',$event.target.value)"></label></div>
+          <div class="time-summary"><span><b>{{ timeModel.total.toLocaleString() }}</b> blocks</span><span><b>{{ timeModel.average.toFixed(1) }}</b> / day</span><span><b>{{ Math.round(timeModel.total / timeModel.capacity * 100) }}%</b> of capacity</span></div>
+          <button class="export-button" @click="resampleTime">↻ New daily estimates<span>{{ timeMin }}–{{ timeMax }}</span></button>
+          <p class="control-note">Seeded sample data · up to 27 blocks per day. The same date keeps its estimate across views. Year views use GPU; CSS keeps the original finish for smaller periods.</p>
+        </section>
+        <section v-if="sceneMode === 'time'" class="control-section day-inspector">
+          <div class="inspector-heading"><h3>EXPLORE A DAY</h3><span>{{ inspectorMonth }}</span></div>
+          <div class="mini-calendar"><span v-for="name in weekdayNames" :key="name" class="weekday-heading">{{ name.slice(0,1) }}</span><template v-for="(day,i) in inspectorCalendar" :key="i"><button v-if="day" :class="['mini-day',{selected:day.iso === selectedDate,weekend:day.weekday === 0 || day.weekday === 6}]" :style="{'--day-tint':(day.count / 27 * 30)+'%'}" :title="day.iso+' · '+day.count+' blocks'" :aria-label="day.iso+' · '+day.count+' blocks'" :aria-pressed="day.iso === selectedDate" @click="selectTimeDate(day.iso)"><span>{{ day.number }}</span><small>{{ day.count }}</small></button><span v-else class="calendar-blank"></span></template></div>
+          <div class="selected-date"><span>{{ ValueBlockTime.shortDate(selectedDate) }}</span><b>{{ inspectorDay.count }} <small>/ 27</small></b></div>
+          <p class="day-value-summary">{{ currency(inspectorDay.count * blockValue) }} modeled · ~{{ inspectorDay.count }} hours · {{ currency(inspectorDay.count * 100) }} base</p>
+          <label class="slider-label" for="day-total">Daily value blocks <output>{{ inspectorDay.count }} / 27</output></label><input id="day-total" type="range" min="0" max="27" :value="inspectorDay.count" @input="setDayTotal($event.target.value)">
+          <div class="inspector-actions"><button class="small-button" @click="openTimeDate(selectedDate,'day')">Open day ↗</button><button class="small-button" @click="openTimeDate(selectedDate,'month')">Focus month ↗</button><button class="small-button" @click="resetDayTotal" :disabled="timeOverrides[selectedDate] === undefined">Reset estimate</button></div>
+        </section>
+        <section class="control-section">
+          <div class="flex items-center justify-between mb-4"><h3>01 <span>Color family</span></h3><span class="color-name">{{ family }}</span></div>
+          <div class="swatches"><button v-for="color in families" :key="color" class="swatch" :class="{ selected: family === color }" :style="{ '--swatch': `var(--color-${color}-500)` }" @click="family = color" :aria-label="color" :title="color" :aria-pressed="family === color"><span v-if="family === color">✓</span></button></div>
+          <div class="shade-ramp mt-5"><button v-for="tone in shades" :key="tone" :style="{ background: `var(--color-${family}-${tone})`, color: tone < 500 ? '#17202b' : '#fff' }" :class="{ selected: shade === tone }" :aria-pressed="shade === tone" @click="shade = tone">{{ tone }}</button></div>
+          <div v-if="(sceneMode === 'time' && timeColorMode === 'gradient') || (sceneMode === 'counts' && colorMode === 'gradient')" class="intensity-legend"><span>{{ sceneMode === 'time' ? '1 block' : 'Bottom' }}</span><i v-for="tone in [200,300,400,500,600,700,800]" :key="tone" :style="{background:`var(--color-${family}-${tone})`}"></i><span>{{ sceneMode === 'time' ? '27 blocks' : 'Top' }}</span></div>
+          <p v-if="sceneMode === 'time' && timeColorMode !== 'material'" class="control-note">{{ timeColorMode === 'gradient' ? 'Your selected color family, shaded by daily total: fewer blocks are lighter; more blocks are darker (1–27 per day).' : timeColorMode === 'random' ? 'Each value block keeps its random color across day, week, month and year. Saved palettes work here too.' : 'Calendar hues follow ' + (timeColorMode === 'weekday' ? 'the day of the week' : 'the month') + '. Choose “Material palette” above for your picked colors.' }}</p>
+          <p v-if="sceneMode === 'counts' && colorMode === 'gradient'" class="control-note">Height gradient uses your selected color family: lighter at the base, darker toward the highest blocks.</p>
+          <p class="control-note">One family. Different shades. Richer depth.</p>
+        </section>
+
+        <section class="control-section palette-section">
+          <h3 class="mb-4">02 <span>Group palette</span></h3>
+          <div class="segmented full"><button v-for="mode in (sceneMode === 'counts' ? ['solid', 'rainbow', 'saved', 'gradient'] : ['solid', 'rainbow', 'saved'])" :class="{ active: colorMode === mode }" :aria-pressed="colorMode === mode" :disabled="mode === 'saved' && !savedColors.length" @click="colorMode = mode; if(sceneMode === 'time' && timeColorMode === 'random' && mode === 'solid') timeColorMode = 'material'">{{ mode }}</button></div>
+          <div v-if="!(sceneMode === 'time' && timeColorMode === 'gradient') && (colorMode === 'rainbow' || (sceneMode === 'time' && timeColorMode !== 'material'))" class="segmented full mt-4"><button v-for="group in [{label:'Light · 200',tone:200},{label:'Bright · 500',tone:500},{label:'Dark · 800',tone:800}]" :class="{active:groupShade === group.tone}" :aria-pressed="groupShade === group.tone" @click="groupShade = group.tone">{{ group.label }}</button></div>
+          <p class="control-note">Save the selected face + edge shades. Saved fills keep each exact material.</p>
+          <button class="export-button mt-4" @click="saveColor">＋ Save {{ family }}-{{ shade }} <span>{{ savedColors.length }}/10</span></button>
+          <div class="saved-palette" v-if="savedColors.length"><div v-for="(color, i) in savedColors" :key="color.family + color.shade + color.edgeShade" class="saved-color"><button :style="{background:`var(--color-${color.family}-${color.shade})`}" :aria-label="`Load ${color.family}-${color.shade}, edge ${color.edgeShade}`" :title="`${color.family}-${color.shade} / edge ${color.edgeShade}`" @click="family = color.family; shade = color.shade; edgeShade = color.edgeShade; colorMode = 'solid'"></button><button class="remove-color" :aria-label="`Remove ${color.family}-${color.shade}, edge ${color.edgeShade}`" @click="removeColor(i)">×</button></div></div>
+          <p class="control-note" aria-live="polite">{{ paletteStatus || 'Up to 10 colors, saved in this browser.' }}</p>
+        </section>
+        <section class="control-section">
+          <h3 class="mb-4">03 <span>Surface & edges</span></h3>
+          <div class="segmented full"><button v-for="surface in ['satin', 'gloss', 'matte']" :class="{ active: finish === surface }" :aria-pressed="finish === surface" @click="finish = surface">{{ surface }}</button></div>
+          <div class="toggle-row"><label for="edge-toggle">Precision edges</label><input id="edge-toggle" type="checkbox" v-model="edges" role="switch"></div>
+          <div class="field-row"><label for="edge-shade">Edge shade</label><select id="edge-shade" v-model.number="edgeShade"><option v-for="tone in shades" :value="tone">{{ family }}-{{ tone }}</option></select></div>
+          <label class="slider-label" for="light">Face contrast <output>{{ contrast }}%</output></label><input id="light" type="range" min="0" max="100" v-model.number="contrast">
+        </section>
+
+        <section class="control-section">
+          <h3 class="mb-4">04 <span>Space & motion</span></h3>
+          <div class="rotation-grid"><div><label class="slider-label" for="rx">Tilt X <output>{{ Math.round(rotationX) }}°</output></label><input id="rx" type="range" min="-90" max="80" v-model.number="rotationX"></div><div><label class="slider-label" for="ry">Orbit Y <output>{{ Math.round(rotationY) }}°</output></label><input id="ry" type="range" min="-180" max="180" v-model.number="rotationY"></div></div>
+          <label class="slider-label" for="zoom">Scale multiplier <output>{{ Math.round(zoom * 100) }}%</output></label><input id="zoom" type="range" min="0.05" max="8" step="0.01" v-model.number="zoom">
+          <div v-if="sceneMode === 'counts'" class="segmented full mt-4"><button v-for="animation in ['still', 'float', 'spin']" :class="{ active: motion === animation }" :aria-pressed="motion === animation" @click="motion = animation">{{ animation }}</button></div>
+          <p v-if="reducedMotion" class="control-note">Animations paused for your reduced-motion preference.</p>
+          <div class="toggle-row"><label for="ground-toggle">Ground plane</label><input id="ground-toggle" type="checkbox" v-model="ground" role="switch"></div>
+        </section>
+        <button class="export-button" @click="copyMaterial">{{ copyStatus || 'Copy material CSS' }} <span>↗</span></button><span class="sr-only" aria-live="polite">{{ copyStatus }}</span>
+      </aside>
+    </div>
+
+    <section v-show="activePane === 'blocks'" class="material-strip"><div><span class="eyebrow">PICKED MATERIAL RECIPE</span><p>The current color picker, ready to save.</p></div><div class="recipe-item" v-for="face in recipe" :key="face.label"><i :style="{ background: `var(--color-${family}-${face.tone})` }"></i><div><span>{{ face.label }}</span><code>{{ family }}-{{ face.tone }}</code></div></div></section>
+    <footer class="flex items-center justify-between gap-4"><span><a href="gallery.html" class="archive-link">DESIGN GALLERY ↗</a> · <a href="archived/v1-simple-start/index.html" class="archive-link">LAB 001 ARCHIVE ↗</a> · <a href="archived/v2-paced-css/index.html" class="archive-link">LAB 002 ARCHIVE ↗</a> · <a href="archived/v3-gpu-counts/index.html" class="archive-link">LAB 003 ARCHIVE ↗</a> <span class="muted">/ An ongoing study in digital objects.</span></span><span>VUE 3 <span class="muted">×</span> TAILWIND 4 <span class="muted">×</span> {{ useGpu ? 'WEBGL 2' : 'CSS 3D' }}</span></footer>
+  </main>
+</div>
+</div>
+<noscript>This local playground needs JavaScript enabled.</noscript>
+</body>
+</html>

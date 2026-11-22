@@ -1,0 +1,36 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs'), vm = require('node:vm'), path = require('node:path');
+const API = vm.runInNewContext(fs.readFileSync(path.join(__dirname, '../build-queue.js'), 'utf8') + '\nBlockBuildQueue;');
+let frames = new Map(), id = 0, time = 0, state, peak = 0, maxLaunch = 0;
+const queue = API.create({ requestFrame: fn => { frames.set(++id, fn); return id; }, cancelFrame: id => frames.delete(id), onUpdate: next => { state = next; peak = Math.max(peak, next.active); } });
+function step(ms = 16) {
+  time += ms;
+  const callbacks = [...frames.values()]; frames.clear();
+  const before = state.launched;
+  callbacks.forEach(fn => fn(time));
+  const added = state.launched - before;
+  maxLaunch = Math.max(maxLaunch, added);
+  assert(added <= 2, 'At most two cubes are created in one animation frame');
+  assert(state.active <= API.MAX_ACTIVE, 'The in-flight population stays bounded');
+}
+queue.setTarget(1000, { reset: true, animate: true, rate: 90 });
+for (let i = 0; i < 120; i++) step();
+assert(state.landed > 0 && state.landed < 1000, 'A thousand-block build is spread over time');
+step(60_000);
+assert(state.active <= API.MAX_ACTIVE, 'Returning from a hidden tab cannot flood the scene');
+for (let i = 0; i < 5000 && frames.size; i++) step();
+assert.equal(state.landed, 1000); assert.equal(state.active, 0); assert.equal(frames.size, 0);
+queue.setTarget(1000, { reset: true, animate: true });
+for (let i = 0; i < 20; i++) step();
+queue.setTarget(3, { animate: true });
+assert(state.launched <= 3 && state.landed <= 3, 'Shrinking removes obsolete arrivals');
+for (let i = 0; i < 100 && frames.size; i++) step();
+assert.equal(state.landed, 3);
+queue.setTarget(100, { animate: true });
+for (let i = 0; i < 1000 && frames.size; i++) step();
+assert.equal(state.landed, 100, 'Growing continues the existing build');
+queue.setTarget(27, { reset: true, animate: false });
+assert.equal(state.landed, 27); assert.equal(state.active, 0); assert.equal(frames.size, 0);
+queue.setTarget(1000, { reset: true, animate: true }); step(); queue.stop();
+assert.equal(frames.size, 0, 'Cancellation removes the scheduled frame');
+console.log(`Build queue checks passed: 1,000 arrivals, max ${peak} in flight, max ${maxLaunch} starts/frame, pause, resize, instant mode and cancellation.`);

@@ -1,0 +1,12 @@
+{
+  "index.html": "61771b69ebd5094bc5593a5d6fa867c1e31980148f5e996b9da8ff0bd506b339",
+  "styles.css": "7d74a85f1aad8feed67fb763c6af4b3bd2f57913490efd2c23be3117403878fb",
+  "README.md": "01cce0854016c499a29919595dd6527409ef695595cf8ce1d5c2957e1cdb1dbe",
+  "app.js": "18bb4fd905b6d9a6dc647c0fd31cebf3459e555b9f03c42a49fe7a0a746e7375",
+  "geometry.js": "d3e50565b324f12f80d59b6d32d1fc4ff4d4ca9d202715adebe850cab18d0aaf",
+  "build-queue.js": "5b4845c62643fc703a21e8ec8bc7190b046311e9d2e1e7d1543ca108e9a292da",
+  "vendor/vue.global.prod.js": "e0a2a0866a8de8887542e24f3c218aad3d907b88f30966068792ba992296dc9f",
+  "vendor/tailwind-browser.js": "e54f393a8f716e47e9e21b916e934d42793dfb6ed65988583dcc3456dcb012aa",
+  "vendor/tailwind.css": "d358ec54d3037288c8e36fb0d1884b7795f28b6b03c29cfdafcf8be2935a1b02",
+  "vendor/NOTICE.md": "cf9101f4151eb1273c3fba59a3feffdc263defc525ff993e36825623843585be"
+}

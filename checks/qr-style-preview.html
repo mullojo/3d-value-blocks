@@ -1,0 +1,30 @@
+<!doctype html>
+<html><meta charset="utf-8"><title>Film QR scan check</title>
+<style>body{background:#131417;color:#e4ca94;font:16px sans-serif;padding:24px}img{width:280px}pre{white-space:pre-wrap}</style>
+<h1>Film concept QR scan check</h1>
+<p>Full artwork at its display sizes; larger matrix-only captures check the QR independently of its captions.</p>
+<img id="source" src="../journal-assets/film-giving-concept.svg?v=4" alt="Styled concept QR">
+<pre id="results">Checking…</pre>
+<script src="../vendor/jsqr.js"></script>
+<script>
+const img=document.querySelector('#source');
+function check(){
+  const results=[];
+  for(const width of [200,234,244,320]){
+    const canvas=document.createElement('canvas');canvas.width=width;canvas.height=Math.round(width*550/480);
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    const pixels=ctx.getImageData(0,0,canvas.width,canvas.height);
+    const decoded=jsQR(pixels.data,pixels.width,pixels.height,{inversionAttempts:'attemptBoth'});
+    results.push({width,region:'full artwork',decoded:decoded?.data||null,passed:decoded?.data==='https://thelightweleave.example/give'});
+  }
+  for(const width of [480,720]){
+    const canvas=document.createElement('canvas');canvas.width=canvas.height=width;
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,28,64,424,424,0,0,width,width);
+    const p=ctx.getImageData(0,0,width,width),decoded=jsQR(p.data,width,width,{inversionAttempts:'attemptBoth'});
+    results.push({width,region:'QR with quiet zone',decoded:decoded?.data||null,passed:decoded?.data==='https://thelightweleave.example/give'});
+  }
+  document.querySelector('#results').textContent=JSON.stringify(results,null,2);
+  document.body.dataset.passed=String(results.every(r=>r.passed));
+}
+if(img.complete)check();else img.onload=check;
+</script></html>

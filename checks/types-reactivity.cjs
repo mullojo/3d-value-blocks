@@ -1,0 +1,20 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const root=path.join(__dirname,'..'),context=vm.createContext({ValueBlockColors:{families:['emerald']}});
+vm.runInContext(fs.readFileSync(path.join(root,'vendor/vue.global.prod.js'),'utf8'),context);
+vm.runInContext(fs.readFileSync(path.join(root,'types.js'),'utf8'),context);
+const lab=vm.runInContext('TypesLab.setup()',context),tick=()=>vm.runInContext('Vue.nextTick()',context);
+(async()=>{
+ const geometry=lab.geometry.value,humanMesh=lab.meshes.value.human,robotMesh=lab.meshes.value.robot;
+ lab.humanFill.value=5;lab.giftFill.value=8;lab.good.value=false;
+ assert.equal(lab.geometry.value,geometry,'Fills and Gratitude eligibility reuse geometry');assert.equal(lab.meshes.value.human,humanMesh);
+ lab.filters.robot=false;assert.equal(lab.geometry.value,geometry,'Keep-position filters reuse geometry');assert.equal(lab.meshes.value.robot,robotMesh);assert.equal(lab.selected.value.robot,0);
+ lab.palette('ocean');assert.equal(lab.geometry.value,geometry,'Palette changes do not rebuild cubes');assert.equal(lab.typeColors.gift,'blue');
+ lab.filterSpace.value='compact';const compact=lab.geometry.value;assert.notEqual(compact,geometry);assert.equal(compact.blocks.length,lab.selected.value.total);
+ lab.layout.value='groups';await tick();assert.equal(lab.groupsVisited.value,true);const groupCounts=lab.groupCounts.value,hiddenCombined=lab.geometry.value;
+ lab.human.value=12;assert.equal(lab.geometry.value,hiddenCombined,'Hidden combined view defers geometry updates');assert.equal(lab.groupCounts.value.human,12);
+ lab.layout.value='combined';await tick();assert.equal(lab.geometry.value.blocks.filter(b=>b.kind==='human').length,12);const hiddenGroups=lab.groupCounts.value;
+ lab.human.value=13;assert.equal(lab.groupCounts.value,hiddenGroups,'Hidden groups retain their buffers');
+ lab.layout.value='groups';await tick();assert.equal(lab.groupCounts.value.human,13,'Returning groups use the latest quantities');
+ const material=vm.runInContext('TypesMesh.computed.material',context).call({kind:'gift',family:'emerald',glass:3,fill:5});assert.equal(material['--type-fill'],'50%');assert.equal(material['--type-front'],'var(--color-emerald-800)');
+ console.log('Types rendering passed: stable meshes for fill/color/filter changes, compact reflow, deferred hidden layouts, latest-count restoration, and shared materials.');
+})().catch(e=>{console.error(e);process.exitCode=1;});

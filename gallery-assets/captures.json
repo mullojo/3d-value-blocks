@@ -1,0 +1,260 @@
+[
+  {
+    "file": "preview.png",
+    "category": "Count",
+    "title": "The first value block",
+    "description": "The original single-cube material experiment."
+  },
+  {
+    "file": "preview-header.png",
+    "category": "Count",
+    "title": "Color, light, possibility",
+    "description": "An early look at the playground’s visual language."
+  },
+  {
+    "file": "preview-1000.png",
+    "category": "Count",
+    "title": "A thousand possibilities",
+    "description": "Taking the original CSS cube into a larger volume."
+  },
+  {
+    "file": "preview-volume.png",
+    "category": "Count",
+    "title": "Growing a volume",
+    "description": "Dense groups with individually shaded faces."
+  },
+  {
+    "file": "preview-paced-build.png",
+    "category": "Count",
+    "title": "Room to watch it land",
+    "description": "Slower arrivals and a more legible build rhythm."
+  },
+  {
+    "file": "preview-css-preserved.png",
+    "category": "Count",
+    "title": "The original finish",
+    "description": "Keeping the CSS material treatment as an option."
+  },
+  {
+    "file": "preview-gpu-100k.png",
+    "category": "Count",
+    "title": "One hundred thousand",
+    "description": "A GPU experiment in large-scale contribution display."
+  },
+  {
+    "file": "preview-value-simulations.jpg",
+    "category": "Count",
+    "title": "Making the value visible",
+    "description": "Hours and modeled contribution values beside the blocks."
+  },
+  {
+    "file": "preview-time-month.jpg",
+    "category": "Time",
+    "title": "A month, in three dimensions",
+    "description": "Daily contributions arranged on an actual calendar."
+  },
+  {
+    "file": "preview-time-year.jpg",
+    "category": "Time",
+    "title": "A year of showing up",
+    "description": "Twelve monthly boards, viewed together."
+  },
+  {
+    "file": "preview-time-random-compact.jpg",
+    "category": "Time",
+    "title": "Closer days, more color",
+    "description": "Compact calendar stacks with playful color."
+  },
+  {
+    "file": "preview-zoom-month-corner.jpg",
+    "category": "Time",
+    "title": "A closer look at a month",
+    "description": "Zoom and corner-calendar navigation studies."
+  },
+  {
+    "file": "preview-month-both-totals.jpg",
+    "category": "Time",
+    "title": "Two ways to read the days",
+    "description": "Stack totals and a calendar companion together."
+  },
+  {
+    "file": "preview-year-gradient.jpg",
+    "category": "Time",
+    "title": "A year in shades",
+    "description": "Darker daily stacks show more recorded contributions."
+  },
+  {
+    "file": "preview-pan-controls.jpg",
+    "category": "Time",
+    "title": "Space to explore",
+    "description": "Pan controls for navigating bigger scenes."
+  },
+  {
+    "file": "preview-journal-cover.jpg",
+    "category": "Journal",
+    "title": "Life recognized",
+    "description": "A journal as a visual record of human contribution."
+  },
+  {
+    "file": "preview-journal-daily.jpg",
+    "category": "Journal",
+    "title": "The day, as it happened",
+    "description": "Contributions and horizontal rows of 3D blocks."
+  },
+  {
+    "file": "preview-journal-team.jpg",
+    "category": "Journal",
+    "title": "People and their contributions",
+    "description": "Portraits and vertical stacks for a shared project."
+  },
+  {
+    "file": "preview-journal-frames.jpg",
+    "category": "Journal",
+    "title": "The context around a contribution",
+    "description": "Frames give a day’s activities their meaning."
+  },
+  {
+    "file": "preview-journal-balanced-dropdowns.jpg",
+    "category": "Journal",
+    "title": "Details in balance",
+    "description": "A refinement of journal filters and controls."
+  },
+  {
+    "file": "preview-journal-row-selection.jpg",
+    "category": "Journal",
+    "title": "Every row has a story",
+    "description": "Selecting a whole contribution to explore its details."
+  },
+  {
+    "file": "preview-film-credits.jpg",
+    "category": "Journal",
+    "title": "The people behind the film",
+    "description": "Interactive credits for a fictional short film."
+  },
+  {
+    "file": "preview-film-finale.jpg",
+    "category": "Journal",
+    "title": "A film’s work, together",
+    "description": "The final falling-block animation gathers the production."
+  },
+  {
+    "file": "preview-film-styled-qr.jpg",
+    "category": "Journal",
+    "title": "An invitation to keep giving",
+    "description": "The fictional film’s integrated QR concept."
+  },
+  {
+    "file": "preview-inputs-workspace.jpg",
+    "category": "Inputs",
+    "title": "A place to record the day",
+    "description": "An early input workspace on a light canvas."
+  },
+  {
+    "file": "preview-inputs-workspace-dark.jpg",
+    "category": "Inputs",
+    "title": "After dark",
+    "description": "The same recording experiment on a dark canvas."
+  },
+  {
+    "file": "preview-inputs-paste.jpg",
+    "category": "Inputs",
+    "title": "From shorthand to a journal",
+    "description": "Emoji blocks and text become structured entries."
+  },
+  {
+    "file": "preview-inputs-life-recognized.jpg",
+    "category": "Inputs",
+    "title": "The day, taking shape",
+    "description": "Live per-person cubits beside entry tools."
+  },
+  {
+    "file": "preview-inputs-clean-rows.jpg",
+    "category": "Inputs",
+    "title": "More space for what happened",
+    "description": "Simplifying the rows of the input journal."
+  },
+  {
+    "file": "preview-inputs-edit-palettes.jpg",
+    "category": "Inputs",
+    "title": "Your records, your colors",
+    "description": "Entry editing and frame/project color settings."
+  },
+  {
+    "file": "preview-tap-select.jpg",
+    "category": "Inputs",
+    "title": "Tap the frame. Choose the blocks.",
+    "description": "A tactile alternative to typing a quantity."
+  },
+  {
+    "file": "preview-copy-refresh.jpg",
+    "category": "Inputs",
+    "title": "Words for a life lived",
+    "description": "Exploring more natural language in the interface."
+  },
+  {
+    "file": "preview-lived-contributions.jpg",
+    "category": "Inputs",
+    "title": "Made, helped, learned",
+    "description": "Examples written as contributions already lived."
+  },
+  {
+    "file": "preview-live-entry-quantity.jpg",
+    "category": "Inputs",
+    "title": "See what you are recording",
+    "description": "The color preview reflects the selected quantity."
+  },
+  {
+    "file": "preview-types.jpg",
+    "category": "Types",
+    "title": "Three kinds of contribution",
+    "description": "Human effort, gifted resources, and robot expansion."
+  },
+  {
+    "file": "preview-types-groups.jpg",
+    "category": "Types",
+    "title": "Together, or side by side",
+    "description": "Separate groups make each contribution type legible."
+  },
+  {
+    "file": "preview-gratitude-fill.jpg",
+    "category": "Types",
+    "title": "Appreciation from the bottom up",
+    "description": "Fill treatments and draft Gratitude visualizations."
+  },
+  {
+    "file": "preview-types-stack-summary.jpg",
+    "category": "Types",
+    "title": "The numbers, with the blocks",
+    "description": "On-stage contribution counts and modeled totals."
+  },
+  {
+    "file": "preview-types-optimized.jpg",
+    "category": "Types",
+    "title": "A more responsive picture",
+    "description": "Keeping the detailed materials while reducing rendering work."
+  },
+  {
+    "file": "preview-human-robot-multiple.jpg",
+    "category": "Types",
+    "title": "Human input × possibility",
+    "description": "Three human blocks and an estimated 10× robot expansion."
+  },
+  {
+    "file": "preview-special-bitcoin-block.jpg",
+    "category": "Bitcoin",
+    "title": "Something held inside",
+    "description": "An embedded-Bitcoin human-block concept."
+  },
+  {
+    "file": "preview-bitcoin-design-variants.jpg",
+    "category": "Bitcoin",
+    "title": "Five ways to see Bitcoin",
+    "description": "Coin, stamp, glass, and small-scale recognition studies."
+  },
+  {
+    "file": "preview-crystal-clean.jpg",
+    "category": "Bitcoin",
+    "title": "A coin inside a crystal cube",
+    "description": "A glass human block with the coin visible as it rotates."
+  }
+]

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A local material and motion study for three-dimensional value blocks.">
+  <title>Value Blocks — Material playground</title>
+  <script src="vendor/tailwind-browser.js"></script>
+  <style type="text/tailwindcss">@import "tailwindcss" theme(static);</style>
+  <link rel="stylesheet" href="styles.css">
+  <script src="vendor/vue.global.prod.js"></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+<div id="app" v-cloak>
+<div class="playground" :data-theme="theme" :style="material">
+  <header class="flex items-center justify-between gap-4">
+    <a class="wordmark" href="./index.html"><span class="brand-cube">◈</span> VALUE BLOCKS <span class="edition">/ LAB 001</span></a>
+    <button class="theme-button" @click="theme = theme === 'dark' ? 'light' : 'dark'" :aria-label="`Switch to ${theme === 'dark' ? 'light' : 'dark'} background`"><svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><template v-if="theme === 'dark'"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"></path></template><path v-else d="M20.9 13.3A9 9 0 0 1 10.7 3.1 9 9 0 1 0 20.9 13.3Z"></path></svg><span>{{ theme === 'dark' ? 'Light' : 'Dark' }} canvas</span></button>
+  </header>
+
+  <main>
+    <section class="intro flex items-end justify-between gap-5">
+      <div><p class="eyebrow">EXPERIMENT 01 — FORM & MATERIAL</p><h1>A value block.<br>A lot of possibility.</h1><p class="subtitle">Color, light, and a new dimension of value.</p></div>
+      <span class="local-badge"><i></i> LOCAL PLAYGROUND</span>
+    </section>
+
+    <div class="workspace">
+      <section class="stage-panel" aria-label="Interactive 3D cube preview">
+        <div class="stage-top flex items-center justify-between"><span class="eyebrow">{{ layout === 'single' ? 'THE PRIMITIVE' : 'BUILDING WITH BLOCKS' }}</span><span class="specimen">{{ family }} / {{ shade }}</span></div>
+        <div class="viewport" ref="viewport" @pointerdown="startDrag" @pointermove="drag" @pointerup="stopDrag" @pointercancel="stopDrag" @lostpointercapture="stopDrag" :class="{ dragging }" aria-label="Drag to rotate the cube; rotation sliders are also available">
+          <div class="ambient-glow"></div>
+          <div class="orbit" :style="{ transform: `scale(${zoom})` }">
+            <div class="world" :style="{ transform: `rotateX(${rotationX}deg) rotateY(${rotationY}deg)` }">
+              <div class="ground" v-if="ground"></div>
+              <div class="assembly" :class="{ floating: motion === 'float' && !reducedMotion }">
+                <div class="spin" :class="{ spinning: motion === 'spin' && !reducedMotion }">
+                  <value-cube v-for="(block, i) in blocks" :key="i" :position="block" :index="i" :edges="edges" :finish="finish"></value-cube>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="axis-label">Y ↑<br><span>Z ↙ &nbsp; ↗ X</span></span>
+        </div>
+        <div class="stage-bottom flex items-end justify-between gap-4"><div><span class="drag-icon">↔</span><span class="hint">Drag to orbit</span><span class="hint muted"> · Six faces. Endless combinations.</span></div><button class="small-button" @click="resetView">↺ Reset view</button></div>
+        <div class="scene-toolbar flex items-center justify-between gap-3">
+          <div class="segmented" aria-label="Block arrangement"><button v-for="option in layouts" :key="option.id" :class="{ active: layout === option.id }" :aria-pressed="layout === option.id" @click="layout = option.id">{{ option.label }}</button></div>
+          <span class="block-count">{{ blocks.length.toString().padStart(2, '0') }} BLOCK{{ blocks.length > 1 ? 'S' : '' }}</span>
+        </div>
+      </section>
+
+      <aside class="controls">
+        <div class="control-heading flex items-center justify-between"><h2>Make it yours.</h2><span class="eyebrow">LIVE MATERIAL</span></div>
+        <section class="control-section">
+          <div class="flex items-center justify-between mb-4"><h3>01 <span>Color family</span></h3><span class="color-name">{{ family }}</span></div>
+          <div class="swatches"><button v-for="color in families" :key="color" class="swatch" :class="{ selected: family === color }" :style="{ '--swatch': `var(--color-${color}-500)` }" @click="family = color" :aria-label="color" :title="color" :aria-pressed="family === color"><span v-if="family === color">✓</span></button></div>
+          <div class="shade-ramp mt-5"><button v-for="tone in shades" :key="tone" :style="{ background: `var(--color-${family}-${tone})`, color: tone < 500 ? '#17202b' : '#fff' }" :class="{ selected: shade === tone }" :aria-pressed="shade === tone" @click="shade = tone">{{ tone }}</button></div>
+          <p class="control-note">One family. Different shades. A little depth.</p>
+        </section>
+
+        <section class="control-section">
+          <h3 class="mb-4">02 <span>Surface & edges</span></h3>
+          <div class="segmented full"><button v-for="surface in ['satin', 'gloss', 'matte']" :class="{ active: finish === surface }" :aria-pressed="finish === surface" @click="finish = surface">{{ surface }}</button></div>
+          <div class="toggle-row"><label for="edge-toggle">Precision edges</label><input id="edge-toggle" type="checkbox" v-model="edges" role="switch"></div>
+          <div class="field-row"><label for="edge-shade">Edge shade</label><select id="edge-shade" v-model.number="edgeShade"><option v-for="tone in shades" :value="tone">{{ family }}-{{ tone }}</option></select></div>
+          <label class="slider-label" for="light">Face contrast <output>{{ contrast }}%</output></label><input id="light" type="range" min="0" max="100" v-model.number="contrast">
+        </section>
+
+        <section class="control-section">
+          <h3 class="mb-4">03 <span>Space & motion</span></h3>
+          <div class="rotation-grid"><div><label class="slider-label" for="rx">Tilt X <output>{{ Math.round(rotationX) }}°</output></label><input id="rx" type="range" min="-80" max="80" v-model.number="rotationX"></div><div><label class="slider-label" for="ry">Orbit Y <output>{{ Math.round(rotationY) }}°</output></label><input id="ry" type="range" min="-180" max="180" v-model.number="rotationY"></div></div>
+          <label class="slider-label" for="zoom">Scale <output>{{ Math.round(zoom * 100) }}%</output></label><input id="zoom" type="range" min="0.55" max="1.4" step="0.01" v-model.number="zoom">
+          <div class="segmented full mt-4"><button v-for="animation in ['still', 'float', 'spin']" :class="{ active: motion === animation }" :aria-pressed="motion === animation" @click="motion = animation">{{ animation }}</button></div>
+          <p v-if="reducedMotion" class="control-note">Animations paused for your reduced-motion preference.</p>
+          <div class="toggle-row"><label for="ground-toggle">Ground plane</label><input id="ground-toggle" type="checkbox" v-model="ground" role="switch"></div>
+        </section>
+        <button class="export-button" @click="copyMaterial">{{ copyStatus || 'Copy material CSS' }} <span>↗</span></button><span class="sr-only" aria-live="polite">{{ copyStatus }}</span>
+      </aside>
+    </div>
+
+    <section class="material-strip"><div><span class="eyebrow">THE MATERIAL RECIPE</span><p>Built from the same color DNA.</p></div><div class="recipe-item" v-for="face in recipe" :key="face.label"><i :style="{ background: `var(--color-${family}-${face.tone})` }"></i><div><span>{{ face.label }}</span><code>{{ family }}-{{ face.tone }}</code></div></div></section>
+    <footer class="flex items-center justify-between gap-4"><span>VALUE BLOCKS <span class="muted">/ An ongoing study in digital objects.</span></span><span>VUE 3 <span class="muted">×</span> TAILWIND 4 <span class="muted">×</span> CSS 3D</span></footer>
+  </main>
+</div>
+</div>
+<noscript>This local playground needs JavaScript enabled.</noscript>
+</body>
+</html>

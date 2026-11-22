@@ -1,0 +1,15 @@
+{
+  "payload": "https://thelightweleave.example/give",
+  "purpose": "Fictional giving concept. No live payment destination.",
+  "generator": "qrcode-generator 1.4.4 + local Scan It SVG styling",
+  "styleSource": "QR-Code-Maker/app.js: dots, extra-rounded corners, built-in spark",
+  "errorCorrection": "H",
+  "quietZoneModules": 4,
+  "modules": 37,
+  "ink": "#e4ca94",
+  "paper": "#131417",
+  "dots": "circles",
+  "corners": "extra-rounded",
+  "centerSymbol": "spark",
+  "centerDiscModules": 7.2
+}

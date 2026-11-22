@@ -1,0 +1,36 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
+const context=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(__dirname,'../types.js'),'utf8'),context);const m=vm.runInContext('ValueBlockTypes',context);
+const demo=m.calculate({human:3,gift:3,robotMultiplier:10});assert.equal(demo.totalValue,3600);assert.equal(demo.total,36);assert.equal(demo.gratitude,300);assert.equal(demo.humanHours,3);assert.equal(demo.savedHours,30);
+const fills=m.calculate({human:3,gift:3,robotMultiplier:10,humanFill:10,giftFill:5});assert.equal(fills.humanGifts,3000);assert.equal(fills.giftGifts,1500);assert.equal(fills.totalValue,demo.totalValue,'Appreciation does not double count contributions');assert.equal(fills.gratitude,300);
+const noHuman=m.calculate({human:0,gift:3,robotMultiplier:10});assert.equal(noHuman.robot,0);assert.equal(noHuman.robotMultiplier,10);assert.equal(noHuman.gratitude,0);assert.equal(noHuman.totalValue,300);
+assert.equal(m.calculate({good:false,human:27,gift:100,robotMultiplier:30}).gratitude,0);
+assert.equal(m.calculate({human:27,gift:100,robotMultiplier:30}).gratitude,2700,'Only human blocks contribute to the draft issuance figure');
+for(const options of [{human:0,gift:0,robot:0},{human:1,gift:0,robot:0},{human:3,gift:3,robotMultiplier:10},{human:27,gift:100,robotMultiplier:30}]){const model=m.calculate(options),g=m.cells(model);assert.equal(g.blocks.length,model.total);assert.equal(new Set(g.blocks.map(b=>b.position.join(','))).size,model.total);for(const kind of ['human','gift','robot'])assert.equal(g.blocks.filter(b=>b.kind===kind).length,model[kind]);assert(g.blocks.every(b=>b.position.every(Number.isFinite)));}
+const core=m.cells(demo,{arrangement:'core'}).blocks.find(b=>b.kind==='human');assert(core.x>0&&core.y>0&&core.z>0,'Human input is embedded inside the expansion');
+const clamped=m.calculate({human:500,gift:-1,robotMultiplier:5000});assert.equal(clamped.human,27);assert.equal(clamped.gift,0);assert.equal(clamped.robot,810);
+const block=vm.runInContext('TypesBlock',context),style=block.computed.style.call({kind:'gift',family:'emerald',position:[0,0,0],glass:3,fill:10});assert.equal(style['--type-front'],'var(--color-emerald-800)');assert.equal(style['--type-fill'],'100%');assert.equal(style.transform,'translate3d(0px,0px,0px)');
+console.log('Types passed: distinct contribution arithmetic, human × robot multiple, 1–10x gift fill without double counting, human dependency, human-only draft Gratitude, exact unique geometry through 937 blocks, embedded human core, and dark gift material.');
+
+const arrival=m.cells(demo);assert.equal(arrival.blocks[0].kind,'human');assert.equal(arrival.blocks[0].x,0);assert.equal(arrival.blocks[0].y,0);assert.equal(arrival.blocks[0].z,0);assert.equal(arrival.blocks[3].kind,'robot');assert.equal(arrival.blocks.at(-1).kind,'gift');
+for(const scene of Object.values(m.stories)){const totals=m.storyTotals(scene),model=m.calculate(totals),records=m.records(scene,model),g=m.cells(model,{records});assert.equal(records.reduce((n,e)=>n+e.count,0),model.total);assert.equal(g.blocks.length,model.total);assert.equal(records[0].kind,'human');let i=0;for(const e of records){const cells=g.blocks.slice(i,i+e.count);assert(cells.every(b=>b.entry===e.id&&b.kind===e.kind));i+=e.count;}for(const b of g.blocks.filter(b=>b.y>0))assert(g.blocks.some(other=>other.x===b.x&&other.z===b.z&&other.y===b.y-1),'Arrival cells have support below');for(let h=0;h<=27;h++){const changed=m.calculate({...totals,human:h}),rows=m.records(scene,changed);assert.equal(rows.reduce((n,e)=>n+e.count,0),changed.total);if(h)assert.equal(rows[0].kind,'human');}}
+for(let mask=0;mask<8;mask++){const filters={human:!!(mask&1),gift:!!(mask&2),robot:!!(mask&4)},selection=m.selection(demo,filters);assert.equal(selection.total,(filters.human?3:0)+(filters.gift?3:0)+(filters.robot?30:0));assert.equal(selection.totalValue,selection.total*100);assert.equal(demo.total,36);}
+console.log('Arrival order, chronological story allocation, supported bottom-first cells, six fuller projects and all eight type-filter combinations passed.');
+const scene=m.stories.software,project=m.calculate(m.storyTotals(scene)),rows=m.records(scene,project),original=m.cells(project,{records:rows});
+for(let mask=0;mask<8;mask++){
+ const filters={human:!!(mask&1),gift:!!(mask&2),robot:!!(mask&4)},kept=m.viewCells(project,rows,filters,{filterSpace:'keep'}),packed=m.viewCells(project,rows,filters,{filterSpace:'compact'}),visible=m.selection(project,filters);
+ assert.equal(kept.blocks.length,visible.total);assert.equal(packed.blocks.length,visible.total);assert.equal(kept.side,original.side);
+ for(const b of kept.blocks)assert.equal(b.position.join(','),original.blocks.find(c=>c.id===b.id).position.join(','));
+ assert.equal(new Set(packed.blocks.map(b=>b.position.join(','))).size,visible.total);
+ for(const b of packed.blocks.filter(b=>b.y>0))assert(packed.blocks.some(c=>c.x===b.x&&c.z===b.z&&c.y===b.y-1));
+ assert.equal(packed.blocks.map(b=>b.entry).join(','),rows.filter(e=>filters[e.kind]).flatMap(e=>Array(e.count).fill(e.id)).join(','));
+}
+const packedHuman=m.viewCells(project,rows,{human:true,gift:false,robot:false},{filterSpace:'compact'});assert(packedHuman.side<original.side);
+for(const kind of ['human','gift','robot']){const partial=block.computed.style.call({kind,family:'emerald',position:[0,0,0],glass:3,fill:5});assert.equal(partial['--type-fill'],'50%');assert.equal(partial['--type-fill-top'],'transparent');assert.equal(partial['--type-fill-bottom'],'#ffffff28');}
+assert.equal(style['--type-fill-top'],'#ffffff28');const emptyFill=block.computed.style.call({kind:'gift',family:'emerald',position:[0,0,0],glass:3,fill:0});assert.equal(emptyFill['--type-fill-bottom'],'transparent');
+console.log('Keep-position and compact filter geometry passed all combinations; fill walls, bottom, and full-only top levels passed.');
+
+for(const human of [0,1,3,12,27])for(const robotMultiplier of [0,1,3,10,20,30]){const model=m.calculate({human,gift:7,robotMultiplier}),rows=m.records(m.stories.software,model);assert.equal(model.robot,human*robotMultiplier);assert.equal(rows.filter(e=>e.kind==='robot').reduce((n,e)=>n+e.count,0),model.robot);for(const row of rows.filter(e=>e.kind==='robot')){const input=rows.find(e=>e.id===row.inputEntry);assert(input);assert.equal(row.count,input.count*robotMultiplier);assert(rows.indexOf(input)<rows.indexOf(row));}assert.equal(rows.filter(e=>e.kind==='gift').reduce((n,e)=>n+e.count,0),7);}
+assert.equal(m.calculate({human:3,robotMultiplier:10}).robot,30);assert.equal(m.calculate({human:1,robotMultiplier:3}).robot,3);
+console.log('Human-linked expansion passed: 3 × 10 = 30, every paired entry has its human source, zero input/zero multiple, and gift chunks stay independent.');
+
+const linkedModel=m.calculate({human:3,gift:6,robotMultiplier:10}),linked=m.cells(linkedModel,{records:m.records(m.stories.software,linkedModel),arrangement:'linked'});assert(linked.blocks.slice(0,3).every(b=>b.kind==='human'));assert(linked.blocks.slice(3,33).every(b=>b.kind==='robot'));assert(linked.blocks.slice(33).every(b=>b.kind==='gift'));console.log('Human-first layers passed: 3 human inputs, 30 derived robot blocks, then independent gift chunks.');
