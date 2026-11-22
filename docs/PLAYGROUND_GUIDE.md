@@ -1,3 +1,5 @@
+> Archive maintenance, November 22, 2026: corrected sibling archive footer links in v2/v3 for static hosting. The v2/v3 index checksums were refreshed for those navigation-only edits; archived rendering scripts and styles are unchanged.
+
 > Preserved development notes from the pre-release playground, November 2026. Some passages describe earlier iterations. Start with the [public README](../README.md) and [architecture guide](ARCHITECTURE.md) for the current overview. Commands below run from the repository root.
 
 # Value Blocks / Lab 004

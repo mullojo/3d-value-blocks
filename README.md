@@ -2,6 +2,8 @@
 
 **Life recognized.** An open-source visual playground for seeing human effort, care, gifts, and AI-assisted contributions as beautiful, stackable 3D blocks.
 
+**[▶ Open the live playground](https://mullojo.github.io/3d-value-blocks/) · [▦ Explore the design gallery](https://mullojo.github.io/3d-value-blocks/gallery.html)**
+
 Built with Vue 3, Tailwind CSS 4, CSS 3D, and an optional WebGL2 renderer. This is an ongoing New Game economy design experiment: a place to explore visual language and interactions before building the larger systems behind them.
 
 ![Human, gift, and robot contributions arranged in a shared 3D stack](docs/images/types-stack.jpg)
@@ -28,13 +30,13 @@ Visit [http://127.0.0.1:8317](http://127.0.0.1:8317). Stop with Ctrl-C. File ope
 | **Inputs** | Record, edit, and delete playful local entries using text parsing, row forms, project/team entry, or Tap Select. Watch people’s daily stacks grow. |
 | **Types** | Compare human, gift, and robot blocks, filter or restack them, explore project stories and contribution totals, and try embedded-Bitcoin human-block designs. |
 
-The earlier [single-cube](archived/v1-simple-start/index.html), [paced CSS](archived/v2-paced-css/index.html), and [GPU count](archived/v3-gpu-counts/index.html) experiments remain available in `archived/`.
+The earlier [single-cube](https://mullojo.github.io/3d-value-blocks/archived/v1-simple-start/index.html), [paced CSS](https://mullojo.github.io/3d-value-blocks/archived/v2-paced-css/index.html), and [GPU count](https://mullojo.github.io/3d-value-blocks/archived/v3-gpu-counts/index.html) experiments remain available in `archived/`.
 
 ## Design gallery
 
-[Explore all 43 design captures](gallery.html): filter by study, search the notebook, or open a full-size image and browse with the arrow keys. The Overview layout gathers every capture into one view. These are historical experiments, including earlier versions of today’s interfaces.
+[Explore all 43 design captures](https://mullojo.github.io/3d-value-blocks/gallery.html): filter by study, search the notebook, or open a full-size image and browse with the arrow keys. The Overview layout gathers every capture into one view. These are historical experiments, including earlier versions of today’s interfaces.
 
-[![Overview of all 43 Value Blocks design captures](docs/images/gallery-overview.jpg)](gallery.html)
+[![Overview of all 43 Value Blocks design captures](docs/images/gallery-overview.jpg)](https://mullojo.github.io/3d-value-blocks/gallery.html)
 
 The gallery’s images are included locally in `gallery-assets/captures/`, so it works from a file or a static host without relying on a separate folder. See [publishing with GitHub Desktop and GitHub Pages](docs/PUBLISHING.md) to put the playground and gallery online.
 

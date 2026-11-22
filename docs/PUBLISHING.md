@@ -1,6 +1,11 @@
 # Publish with GitHub Desktop and GitHub Pages
 
-The playground and gallery are static files, ready to publish together. You do not need npm, a build service, or a separate gallery repository. The GitHub repository and hosting settings are left for the project owner to create.
+The project is published at [mullojo/3d-value-blocks](https://github.com/mullojo/3d-value-blocks).
+
+- [Live playground](https://mullojo.github.io/3d-value-blocks/)
+- [Design gallery](https://mullojo.github.io/3d-value-blocks/gallery.html)
+
+The playground and gallery are static files, published together. The steps below document the setup and can also be used for a new fork. No npm installation, build service, or separate gallery repository is needed.
 
 ## 1. Create the local repository in GitHub Desktop
 
@@ -49,7 +54,7 @@ https://YOUR-ACCOUNT.github.io/3d-value-blocks/
 https://YOUR-ACCOUNT.github.io/3d-value-blocks/gallery.html
 ```
 
-Use the actual account and repository name you chose. The site’s links and asset URLs are relative, so the repository prefix works without source changes. Add the live playground URL to the repository’s **About → Website** field. The README’s relative `gallery.html` link opens the file on GitHub; once published, add the actual live URL near the top of the README too.
+Use the actual account and repository name you chose. The site’s links and asset URLs are relative, so the repository prefix works without source changes. Add the live playground URL to the repository’s **About → Website** field. The README links directly to the live playground and gallery. If publishing a fork, update those absolute URLs to your account and repository.
 
 ## 4. Future updates
 

@@ -69,3 +69,14 @@ for (const file of markdown(root)) {
   }
 }
 console.log('Repository passed: valid Bitcoin address, reproducible scan-tested support QR, consistent destinations, public Markdown links and no private chat references.');
+// Static pages must resolve links locally as well as beneath a Pages prefix.
+for (const file of ['index.html','gallery.html','archived/v1-simple-start/index.html','archived/v2-paced-css/index.html','archived/v3-gpu-counts/index.html']) {
+  const html = fs.readFileSync(path.join(root, file), 'utf8');
+  for (const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    const target = match[1];
+    if (/^[a-z]+:|^#/.test(target)) continue;
+    const local = decodeURIComponent(target.split(/[?#]/)[0]);
+    assert(fs.existsSync(path.resolve(root, path.dirname(file), local)), `Broken static link in ${file}: ${target}`);
+  }
+}
+console.log('Main, gallery, and archived static page links resolve locally.');
