@@ -36,4 +36,4 @@ For large architectural changes, new dependencies, or changes to contribution ar
 
 ## Recognizing contribution
 
-The [human guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md) and [human journal](docs/HUMAN_VALUE_BLOCKS.md) show how we can recognize direction, design, testing, implementation oversight, and publishing—not just code typed. The [robot guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md) keeps estimated AI expansion alongside the human input. These are draft recognition tools; code contributions do not require a particular multiplier or a recorded block allocation.
+The [human guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md) and [human journal](docs/HUMAN_VALUE_BLOCKS.md) show how we can recognize direction, design, testing, implementation oversight, and publishing—not just code typed. The [robot guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md) keeps estimated AI expansion alongside the human input. Human records can be contributor-confirmed while robot expansion remains estimated; code contributions do not require a particular multiplier or a recorded block allocation.

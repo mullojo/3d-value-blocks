@@ -1,10 +1,10 @@
 # Human value blocks · Value Blocks
 
-A project about recognizing human contribution gets to recognize some of its own. These are **Bob’s draft records** for shaping this playground with Codex: the ideas, examples, taste, review, problem spotting, and publishing decisions that gave the code somewhere to go.
+A project about recognizing human contribution gets to recognize some of its own. These are **Bob’s contributor-confirmed records** for shaping this playground with Codex: the ideas, examples, taste, review, problem spotting, and publishing decisions that gave the code somewhere to go.
 
 **21 human value blocks ≈ 21 human hours · $2,100 of base human value.**
 
-**Prepared November 22, 2026.** Work covered: November 4–22, through commit `5570a3d`. These are rounded retrospective allocations, ready for Bob to review. A reasonable whole-project attention range is about **16–28 hours**; 21 is the working allocation, not a measured timesheet. This is the project slice visible in this chat, not all of Bob’s work or life.
+**Prepared November 22, 2026.** Work covered: November 4–22, through commit `5570a3d`. **Confirmed by Bob on November 22, 2026**, after reviewing these records. These are contributor-confirmed retrospective allocations. The original estimation range of **16–28 hours** is retained as background; the confirmed allocation is 21 blocks, rather than a measured timesheet. This is the project slice visible in this chat, not all of Bob’s work or life.
 
 One block is approximately one hour and $100 of contributed human value. AI work is recorded separately in the [robot expansion journal](ROBOT_VALUE_BLOCKS.md). The [human guide](HUMAN_VALUE_BLOCKS_GUIDE.md) explains how to maintain this record.
 
@@ -82,13 +82,13 @@ Dates use America/Los_Angeles. The November 13 and November 21 server-start requ
 
 | Period | Contributor | Human blocks | Base human value | Status |
 | --- | --- | ---: | ---: | --- |
-| 2026-11-04 | Bob | 4 | $400 | Draft; review pending |
-| 2026-11-13–2026-11-16 | Bob | 4 | $400 | Draft; review pending |
-| 2026-11-17 | Bob | 2 | $200 | Draft; review pending |
-| 2026-11-18 | Bob | 4 | $400 | Draft; review pending |
-| 2026-11-20–2026-11-21 | Bob | 5 | $500 | Draft; review pending |
-| 2026-11-22 | Bob | 2 | $200 | Draft; review pending |
-| **Total through `5570a3d`** | **Bob** | **21** | **$2,100** | **Prepared 2026-11-22** |
+| 2026-11-04 | Bob | 4 | $400 | Contributor-confirmed · 2026-11-22 |
+| 2026-11-13–2026-11-16 | Bob | 4 | $400 | Contributor-confirmed · 2026-11-22 |
+| 2026-11-17 | Bob | 2 | $200 | Contributor-confirmed · 2026-11-22 |
+| 2026-11-18 | Bob | 4 | $400 | Contributor-confirmed · 2026-11-22 |
+| 2026-11-20–2026-11-21 | Bob | 5 | $500 | Contributor-confirmed · 2026-11-22 |
+| 2026-11-22 | Bob | 2 | $200 | Contributor-confirmed · 2026-11-22 |
+| **Total through `5570a3d`** | **Bob** | **21** | **$2,100** | **Confirmed by Bob · 2026-11-22** |
 
 The colored entries and ledger are two views of the same 21 blocks. Re-reading this scope adds zero new blocks. Later changes can add new work or a clearly labeled adjustment.
 
@@ -102,7 +102,11 @@ The colored entries and ledger are two views of the same 21 blocks. Re-reading t
 - File sizes and timestamps corroborate artifacts and sequence. They do not establish attention, and the estimate does not claim continuous work throughout long gaps.
 - Automated checks and browser verification were performed with AI assistance. Bob’s observed review and feedback are recognized here; no unreported physical-device testing is invented.
 
-The six working allocations—4, 4, 2, 4, 5, and 2—reflect the size and intensity of the observed direction/review episodes. They are a rounded judgment, not a formula assigning an hour to each prompt. Short requests can carry substantial insight; long assistant runs can require very little human attention.
+The six confirmed allocations—4, 4, 2, 4, 5, and 2—reflect the size and intensity of the observed direction/review episodes. They are a rounded judgment, not a formula assigning an hour to each prompt. Short requests can carry substantial insight; long assistant runs can require very little human attention.
+
+## Confirmation history
+
+On November 22, 2026, Bob reviewed the recorded human value blocks and explicitly requested confirmed status. All six existing periods moved from draft to **contributor-confirmed**. This confirmation adds **zero blocks**: the total remains **21 blocks / $2,100**, with the same original work dates and scope boundary. Robot expansion scenarios continue to be estimates.
 
 ## The expansion beside the human contribution
 
@@ -118,4 +122,4 @@ Draft Gratitude eligibility, peer approval, and embedded-Bitcoin protocols remai
 
 This first allocation stops at `5570a3d` on November 22, before the request for these records. Preparing these guides, the inventory, and the estimation model is **not allocated as another human block here**. Future observed contribution can be recorded as a new period.
 
-Machine-readable sources: [ledger.json](value-block-records/ledger.json) and [chat chronology](value-block-records/chat-evidence.json). New estimates remain drafts until Bob reviews the amount; no review is implied by asking for this document.
+Machine-readable sources: [ledger.json](value-block-records/ledger.json) and [chat chronology](value-block-records/chat-evidence.json). All six periods above are contributor-confirmed. Future allocations can start as drafts and be confirmed separately.

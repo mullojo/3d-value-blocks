@@ -4,7 +4,7 @@
 
 This is a project-specific draft prepared November 22, 2026, through `5570a3d`. It asks what it might have taken Bob, a skilled developer, to produce this same visual playground without generative AI. It is a workload model, not measured hours saved. The upper scenario makes room for the very large gains Bob described; it is not a proven 100× benchmark.
 
-The [human journal](HUMAN_VALUE_BLOCKS.md) independently allocates **21 human blocks / $2,100**. The [starter guide](ROBOT_VALUE_BLOCKS_GUIDE.md) defines the ratios and method. This model recognizes the human’s ideas and judgment; it does not suggest that the AI independently invented the contribution system.
+The contributor-confirmed [human journal](HUMAN_VALUE_BLOCKS.md) records **21 human blocks / $2,100**. The [starter guide](ROBOT_VALUE_BLOCKS_GUIDE.md) defines the ratios and method. This model recognizes the human’s ideas and judgment; it does not suggest that the AI independently invented the contribution system.
 
 ## What is actually in the artifact?
 
@@ -108,7 +108,7 @@ Do not replace H with that 5.34-hour assistant figure to advertise a larger huma
 
 ## What if the human estimate moves?
 
-Hold the working manual budget at 650 hours and change only the draft human input:
+Hold the working manual budget at 650 hours and vary the human input as a sensitivity exercise around the confirmed 21-block allocation:
 
 | Human input | Robot effort saved | Gross gain |
 | ---: | ---: | ---: |

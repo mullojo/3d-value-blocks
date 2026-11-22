@@ -74,7 +74,7 @@ The same command is configured for GitHub Actions. Browser visual checks remain 
 
 ## Contributions, recognized
 
-This project now has its own value-block journal. The first draft recognizes **21 human blocks ≈ 21 hours · $2,100 of base human value** from Bob’s direction, design review, examples, problem spotting, and publishing work through November 22, 2026.
+This project now has its own value-block journal. The contributor-confirmed record recognizes **21 human blocks ≈ 21 hours · $2,100 of base human value** from Bob’s direction, design review, examples, problem spotting, and publishing work through November 22, 2026.
 
 The companion AI model explores about **11×–98× total-output scenarios**, with **31× as its working estimate**: **21 human + 629 robot = 650 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
 
