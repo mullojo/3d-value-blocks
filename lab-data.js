@@ -7,10 +7,10 @@ const ValueBlocksLabData = {
       "name": "Bob",
       "image": "lab-assets/bob-profile.png",
       "role": "Direction, design & implementation review",
-      "blocks": 24,
+      "blocks": 25,
       "status": "mixed",
       "confirmedBlocks": 21,
-      "estimatedBlocks": 3
+      "estimatedBlocks": 4
     },
     {
       "id": "lindsay",
@@ -26,15 +26,15 @@ const ValueBlocksLabData = {
     "prepared": "2026-11-22",
     "timezone": "America/Los_Angeles",
     "snapshotCommit": "5570a3d611ced84b624cc7b4220e6c5a64f7a3d9",
-    "scope": "Original project baseline through 5570a3d, plus contribution guides, robot estimation model, real project journal, collaborator recognition and rendering improvements through cee83a1. This update records that completed scope once; it does not recursively count its own bookkeeping.",
+    "scope": "Original project baseline through 5570a3d, plus contribution guides, the real journal, collaborator recognition, gallery refresh and rendering improvements through e8fd31d.",
     "humanBlockHours": 1,
     "blockBaselineUSD": 100,
-    "humanBlocks": 31,
+    "humanBlocks": 32,
     "humanEstimateRange": [
-      25,
-      39
+      26,
+      40
     ],
-    "humanValueUSD": 3100,
+    "humanValueUSD": 3200,
     "giftResourcesRecorded": null,
     "periods": [
       {
@@ -338,10 +338,10 @@ const ValueBlocksLabData = {
         "start": "2026-11-22",
         "end": "2026-11-22",
         "name": "Recognized the people and work behind the Lab",
-        "blocks": 3,
+        "blocks": 4,
         "range": [
-          2,
-          4
+          3,
+          5
         ],
         "evidence": [
           "docs/HUMAN_VALUE_BLOCKS_GUIDE.md",
@@ -350,7 +350,10 @@ const ValueBlocksLabData = {
           "lab.js",
           "lab-model.js",
           "cube-materials.js",
-          "checks/lab-static-mesh.cjs"
+          "checks/lab-static-mesh.cjs",
+          "lab-glass.js",
+          "gallery.html",
+          "README.md"
         ],
         "entries": [
           {
@@ -370,15 +373,21 @@ const ValueBlocksLabData = {
             "blocks": 1,
             "description": "Recognized Lindsay’s collaboration and guided smoother rendering while preserving the cube materials.",
             "emoji": "🤝⚡"
+          },
+          {
+            "color": "🟦",
+            "blocks": 1,
+            "description": "Reviewed the Lab’s faster robot stacks, put the newest journal work first, and made the gallery and support page easier to find.",
+            "emoji": "⚡🖼️"
           }
         ],
         "contributor": "Bob",
         "status": "chat-estimated",
-        "humanValueUSD": 300,
+        "humanValueUSD": 400,
         "manualHours": {
-          "fast": 21,
-          "working": 63,
-          "deep": 153
+          "fast": 22,
+          "working": 64,
+          "deep": 154
         },
         "robotBlocks": {
           "fast": 18,
@@ -387,7 +396,7 @@ const ValueBlocksLabData = {
         },
         "requestedBy": "Bob",
         "recordedOn": "2026-11-22",
-        "basis": "Three rounded human attention blocks estimated from the follow-up direction and review, requested by Bob; not a new quantity confirmation."
+        "basis": "Four rounded human attention blocks estimated from the follow-up direction and review requested by Bob, including the gallery and rendering follow-up."
       }
     ],
     "manualWorkloads": [
@@ -494,6 +503,14 @@ const ValueBlocksLabData = {
         "workingHours": 24,
         "deepHours": 60,
         "basis": "Shared cube materials, lazy geometry, cached scenes, isolated camera, cancellable frame-budgeted DOM batches, focused checks and browser verification; excludes earlier studio optimization."
+      },
+      {
+        "area": "Follow-up design direction and review",
+        "periodId": "vb-2026-11-22-journal",
+        "fastHours": 1,
+        "workingHours": 1,
+        "deepHours": 1,
+        "basis": "One additional hour of human direction and review for the gallery, journal order and robot rendering through e8fd31d. This entry budgets human work only."
       }
     ],
     "sharedVerificationAllocation": {
@@ -535,34 +552,34 @@ const ValueBlocksLabData = {
     },
     "scenarios": {
       "fast": {
-        "manualEquivalentHours": 253,
-        "humanBlocks": 31,
+        "manualEquivalentHours": 254,
+        "humanBlocks": 32,
         "robotBlocks": 222,
-        "grossGain": 8.161290322580646,
-        "robotMultiple": 7.161290322580645,
-        "humanValueUSD": 3100,
+        "grossGain": 7.9375,
+        "robotMultiple": 6.9375,
+        "humanValueUSD": 3200,
         "robotEquivalentUSD": 22200,
-        "combinedEquivalentUSD": 25300
+        "combinedEquivalentUSD": 25400
       },
       "working": {
-        "manualEquivalentHours": 720,
-        "humanBlocks": 31,
+        "manualEquivalentHours": 721,
+        "humanBlocks": 32,
         "robotBlocks": 689,
-        "grossGain": 23.225806451612904,
-        "robotMultiple": 22.225806451612904,
-        "humanValueUSD": 3100,
+        "grossGain": 22.53125,
+        "robotMultiple": 21.53125,
+        "humanValueUSD": 3200,
         "robotEquivalentUSD": 68900,
-        "combinedEquivalentUSD": 72000
+        "combinedEquivalentUSD": 72100
       },
       "deep": {
-        "manualEquivalentHours": 2210,
-        "humanBlocks": 31,
+        "manualEquivalentHours": 2211,
+        "humanBlocks": 32,
         "robotBlocks": 2179,
-        "grossGain": 71.29032258064517,
-        "robotMultiple": 70.29032258064517,
-        "humanValueUSD": 3100,
+        "grossGain": 69.09375,
+        "robotMultiple": 68.09375,
+        "humanValueUSD": 3200,
         "robotEquivalentUSD": 217900,
-        "combinedEquivalentUSD": 221000
+        "combinedEquivalentUSD": 221100
       }
     },
     "humanReview": {
@@ -627,10 +644,10 @@ const ValueBlocksLabData = {
         "name": "Bob",
         "image": "lab-assets/bob-profile.png",
         "role": "Direction, design & implementation review",
-        "blocks": 24,
+        "blocks": 25,
         "status": "mixed",
         "confirmedBlocks": 21,
-        "estimatedBlocks": 3
+        "estimatedBlocks": 4
       },
       {
         "id": "lindsay",
@@ -839,8 +856,16 @@ const ValueBlocksLabData = {
           "deep": 150
         },
         "basis": "Catch-up requested by Bob: contribution docs and estimation work, the real project journal, contributor recognition and rendering improvements. Original records preserved; no recursive allocation for this bookkeeping update."
+      },
+      {
+        "recordedOn": "2026-11-22",
+        "scopeThroughCommit": "e8fd31d",
+        "periodId": "vb-2026-11-22-journal",
+        "humanBlocksAdded": 1,
+        "bobBlocksAdded": 1,
+        "basis": "Bob requested one extra block for the later gallery, journal and rendering direction and review. The manual workload adds the same one hour."
       }
     ],
-    "recordedThroughCommit": "cee83a1"
+    "recordedThroughCommit": "e8fd31d"
   }
 };

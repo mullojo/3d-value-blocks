@@ -1,10 +1,10 @@
 # Robot value blocks · The Value Blocks experiment
 
-**Current working picture: 31 human blocks + 689 robot blocks = 720 equivalent blocks.** About **23.2× total-output gain**, or **22.2× additional robot expansion** per combined human input block.
+**Current working picture: 32 human blocks + 689 robot blocks = 721 equivalent blocks.** About **22.5× total-output gain**, or **21.5× additional robot expansion** per combined human input block.
 
 ## Caught up through the real journal and rendering work
 
-The November 22 follow-up recognizes **3 new chat-estimated Bob blocks** and **1 additional Lindsay review/collaboration block reported by Bob**. Human input is now **31 blocks / $3,100** (Bob 24, Lindsay 7). Bob’s original 21 confirmed blocks stay unchanged. Lindsay’s new block is an explicitly requested follow-up on the same date as her earlier review, not an automatic extra daily block.
+The November 22 follow-up recognizes **3 new chat-estimated Bob blocks** and **1 additional Lindsay review/collaboration block reported by Bob**. Bob later added **one human block** for the gallery, journal order and rendering review through `e8fd31d`. Human input is now **32 blocks / $3,200** (Bob 25, Lindsay 7). Bob’s original 21 confirmed blocks stay unchanged. Lindsay’s new block is an explicitly requested follow-up on the same date as her earlier review, not an automatic extra daily block.
 
 | New completed scope through `cee83a1` | Fast hours | Working hours | Deep hours |
 | --- | ---: | ---: | ---: |
@@ -18,13 +18,15 @@ The November 22 follow-up recognizes **3 new chat-estimated Bob blocks** and **1
 
 These are editable workload judgments for reproducing the new result without generative AI, not measured time savings or a multiple of code volume. The working 64-hour lane budget includes documentation/model reasoning, ledger integration and page design, camera/layout state separation, lazy/cached geometry, shared materials, cancellable DOM preparation, regression checks and visual verification. It excludes the original studio work and does not add a second shared-testing charge. Subtracting four new human hours leaves 60 robot blocks; Lindsay’s review contributes no extra robot gain on its own.
 
+The latest entry contributes one human hour and one comparable manual hour in each scenario.
+
 | Scenario | Human H | Manual equivalent W | Robot R = W − H | Total-output gain |
 | --- | ---: | ---: | ---: | ---: |
-| Fast | 31 | 253 | 222 | 8.2× |
-| Working | 31 | 720 | 689 | 23.2× |
-| Deep | 31 | 2,210 | 2,179 | 71.3× |
+| Fast | 32 | 254 | 222 | 7.9× |
+| Working | 32 | 721 | 689 | 22.5× |
+| Deep | 32 | 2,211 | 2,179 | 69.1× |
 
-**Working reference values: $3,100 human + $68,900 robot = $72,000 combined.** Gifts remain unreconciled and excluded. This records the completed follow-up scope once; bookkeeping this update does not recursively create more effort estimates. See the [human journal](HUMAN_VALUE_BLOCKS.md), [structured ledger](value-block-records/ledger.json), and [interactive project journal](../lab.html).
+**Working reference values: $3,200 human + $68,900 robot = $72,100 combined.** Gifts remain unreconciled and excluded. This records the completed follow-up scope once; bookkeeping this update does not recursively create more effort estimates. See the [human journal](HUMAN_VALUE_BLOCKS.md), [structured ledger](value-block-records/ledger.json), and [interactive project journal](../lab.html).
 
 ## Previous team snapshot · retained for comparison
 

@@ -10,7 +10,7 @@ const close = (a,b) => assert(Math.abs(a-b) < 1e-9, `${a} != ${b}`);
 assert.equal(new Set(ledger.periods.map(p => p.id)).size, ledger.periods.length);
 const additions=ledger.additionalContributions||[];
 const originalHuman=ledger.periods.reduce((n,p)=>n+p.blocks,0),addedHuman=additions.reduce((n,e)=>n+e.blocks,0);
-assert.equal(originalHuman,24);assert.equal(addedHuman,7);
+assert.equal(originalHuman,25);assert.equal(addedHuman,7);
 assert.equal(ledger.periods.filter(p=>p.status==='contributor-confirmed').reduce((n,p)=>n+p.blocks,0),21);
 assert.equal(new Set(additions.map(e=>e.id)).size,additions.length);
 assert.equal(new Set(additions.filter(e=>!e.supplemental).map(e=>e.date)).size,6);
@@ -67,10 +67,10 @@ close(inventory.totals.sourceUnits80Characters,inventory.totals.nonWhitespaceCha
 const evidence = require('../docs/value-block-records/chat-evidence.json');
 assert.equal(evidence.completedTurns,evidence.days.reduce((n,d)=>n+d.completedTurns,0));
 assert.equal(evidence.assistantTurnaroundSeconds,evidence.days.reduce((n,d)=>n+d.assistantTurnaroundSeconds,0));
-assert(human.includes('31 human value blocks') && human.includes('$3,100'));
-assert(robot.includes('31 human blocks + 689 robot blocks = 720'));
+assert(human.includes('32 human value blocks') && human.includes('$3,200'));
+assert(robot.includes('32 human blocks + 689 robot blocks = 721'));
 for (const file of ['README.md','SUPPORT.md']) {
   const content=fs.readFileSync(path.join(root,file),'utf8');
-  assert(content.includes('31 human blocks') && content.includes('$3,100'),`${file} summary agrees`);
+  assert(content.includes('32 human blocks') && content.includes('$3,200'),`${file} summary agrees`);
 }
-console.log('Value records passed: 31 human blocks across two contributors, original daily Lindsay reports and one explicit follow-up, matching squares and values, all three robot budgets, exact period allocation, and consistent 39-file source inventory / chat timing evidence.');
+console.log('Value records passed: 32 human blocks across two contributors, original daily Lindsay reports and one explicit follow-up, matching squares and values, all three robot budgets, exact period allocation, and consistent 39-file source inventory / chat timing evidence.');

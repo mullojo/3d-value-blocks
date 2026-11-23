@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="The real Value Blocks Lab project journal: 31 recorded human value blocks from Bob and Lindsay, estimated AI expansion, and the work behind the stacks.">
+  <meta name="description" content="The real Value Blocks Lab project journal: 32 recorded human value blocks from Bob and Lindsay, estimated AI expansion, and the work behind the stacks.">
   <title>Value Blocks Lab — A project, recognized</title>
   <link rel="stylesheet" href="vendor/tailwind.css">
   <link rel="stylesheet" href="styles.css">
@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="lab.css?v=5-preview">
   <script src="vendor/vue.global.prod.js" defer></script>
   <script src="cube-materials.js?v=3-catchup" defer></script>
-  <script src="lab-data.js?v=3-catchup" defer></script>
+  <script src="lab-data.js?v=4-late-review" defer></script>
   <script src="lab-model.js?v=3-catchup" defer></script>
   <script src="lab-glass.js?v=2" defer></script>
   <script src="lab.js?v=6-motion" defer></script>
@@ -48,7 +48,7 @@
               <button v-for="p in periods" :key="p.id" class="lab-period" :class="{selected:periodId===p.id}" :aria-pressed="periodId===p.id" @click="selectPeriod(p.id)"><span class="lab-period-avatars"><img v-for="person in people" :key="person.id" :src="person.image" alt="" width="30" height="30" decoding="async"></span><span><small>{{shortRange(p)}}</small><strong>{{p.name}}</strong><span class="period-numbers">{{p.blocks}} human <i>+</i> {{number(p.robotBlocks[scenario])}} robot</span></span><span class="period-arrow" aria-hidden="true">↗</span></button>
             </aside>
           </section>
-          <div class="lab-truth-strip"><span><i class="human-dot"></i> Bob: 21 confirmed + 3 estimated · Lindsay: 7 reported by Bob</span><span><i class="gift-dot"></i> Gift blocks: not recorded</span><a href="docs/HUMAN_VALUE_BLOCKS.md">Read the contribution journal ↗</a></div>
+          <div class="lab-truth-strip"><span><i class="human-dot"></i> Bob: 21 confirmed + 4 estimated · Lindsay: 7 reported by Bob</span><span><i class="gift-dot"></i> Gift blocks: not recorded</span><a href="docs/HUMAN_VALUE_BLOCKS.md">Read the contribution journal ↗</a></div>
           <section id="journal" class="lab-journal" aria-labelledby="journal-title"><div class="lab-journal-header"><div><p class="lab-eyebrow">THE PEOPLE AND THE WORK</p><h2 id="journal-title">{{selectedPeriod?'A closer look at this chapter.':'What went into the playground.'}}</h2></div><p>Things imagined, noticed, shaped, and shared.<br>One color per contribution. People, recognized.</p></div>
             <article v-for="p in visiblePeriods" :key="p.id" v-memo="[p,scenario]" class="lab-journal-period"><div class="lab-journal-date"><span>{{dateRange(p)}}</span><span>{{p.blocks}} HUMAN · {{number(p.robotBlocks[scenario])}} ROBOT</span></div><div class="lab-journal-period-body"><div class="lab-journal-contributions"><div v-for="(entry,i) in p.entries" :key="i" class="lab-entry"><img :src="peopleById[entry.personId].image" :alt="entry.contributor" width="44" height="44" loading="lazy" decoding="async"><lab-mini :entry="entry"></lab-mini><div><div class="entry-byline">{{entry.contributor}} <span>{{entry.status==='contributor-confirmed'?'✓ Confirmed':entry.status==='chat-estimated'?'Chat-estimated':'Reported by Bob'}}</span><small v-if="entry.date">{{shortRange({start:entry.date,end:entry.date})}}</small></div><h3>{{entry.description}}</h3><p>{{entry.blocks}} human {{entry.blocks===1?'block':'blocks'}} · {{money(entry.blocks*100)}} <span>{{entry.emoji}}</span></p></div></div></div><div class="lab-period-expansion"><span class="lab-side-label">AI-ASSISTED EXPANSION</span><lab-robot-preview :count="p.robotBlocks[scenario]"></lab-robot-preview><strong>{{number(p.robotBlocks[scenario])}} <small>robot blocks</small></strong><b>{{money(p.robotBlocks[scenario]*100)}}</b><p>Estimated hours of additional effort saved, linked to {{p.blocks}} human input blocks.</p><button @click="explorePeriod(p.id)">Explore this stack ↑</button></div></div></article>
           </section>

@@ -3,7 +3,7 @@
 Start with the [project README](../README.md) to run the playground and explore its five main views.
 
 - [Value Blocks Lab · 3D project journal](../lab.html): the real recorded human contributions and estimated robot expansion, with Bob’s and Lindsay’s profiles.
-- [Human contribution journal](HUMAN_VALUE_BLOCKS.md): 31 recorded human blocks: Bob’s 21 confirmed + 3 chat-estimated, and Lindsay’s 7 reported collaboration blocks.
+- [Human contribution journal](HUMAN_VALUE_BLOCKS.md): 32 recorded human blocks: Bob’s 21 confirmed + 4 chat-estimated, and Lindsay’s 7 reported collaboration blocks.
 - [Human-block guide](HUMAN_VALUE_BLOCKS_GUIDE.md): a portable method for recognizing human contribution with an AI collaborator.
 - [Robot expansion journal](ROBOT_VALUE_BLOCKS.md): bottom-up no-AI workload scenarios, source inventory, and estimated effort saved.
 - [Robot-block starter guide](ROBOT_VALUE_BLOCKS_GUIDE.md): human-linked expansion, clear ratios, and reusable estimation steps.

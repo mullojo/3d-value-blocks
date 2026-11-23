@@ -1,16 +1,18 @@
 # Value Blocks
 
-**Life recognized.** An open-source visual playground for seeing human effort, care, gifts, and AI-assisted contributions as beautiful, stackable 3D blocks.
+**Life recognized.** Value Blocks is an open-source project building toward a shared standard for recognizing human contributions, from everyday care to the work we do together. The Lab makes that value visible as stackable 3D blocks.
 
-| Page | What you’ll find | Local file |
+Open any **GitHub Pages** link below to use that page in your browser. The local files are there if you’re working from a checkout.
+
+| GitHub Pages | What you’ll find | Local file |
 | --- | --- | --- |
-| [Lab](https://mullojo.github.io/3d-value-blocks/) | Explore 3D blocks, calendars, example journals, and ways to record contributions. | [index.html](index.html) |
-| [Real Value Blocks](https://mullojo.github.io/3d-value-blocks/lab.html) | See Bob and Lindsay’s actual work on the Lab and the estimated AI effort saved. | [lab.html](lab.html) |
-| [Gallery](https://mullojo.github.io/3d-value-blocks/gallery.html) | Browse 46 screenshots from the first cube to the current project journal. | [gallery.html](gallery.html) |
+| [🧊 Open the Lab ↗](https://mullojo.github.io/3d-value-blocks/) | Explore 3D blocks, calendars, example journals, and ways to record contributions. | [index.html](index.html) |
+| [📖 Open Real Value Blocks ↗](https://mullojo.github.io/3d-value-blocks/lab.html) | See Bob and Lindsay’s actual work on the Lab and the estimated AI effort saved. | [lab.html](lab.html) |
+| [🖼️ Open the Gallery ↗](https://mullojo.github.io/3d-value-blocks/gallery.html) | Browse 46 screenshots from the first cube to the current project journal. | [gallery.html](gallery.html) |
 
 Built with Vue 3, Tailwind CSS 4, CSS 3D, and an optional WebGL2 renderer. This is an ongoing New Game economy design experiment: a place to explore visual language and interactions before building the larger systems behind them.
 
-![Human, gift, and robot contributions arranged in a shared 3D stack](docs/images/types-stack.jpg)
+[![Bob and Lindsay’s recorded work beside the translucent stack of estimated AI effort saved](docs/images/lab-journal.jpg)](https://mullojo.github.io/3d-value-blocks/lab.html)
 
 ## Lab
 
@@ -30,11 +32,9 @@ The earlier [single-cube](https://mullojo.github.io/3d-value-blocks/archived/v1-
 
 [Explore the real project journal in 3D](https://mullojo.github.io/3d-value-blocks/lab.html), with Bob’s and Lindsay’s profiles, the recorded contributions, and linked human/robot stacks. Switch between estimate scenarios or select one of the seven work periods. This is a self-reference: the Lab uses its own blocks to tell the real story of making the Lab.
 
-[![Value Blocks Lab project journal: recorded human contributions and estimated robot expansion](docs/images/lab-journal.jpg)](https://mullojo.github.io/3d-value-blocks/lab.html)
+This project now has its own value-block journal. The record recognizes **32 human blocks ≈ 32 hours · $3,200 of base human value**: Bob’s **21 confirmed blocks + 4 chat-estimated blocks**, plus **7 review and collaboration blocks for Lindsay, reported by Bob**. The latest chapter covers the guides, real project journal, gallery, and rendering improvements.
 
-This project now has its own value-block journal. The record recognizes **31 human blocks ≈ 31 hours · $3,100 of base human value**: Bob’s **21 confirmed blocks + 3 new chat-estimated blocks**, plus **7 review and collaboration blocks for Lindsay, reported by Bob**. The latest chapter covers the guides, real project journal, and rendering improvements.
-
-The companion AI model explores about **8×–71× total-output scenarios**, with **23.2× as its working estimate**: **31 human + 689 robot = 720 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
+The companion AI model explores about **8×–69× total-output scenarios**, with a **22.5× working estimate** of **32 human + 689 robot = 721 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
 
 - [Human contribution journal](docs/HUMAN_VALUE_BLOCKS.md) · [Reusable human-block guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md)
 - [Robot expansion estimates](docs/ROBOT_VALUE_BLOCKS.md) · [Starter robot-block guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md)
@@ -94,9 +94,9 @@ node scripts/check.cjs
 
 The same command is configured for GitHub Actions. Browser visual checks remain important for 3D materials, motion, and interactions; the script checks the models and rendering assumptions, not every browser pixel.
 
-## Support this open-source experiment
+## 🧡 Support a shared standard for recognizing human value
 
-Bitcoin giving helps support Value Blocks as an open-source New Game economy project: design exploration, implementation, documentation, and continued experiments in recognizing human value.
+Your Bitcoin gift helps build an open standard for recognizing the full range of human contributions. That includes care, collaboration, creativity, and everyday work that often goes unseen. Support helps us develop the tools and documentation, share real examples, and keep them openly available for people and teams to build on.
 
 **Current project receiving address:**
 

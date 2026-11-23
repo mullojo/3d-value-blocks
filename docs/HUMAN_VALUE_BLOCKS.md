@@ -2,11 +2,11 @@
 
 A project about recognizing human contribution gets to recognize some of its own. These records recognize **Bob and Lindsay** shaping this playground with Codex: the ideas, examples, taste, review, problem spotting, and publishing decisions that gave the code somewhere to go.
 
-**31 human value blocks ≈ 31 human hours · $3,100 of base human value.**
+**32 human value blocks ≈ 32 human hours · $3,200 of base human value.**
 
-Bob: **21 contributor-confirmed + 3 chat-estimated blocks / $2,400**. Lindsay: **7 review and collaboration blocks / $700, reported by Bob**.
+Bob: **21 contributor-confirmed + 4 chat-estimated blocks / $2,500**. Lindsay: **7 review and collaboration blocks / $700, reported by Bob**.
 
-**Updated November 22, 2026.** The original Bob allocation covers November 4–22 through commit `5570a3d` and was confirmed by Bob. The collaborator update adds Lindsay’s reported reviews; the new catch-up chapter recognizes the guides, journal, and rendering work. The original Bob attention range of 16–28 hours is retained; the six daily blocks and latest follow-up bring the combined working range to about 25–39 hours. These are approximate contribution records for this project, not all of either person’s work or life.
+**Updated November 22, 2026.** The original Bob allocation covers November 4–22 through commit `5570a3d` and was confirmed by Bob. The collaborator update adds Lindsay’s reported reviews; the new catch-up chapter recognizes the guides, journal, and rendering work. The original Bob attention range of 16–28 hours is retained; the six daily blocks and latest follow-up bring the combined working range to about 26–40 hours. These are approximate contribution records for this project, not all of either person’s work or life.
 
 One block is approximately one hour and $100 of contributed human value. AI work is recorded separately in the [robot expansion journal](ROBOT_VALUE_BLOCKS.md). The [human guide](HUMAN_VALUE_BLOCKS_GUIDE.md) explains how to maintain this record.
 
@@ -86,7 +86,9 @@ Evidence: [README.md](../README.md), [SUPPORT.md](../SUPPORT.md), [gallery.html]
 
 🟩 Recognized Lindsay’s collaboration and guided smoother rendering while preserving the cube materials. 🤝⚡ — **1 human block · $100**
 
-**Follow-up: 3 chat-estimated blocks · $300.** Working attention range: 2–4 hours. Requested by Bob; the three-block quantity is an estimate, separate from his earlier confirmation. Covers the guides and robot model, real project journal, collaborator recognition, and rendering work through `cee83a1`, previously excluded from the original scope.
+🟦 Reviewed the Lab’s faster robot stacks, put the newest journal work first, and made the gallery and support page easier to find. ⚡🖼️ — **1 human block · $100**
+
+**Follow-up: 4 chat-estimated blocks · $400.** Working attention range of 3–5 hours. The entries cover the guides, real project journal, collaborator recognition, gallery refresh, and rendering work through `e8fd31d`.
 
 Evidence: [lab.html](../lab.html), [lab.js](../lab.js), [lab-model.js](../lab-model.js), [cube-materials.js](../cube-materials.js), [batching checks](../checks/lab-static-mesh.cjs), and [robot mental model](ROBOT_EXPANSION_MENTAL_MODEL.md).
 
@@ -144,11 +146,11 @@ Dates use America/Los_Angeles. The November 13 and November 21 server-start requ
 | 2026-11-18 | Lindsay | 1 | $100 | Reported by Bob · 2026-11-22 |
 | 2026-11-20 | Lindsay | 1 | $100 | Reported by Bob · 2026-11-22 |
 | 2026-11-22 | Lindsay | 1 | $100 | Reported by Bob · 2026-11-22 |
-| 2026-11-22 · journal follow-up | Bob | 3 | $300 | Chat-estimated · requested by Bob |
+| 2026-11-22 · journal follow-up | Bob | 4 | $400 | Chat-estimated · requested by Bob |
 | 2026-11-22 · follow-up review | Lindsay | 1 | $100 | Reported by Bob |
-| **Recorded project total** | **Bob & Lindsay** | **31** | **$3,100** | **21 confirmed + 3 estimated + 7 reported** |
+| **Recorded project total** | **Bob & Lindsay** | **32** | **$3,200** | **21 confirmed + 4 estimated + 7 reported** |
 
-The colored entries and ledger are two views of the same 31 blocks. Re-reading this scope adds zero new blocks. Later changes can add new work or a clearly labeled adjustment.
+The colored entries and ledger are two views of the same 32 blocks. Re-reading this scope adds zero new blocks. Later changes can add new work or a clearly labeled adjustment.
 
 ## Evidence and attribution
 
@@ -157,7 +159,7 @@ The colored entries and ledger are two views of the same 31 blocks. Re-reading t
 - The substantial sessions occurred on November 4, 16, 17, 18, 20, and 22. Short server-start follow-ups occurred on November 13 and 21.
 - Bob supplied journal references and screenshots, identified rendering and interaction issues, specified contribution rules, requested alternate layouts, and reported that the repository and Pages site had been published.
 - The evidence includes **43 preserved design captures**, three archived experiments, and the live five-view playground. These help establish the work’s scope, not the hours by themselves.
-- The repository’s initial commit `559a815` imported the earlier work on November 22. It would miss most of the story if treated as the project’s starting date. Commit `5570a3d` ends the original allocation; the new follow-up chapter covers the additional work through `cee83a1`.
+- The repository’s initial commit `559a815` imported the earlier work on November 22. It would miss most of the story if treated as the project’s starting date. Commit `5570a3d` ends the original allocation; the new follow-up chapter covers the additional work through `e8fd31d`.
 - File sizes and timestamps corroborate artifacts and sequence. They do not establish attention, and the estimate does not claim continuous work throughout long gaps.
 - Automated checks and browser verification were performed with AI assistance. Bob’s observed review and feedback are recognized here; no unreported physical-device testing is invented.
 
@@ -170,18 +172,20 @@ Bob’s six confirmed allocations—4, 4, 2, 4, 5, and 2—reflect the size and 
 - The original robot-effort estimates are unchanged. The comparable no-AI workload adds the same six review hours, so those hours are not presented as newly saved robot work.
 - The follow-up adds **3 Bob blocks + 1 Lindsay block / $400**, plus **18 / 60 / 150 robot blocks** under the fast/working/deep workload scenarios. The original allocations stay intact.
 
+- Bob added **1 block / $100** for reviewing the faster stacks and directing the journal ordering and gallery refresh. The workload model adds the same one hour.
+
 ## The expansion beside the human contribution
 
-The updated workload model explores **253 / 720 / 2,210 hours** to reproduce the recorded scope without generative AI. After **31 human blocks**, that leaves **222 / 689 / 2,179 robot blocks**. The working picture is **31 human + 689 robot = 720 equivalent blocks**, roughly a **23.2× total-output gain**. The new implementation lanes contribute 18 / 60 / 150 robot blocks; Lindsay’s extra review adds one hour equally to both sides. Read the [scenario journal](ROBOT_VALUE_BLOCKS.md).
+The updated workload model explores **254 / 721 / 2,211 hours** to reproduce the recorded scope without generative AI. After **32 human blocks**, that leaves **222 / 689 / 2,179 robot blocks**. The working picture is **32 human + 689 robot = 721 equivalent blocks**, roughly a **22.5× total-output gain**. The new implementation lanes contribute 18 / 60 / 150 robot blocks; Lindsay’s extra review adds one hour equally to both sides. Read the [scenario journal](ROBOT_VALUE_BLOCKS.md).
 
 ## Recognition and giving
 
-The $3,100 is a voluntary recognition baseline for human effort already given. It is not a funding balance: gifts received have not been reconciled here. The robot equivalent is not another human’s time or a second support request. See [supporting the project](../SUPPORT.md).
+The $3,200 is a voluntary recognition baseline for human effort already given. It is not a funding balance: gifts received have not been reconciled here. The robot equivalent is not another human’s time or a second support request. See [supporting the project](../SUPPORT.md).
 
 Draft Gratitude eligibility, peer approval, and embedded-Bitcoin protocols remain separate from this contribution journal; writing these records does not mint or approve anything.
 
 ## Scope boundary for the next update
 
-The original allocation stops at `5570a3d`; the new chapter catches up the guides, robot model, real project journal and rendering improvements through `cee83a1`. This replaces the earlier exclusion of that completed follow-up work. The current ledger/link maintenance is not recursively assigned more blocks. Future substantive work can form another period.
+The original allocation stops at `5570a3d`; the new chapter catches up the guides, robot model, real project journal, gallery and rendering improvements through `e8fd31d`. This replaces the earlier exclusion of that completed follow-up work. The current ledger/link maintenance is not recursively assigned more blocks. Future substantive work can form another period.
 
-Machine-readable sources: [ledger.json](value-block-records/ledger.json) and the [original chat chronology](value-block-records/chat-evidence.json). The chronology and source inventory remain frozen original-baseline evidence, not a claim to include the newer work. Bob’s original 21 blocks remain confirmed; his 3 new blocks are chat-estimated; Lindsay’s 7 are reported by Bob.
+Machine-readable sources: [ledger.json](value-block-records/ledger.json) and the [original chat chronology](value-block-records/chat-evidence.json). The chronology and source inventory remain frozen original-baseline evidence, not a claim to include the newer work. Bob’s original 21 blocks remain confirmed; his 4 follow-up blocks are chat-estimated; Lindsay’s 7 are reported by Bob.
