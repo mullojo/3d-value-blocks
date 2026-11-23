@@ -7,12 +7,13 @@ assert.equal(fs.readFileSync(path.join(root,'lab-data.js'),'utf8'),generated,'Pu
 const context=vm.createContext({});vm.runInContext(generated,context);
 const data=vm.runInContext('ValueBlocksLabData',context);
 assert.equal(data.project,'Value Blocks Lab');assert.deepEqual(Array.from(data.people,p=>p.name),['Bob','Lindsay']);for(const person of data.people)assert(fs.existsSync(path.join(root,person.image)));
-assert.equal(ledger.additionalContributions.length,6);
-assert(ledger.periods.every(p=>p.status==='contributor-confirmed'));
+assert.equal(ledger.additionalContributions.length,7);
+assert.equal(ledger.periods.filter(p=>p.status==='contributor-confirmed').reduce((n,p)=>n+p.blocks,0),21);
+assert.equal(ledger.periods.at(-1).status,'chat-estimated');
 for(const scenario of Object.keys(model.scenarios)) {
   const whole=model.build(ledger,scenario);
   const expected=ledger.scenarios[scenario];
-  assert.equal(whole.human,27);assert.equal(whole.robot,expected.robotBlocks);assert.equal(whole.totalValue,expected.combinedEquivalentUSD);
+  assert.equal(whole.human,31);assert.equal(whole.robot,expected.robotBlocks);assert.equal(whole.totalValue,expected.combinedEquivalentUSD);
   assert.equal(whole.gift,null,'No fictional gift records added');
   for(const periodId of ['all',...ledger.periods.map(p=>p.id)]) {
     const view=model.build(ledger,scenario,periodId);
@@ -38,7 +39,7 @@ for(const scenario of Object.keys(model.scenarios)) {
     }
   }
 }
-const working=model.build(ledger);assert.equal(working.robot,629);assert.equal(working.total,656);assert.equal(working.totalValue,65600);
+const working=model.build(ledger);assert.equal(working.robot,689);assert.equal(working.total,720);assert.equal(working.totalValue,72000);
 assert.throws(()=>model.build(ledger,'unknown'),RangeError);assert.throws(()=>model.build(ledger,'working','unknown'),RangeError);
 const session=model.createSession(ledger),cached=session.build();
 assert.equal(typeof Object.getOwnPropertyDescriptor(cached,'combined').get,'function','Combined geometry stays lazy until visited');

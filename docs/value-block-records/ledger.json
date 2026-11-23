@@ -3,15 +3,15 @@
   "prepared": "2026-11-22",
   "timezone": "America/Los_Angeles",
   "snapshotCommit": "5570a3d611ced84b624cc7b4220e6c5a64f7a3d9",
-  "scope": "Project work through 5570a3d; excludes preparing these records and guides.",
+  "scope": "Original project baseline through 5570a3d, plus contribution guides, robot estimation model, real project journal, collaborator recognition and rendering improvements through cee83a1. This update records that completed scope once; it does not recursively count its own bookkeeping.",
   "humanBlockHours": 1,
   "blockBaselineUSD": 100,
-  "humanBlocks": 27,
+  "humanBlocks": 31,
   "humanEstimateRange": [
-    22,
-    34
+    25,
+    39
   ],
-  "humanValueUSD": 2700,
+  "humanValueUSD": 3100,
   "giftResourcesRecorded": null,
   "periods": [
     {
@@ -309,6 +309,62 @@
       },
       "confirmedBy": "Bob",
       "confirmedOn": "2026-11-22"
+    },
+    {
+      "id": "vb-2026-11-22-journal",
+      "start": "2026-11-22",
+      "end": "2026-11-22",
+      "name": "Recognized the people and work behind the Lab",
+      "blocks": 3,
+      "range": [
+        2,
+        4
+      ],
+      "evidence": [
+        "docs/HUMAN_VALUE_BLOCKS_GUIDE.md",
+        "docs/ROBOT_EXPANSION_MENTAL_MODEL.md",
+        "lab.html",
+        "lab.js",
+        "lab-model.js",
+        "cube-materials.js",
+        "checks/lab-static-mesh.cjs"
+      ],
+      "entries": [
+        {
+          "color": "🟨",
+          "blocks": 1,
+          "description": "Shaped the human contribution guides and robot expansion estimates, and reviewed the recorded work.",
+          "emoji": "📖🤖"
+        },
+        {
+          "color": "🟦",
+          "blocks": 1,
+          "description": "Turned the project’s own contributions into a real 3D journal with people, evidence, and linked stacks.",
+          "emoji": "👥🧊"
+        },
+        {
+          "color": "🟩",
+          "blocks": 1,
+          "description": "Recognized Lindsay’s collaboration and guided smoother rendering while preserving the cube materials.",
+          "emoji": "🤝⚡"
+        }
+      ],
+      "contributor": "Bob",
+      "status": "chat-estimated",
+      "humanValueUSD": 300,
+      "manualHours": {
+        "fast": 21,
+        "working": 63,
+        "deep": 153
+      },
+      "robotBlocks": {
+        "fast": 18,
+        "working": 60,
+        "deep": 150
+      },
+      "requestedBy": "Bob",
+      "recordedOn": "2026-11-22",
+      "basis": "Three rounded human attention blocks estimated from the follow-up direction and review, requested by Bob; not a new quantity confirmation."
     }
   ],
   "manualWorkloads": [
@@ -391,6 +447,30 @@
       "workingHours": 35,
       "deepHours": 120,
       "basis": "MIT notices, local support QR, gallery and contact sheet, Pages setup, source organization and link fixes."
+    },
+    {
+      "area": "Contribution guides and expansion reasoning",
+      "periodId": "vb-2026-11-22-journal",
+      "fastHours": 5,
+      "workingHours": 15,
+      "deepHours": 35,
+      "basis": "Structured human records, editable robot-capacity model, reconciled documentation and provenance; excludes original prototype scope."
+    },
+    {
+      "area": "Real project journal and contributor presentation",
+      "periodId": "vb-2026-11-22-journal",
+      "fastHours": 8,
+      "workingHours": 24,
+      "deepHours": 58,
+      "basis": "Ledger-derived page, exact human/robot stacks, contributor portraits, chapter navigation and responsive visual polish."
+    },
+    {
+      "area": "Journal rendering optimization and verification",
+      "periodId": "vb-2026-11-22-journal",
+      "fastHours": 8,
+      "workingHours": 24,
+      "deepHours": 60,
+      "basis": "Shared cube materials, lazy geometry, cached scenes, isolated camera, cancellable frame-budgeted DOM batches, focused checks and browser verification; excludes earlier studio optimization."
     }
   ],
   "sharedVerificationAllocation": {
@@ -423,38 +503,43 @@
       1,
       2,
       5
+    ],
+    "vb-2026-11-22-journal": [
+      0,
+      0,
+      0
     ]
   },
   "scenarios": {
     "fast": {
-      "manualEquivalentHours": 231,
-      "humanBlocks": 27,
-      "robotBlocks": 204,
-      "grossGain": 8.555555555555555,
-      "robotMultiple": 7.555555555555555,
-      "humanValueUSD": 2700,
-      "robotEquivalentUSD": 20400,
-      "combinedEquivalentUSD": 23100
+      "manualEquivalentHours": 253,
+      "humanBlocks": 31,
+      "robotBlocks": 222,
+      "grossGain": 8.161290322580646,
+      "robotMultiple": 7.161290322580645,
+      "humanValueUSD": 3100,
+      "robotEquivalentUSD": 22200,
+      "combinedEquivalentUSD": 25300
     },
     "working": {
-      "manualEquivalentHours": 656,
-      "humanBlocks": 27,
-      "robotBlocks": 629,
-      "grossGain": 24.296296296296298,
-      "robotMultiple": 23.296296296296298,
-      "humanValueUSD": 2700,
-      "robotEquivalentUSD": 62900,
-      "combinedEquivalentUSD": 65600
+      "manualEquivalentHours": 720,
+      "humanBlocks": 31,
+      "robotBlocks": 689,
+      "grossGain": 23.225806451612904,
+      "robotMultiple": 22.225806451612904,
+      "humanValueUSD": 3100,
+      "robotEquivalentUSD": 68900,
+      "combinedEquivalentUSD": 72000
     },
     "deep": {
-      "manualEquivalentHours": 2056,
-      "humanBlocks": 27,
-      "robotBlocks": 2029,
-      "grossGain": 76.14814814814815,
-      "robotMultiple": 75.14814814814815,
-      "humanValueUSD": 2700,
-      "robotEquivalentUSD": 202900,
-      "combinedEquivalentUSD": 205600
+      "manualEquivalentHours": 2210,
+      "humanBlocks": 31,
+      "robotBlocks": 2179,
+      "grossGain": 71.29032258064517,
+      "robotMultiple": 70.29032258064517,
+      "humanValueUSD": 3100,
+      "robotEquivalentUSD": 217900,
+      "combinedEquivalentUSD": 221000
     }
   },
   "humanReview": {
@@ -519,15 +604,17 @@
       "name": "Bob",
       "image": "lab-assets/bob-profile.png",
       "role": "Direction, design & implementation review",
-      "blocks": 21,
-      "status": "contributor-confirmed"
+      "blocks": 24,
+      "status": "mixed",
+      "confirmedBlocks": 21,
+      "estimatedBlocks": 3
     },
     {
       "id": "lindsay",
       "name": "Lindsay",
       "image": "lab-assets/lindsay-profile.png",
       "role": "Review & collaboration",
-      "blocks": 6,
+      "blocks": 7,
       "status": "reported-by-Bob"
     }
   ],
@@ -621,6 +708,23 @@
       "status": "reported-by-Bob",
       "reportedBy": "Bob",
       "recordedOn": "2026-11-22"
+    },
+    {
+      "id": "lindsay-2026-11-22-followup",
+      "periodId": "vb-2026-11-22-journal",
+      "date": "2026-11-22",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed the group’s project journal and collaborated on recognizing the work and people behind it.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22",
+      "supplemental": true,
+      "basis": "Bob explicitly requested an additional review/collaboration block for the follow-up work. Same calendar date as the earlier review, distinct completed scope; not an automatic second daily block."
     }
   ],
   "additionalHumanWorkloads": [
@@ -671,6 +775,14 @@
       "workingHours": 1,
       "deepHours": 1,
       "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    },
+    {
+      "contributionId": "lindsay-2026-11-22-followup",
+      "periodId": "vb-2026-11-22-journal",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "Follow-up review included equally in human input and manual workload; no robot expansion attributed to Lindsay’s review."
     }
   ],
   "recognitionUpdates": [
@@ -690,6 +802,21 @@
       ],
       "basis": "Bob requested one block per calendar day of Lindsay’s review and collaboration. Allocated to the six substantial project work dates in the recorded scope; brief server-start dates November 13 and 21 are excluded.",
       "effect": "Bob’s confirmed allocation and all original robot estimates are preserved. Each scenario adds six human-equivalent review hours to its manual budget."
+    },
+    {
+      "recordedOn": "2026-11-22",
+      "scopeThroughCommit": "cee83a1",
+      "periodId": "vb-2026-11-22-journal",
+      "humanBlocksAdded": 4,
+      "bobBlocksAdded": 3,
+      "lindsayBlocksAdded": 1,
+      "robotBlocksAdded": {
+        "fast": 18,
+        "working": 60,
+        "deep": 150
+      },
+      "basis": "Catch-up requested by Bob: contribution docs and estimation work, the real project journal, contributor recognition and rendering improvements. Original records preserved; no recursive allocation for this bookkeeping update."
     }
-  ]
+  ],
+  "recordedThroughCommit": "cee83a1"
 }

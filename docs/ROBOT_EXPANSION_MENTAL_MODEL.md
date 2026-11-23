@@ -146,3 +146,5 @@ node scripts/robot-expansion-capacity.cjs path/to/scenario.json
 The calculator reports raw and equal-window rates, emission times, calendar days, and the separate scheduled-workday interpretation. Its starting yields and effective worker count are 1. It excludes further engineering/review/tool overhead unless those effects are represented in the supplied inputs. Recalculate the tables if those inputs change; this document records the original 60 WPM / 350 chars/s scenario.
 
 For application to the project, see the [robot guide](ROBOT_VALUE_BLOCKS_GUIDE.md), [robot estimate](ROBOT_VALUE_BLOCKS.md), and [human journal](HUMAN_VALUE_BLOCKS.md). No new human or robot blocks are allocated by this reference document.
+
+The journal catch-up through `cee83a1` adds 3 estimated Bob blocks, 1 reported Lindsay block, and 60 working robot blocks for the guides, real journal, and rendering improvements: **H = 31**, **W = 720**, **R = 689** (about **23.2× total output**). The extra robot estimate comes from the new workload lanes in the [ledger](value-block-records/ledger.json), not from multiplying the original estimate again.

@@ -116,6 +116,8 @@ Vue.createApp({
     const data=markRaw(ValueBlocksLabData),periods=markRaw(ValueBlocksLabModel.periods(data.ledger)),scenarios=ValueBlocksLabModel.scenarios;
     const session=ValueBlocksLabModel.createSession(data.ledger),people=data.people;
     const peopleById=Object.fromEntries(people.map(p=>[p.id,p]));
+    const statusSummary=periods.flatMap(p=>p.entries).reduce((counts,e)=>{const label=e.status==='contributor-confirmed'?'confirmed':e.status==='chat-estimated'?'estimated':'reported';counts[label]=(counts[label]||0)+e.blocks;return counts;},{});
+    const statusSummaryText=Object.entries(statusSummary).map(([label,n])=>n+' '+label).join(' · ')+' human blocks';
     const theme=ref('dark'),scenario=ref('working'),periodId=ref('all'),layout=ref('separate');
     const showHuman=ref(true),showRobot=ref(true),busy=ref(false);
     const model=computed(()=>markRaw(session.build(scenario.value,periodId.value)));
@@ -137,6 +139,6 @@ Vue.createApp({
       scenario.value=id;await nextTick();busy.value=false;
     }
     function explorePeriod(id){selectPeriod(id);document.getElementById('project-stack').scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'center'});document.getElementById('project-stack').focus({preventScroll:true});}
-    return {data,people,peopleById,periods,scenarios,theme,scenario,periodId,layout,showHuman,showRobot,busy,model,selectedPeriod,visiblePeriods,visibleCount,number,money,shortRange,dateRange,selectPeriod,chooseScenario,explorePeriod};
+    return {data,people,peopleById,statusSummary:statusSummaryText,periods,scenarios,theme,scenario,periodId,layout,showHuman,showRobot,busy,model,selectedPeriod,visiblePeriods,visibleCount,number,money,shortRange,dateRange,selectPeriod,chooseScenario,explorePeriod};
   }
 }).mount('#lab-app');

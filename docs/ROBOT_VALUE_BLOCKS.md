@@ -1,22 +1,34 @@
 # Robot value blocks · The Value Blocks experiment
 
-**Current working picture: 27 human blocks + 629 robot blocks = 656 equivalent blocks.** About **24.3× total-output gain**, or **23.3× additional robot expansion** per combined human input block.
+**Current working picture: 31 human blocks + 689 robot blocks = 720 equivalent blocks.** About **23.2× total-output gain**, or **22.2× additional robot expansion** per combined human input block.
 
-## Lindsay’s collaboration update
+## Caught up through the real journal and rendering work
 
-Bob reported one daily block for Lindsay’s review and collaboration on the six substantial recorded work days. The human journal now contains **Bob’s 21 confirmed blocks + Lindsay’s 6 reported blocks = 27 blocks / $2,700**.
+The November 22 follow-up recognizes **3 new chat-estimated Bob blocks** and **1 additional Lindsay review/collaboration block reported by Bob**. Human input is now **31 blocks / $3,100** (Bob 24, Lindsay 7). Bob’s original 21 confirmed blocks stay unchanged. Lindsay’s new block is an explicitly requested follow-up on the same date as her earlier review, not an automatic extra daily block.
 
-Her six hours of review are added to both human input and the comparable manual workload. The original robot estimates are preserved: this update does not invent robot expansion for her review or overwrite Bob’s original allocation.
+| New completed scope through `cee83a1` | Fast hours | Working hours | Deep hours |
+| --- | ---: | ---: | ---: |
+| Contribution guides and expansion reasoning | 5 | 15 | 35 |
+| Real project journal and contributor presentation | 8 | 24 | 58 |
+| Rendering optimization and verification | 8 | 24 | 60 |
+| Lindsay’s additional review | 1 | 1 | 1 |
+| **Added comparable manual workload** | **22** | **64** | **154** |
+| Less new human input | 4 | 4 | 4 |
+| **Added robot blocks** | **18** | **60** | **150** |
 
-| Scenario | Human blocks | Updated manual-equivalent hours | Robot blocks saved | Total-output gain |
+These are editable workload judgments for reproducing the new result without generative AI, not measured time savings or a multiple of code volume. The working 64-hour lane budget includes documentation/model reasoning, ledger integration and page design, camera/layout state separation, lazy/cached geometry, shared materials, cancellable DOM preparation, regression checks and visual verification. It excludes the original studio work and does not add a second shared-testing charge. Subtracting four new human hours leaves 60 robot blocks; Lindsay’s review contributes no extra robot gain on its own.
+
+| Scenario | Human H | Manual equivalent W | Robot R = W − H | Total-output gain |
 | --- | ---: | ---: | ---: | ---: |
-| Fast | 27 | 231 | 204 | 8.6× |
-| Working | 27 | 656 | 629 | 24.3× |
-| Deep | 27 | 2,056 | 2,029 | 76.1× |
+| Fast | 31 | 253 | 222 | 8.2× |
+| Working | 31 | 720 | 689 | 23.2× |
+| Deep | 31 | 2,210 | 2,179 | 71.3× |
 
-**Working reference values:** human contribution **$2,700** + robot effort saved **$62,900** = **$65,600** combined. Gifts remain unreconciled and excluded.
+**Working reference values: $3,100 human + $68,900 robot = $72,000 combined.** Gifts remain unreconciled and excluded. This records the completed follow-up scope once; bookkeeping this update does not recursively create more effort estimates. See the [human journal](HUMAN_VALUE_BLOCKS.md), [structured ledger](value-block-records/ledger.json), and [interactive project journal](../lab.html).
 
-The structured ledger keeps the original six Bob periods and their workload allocations intact. Six additional dated human entries and matching manual-review workloads account for Lindsay. The [human journal](HUMAN_VALUE_BLOCKS.md) lists the dates and reporting status; the [live-page source](../lab.html) presents both people.
+## Previous team snapshot · retained for comparison
+
+Before this catch-up, the team picture was **27 human + 629 robot = 656 equivalent blocks / $65,600**. Bob’s 21 confirmed blocks plus Lindsay’s six reported daily review blocks made 27 human inputs. Adding her six hours equally to human input and the manual workload preserved the original robot estimates. Those earlier manual budgets were 231 / 656 / 2,056, with robot estimates 204 / 629 / 2,029.
 
 ## Original Bob-only baseline · retained for comparison
 
