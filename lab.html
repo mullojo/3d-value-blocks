@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="vendor/tailwind.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="types.css">
-  <link rel="stylesheet" href="lab.css?v=3-catchup">
+  <link rel="stylesheet" href="lab.css?v=4-glass">
   <script src="vendor/vue.global.prod.js" defer></script>
   <script src="cube-materials.js?v=3-catchup" defer></script>
   <script src="lab-data.js?v=3-catchup" defer></script>
   <script src="lab-model.js?v=3-catchup" defer></script>
-  <script src="lab.js?v=3-catchup" defer></script>
+  <script src="lab-glass.js?v=1" defer></script>
+  <script src="lab.js?v=4-glass" defer></script>
 </head>
 <body>
   <a class="lab-skip" href="#journal">Skip to the contribution journal</a>
@@ -36,8 +37,9 @@
             <div class="lab-visual">
               <div class="lab-stage-heading"><div><span class="lab-eyebrow">THE SHAPE OF THE WORK</span><h2>{{selectedPeriod?'One chapter, made visible.':'A human beginning. A wider reach.'}}</h2></div><div class="lab-segment" role="group" aria-label="Stack layout"><button :aria-pressed="layout==='separate'" @click="layout='separate'">By type</button><button :aria-pressed="layout==='combined'" @click="layout='combined'">Together</button></div></div>
               <div class="lab-scene-filters"><div><button :aria-pressed="showHuman" @click="showHuman=!showHuman"><i class="human-dot"></i> Human <span>{{showHuman?'✓':'+'}}</span></button><button :aria-pressed="showRobot" @click="showRobot=!showRobot"><i class="robot-dot"></i> Robot <span>{{showRobot?'✓':'+'}}</span></button></div><span>{{number(visibleCount)}} / {{number(model.total)}} blocks visible</span></div>
-              <lab-viewer :model="model" :layout="layout" :show-human="showHuman" :show-robot="showRobot" :busy="busy"></lab-viewer>
+              <lab-viewer :model="model" :layout="layout" :gpu="gpu" :show-human="showHuman" :show-robot="showRobot" :busy="busy"></lab-viewer>
               <div class="lab-equation"><span><b>{{model.human}}</b> human input</span><i>+</i><span class="cyan"><b>{{number(model.robot)}}</b> estimated expansion</span><i>=</i><span><b>{{number(model.total)}}</b> equivalent blocks</span></div>
+              <div v-if="layout==='separate'" class="lab-render-option"><label><input type="checkbox" v-model="gpu"> Use WebGL when available for robot stack</label></div>
               <p class="lab-scene-note">Every cube is one block. Human entries keep their recorded color; glass cubes show the additional work estimate. The comparison uses the same cube size for both types. Drag to look inside; combined-view filters preserve recorded positions.</p>
             </div>
             <aside class="lab-side"><div class="lab-estimate"><div class="lab-side-label">HOW MUCH WORK DID AI EXPAND?</div><div class="lab-segment scenario-switch" role="group" aria-label="Robot expansion scenario"><button v-for="(s,id) in scenarios" :key="id" :aria-pressed="scenario===id" @click="chooseScenario(id)">{{s.label}}</button></div><p><b>{{scenarios[scenario].name}}</b> · {{model.grossGain.toFixed(1)}}× total output for the selected scope.</p><small>{{number(model.total)}} manual-equivalent hours − {{model.human}} human hours = {{number(model.robot)}} estimated hours saved.</small><a href="docs/ROBOT_VALUE_BLOCKS.md">Read the estimate &amp; assumptions ↗</a></div>
