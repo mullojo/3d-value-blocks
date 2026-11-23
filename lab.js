@@ -37,7 +37,7 @@ const LabStaticMesh={
 };
 const LabStack = {
   components:{LabStaticMesh},
-  props:{geometry:Object,fitGeometry:Object,yaw:Number,tilt:Number,zoom:Number,compact:Boolean,gpu:Boolean,active:{default:true},moving:Boolean,showHuman:{default:true},showRobot:{default:true}},
+  props:{geometry:Object,fitGeometry:Object,yaw:Number,tilt:Number,zoom:Number,compact:Boolean,gpu:Boolean,mixed:Boolean,active:{default:true},moving:Boolean,showHuman:{default:true},showRobot:{default:true}},
   setup(props) {
     const {ref,computed,onMounted,onBeforeUnmount,shallowReactive}=Vue;
     const pending=shallowReactive({});
@@ -45,7 +45,8 @@ const LabStack = {
     function setBuilding(id,value){pending[id]=value;}
     const {watch}=Vue;
     const frame=ref(null),canvas=ref(null),width=ref(0),height=ref(0),glassReady=ref(false),checkingGlass=ref(props.gpu);
-    const robotBatch=computed(()=>props.gpu ? props.geometry.batches.find(batch=>batch.kind==='robot') : undefined);
+    const useCanvas=computed(()=>props.gpu && (props.mixed || props.geometry.batches.some(batch=>batch.kind==='robot')));
+    const showCanvas=computed(()=>props.showRobot || (props.mixed && props.showHuman));
     let observer,renderer,paint=0;
 
     const scale=computed(()=>{
@@ -61,11 +62,11 @@ const LabStack = {
     });
     const transform=computed(()=>`rotateX(${props.tilt}deg) rotateY(${props.yaw}deg) scale3d(${scale.value},${scale.value},${scale.value})`);
     function paintGlass(){
-      if (paint || !renderer || !robotBatch.value || !props.active || !props.showRobot || !scale.value) return;
+      if (paint || !renderer || !useCanvas.value || !props.active || !showCanvas.value || !scale.value) return;
       paint=requestAnimationFrame(()=>{
         paint=0;
-        if (!props.active || !props.showRobot || !renderer) return;
-        renderer.draw(robotBatch.value.blocks,width.value,height.value,props.yaw,props.tilt,scale.value,props.moving);
+        if (!props.active || !showCanvas.value || !renderer) return;
+        renderer.draw(props.geometry,width.value,height.value,props.yaw,props.tilt,scale.value,props.moving,props.showHuman,props.showRobot);
       });
     }
     function loseGlass(){
@@ -90,20 +91,20 @@ const LabStack = {
     watch(canvas,node=>{
       loseGlass();
       if (!node) return;
-      try {renderer=LabGlass.create(node);} catch {renderer=null;}
+      try {renderer=LabGlass.create(node,props.mixed);} catch {renderer=null;}
       glassReady.value=Boolean(renderer);
       checkingGlass.value=false;
       paintGlass();
     },{flush:'post'});
-    watch([width,height,scale,robotBatch,()=>props.yaw,()=>props.tilt,()=>props.showRobot,()=>props.active,()=>props.moving],paintGlass,{flush:'post'});
+    watch([width,height,scale,useCanvas,()=>props.geometry,()=>props.yaw,()=>props.tilt,()=>props.showHuman,()=>props.showRobot,()=>props.active,()=>props.moving],paintGlass,{flush:'post'});
     onBeforeUnmount(()=>{observer?.disconnect();loseGlass();});
-    return {frame,canvas,scale,transform,building,setBuilding,robotBatch,glassReady,checkingGlass,loseGlass};
+    return {frame,canvas,scale,transform,building,setBuilding,useCanvas,showCanvas,glassReady,checkingGlass,loseGlass};
   },
   template:`<div ref="frame" class="lab-stack-scene">
-    <canvas v-if="robotBatch" v-show="glassReady && showRobot" ref="canvas" class="lab-glass-canvas" aria-hidden="true" @webglcontextlost="loseGlass"></canvas>
+    <canvas v-if="useCanvas" v-show="glassReady && showCanvas" ref="canvas" class="lab-glass-canvas" aria-hidden="true" @webglcontextlost="loseGlass"></canvas>
     <div v-if="scale" class="lab-stack-world" :style="{transform}" aria-hidden="true">
       <template v-for="batch in geometry.batches" :key="batch.id">
-        <lab-static-mesh v-if="batch!==robotBatch || (!glassReady && !checkingGlass)" v-show="batch.kind==='human'?showHuman:showRobot" :blocks="batch.blocks" :kind="batch.kind" :family="batch.family" :glass="4" :fill="0" @building="setBuilding(batch.id,$event)"/>
+        <lab-static-mesh v-if="!useCanvas || (!mixed && batch.kind==='human') || (!glassReady && !checkingGlass)" v-show="batch.kind==='human'?showHuman:showRobot" :blocks="batch.blocks" :kind="batch.kind" :family="batch.family" :glass="4" :fill="0" @building="setBuilding(batch.id,$event)"/>
       </template>
     </div>
     <span v-if="building" class="lab-stack-progress" role="status">Preparing blocks…</span>
@@ -144,7 +145,7 @@ const LabRobotPreview = {
         }
         const width=180,height=130,g=geometry.value;
         const span=Math.hypot(g.side,g.height,g.side)*136;
-        labPreviewRenderer.draw(g.blocks,width,height,-32,-22,(height-14)/(span*(1+height/3600)));
+        labPreviewRenderer.draw(g,width,height,-32,-22,(height-14)/(span*(1+height/3600)));
         const {width:pixelWidth,height:pixelHeight}=labPreviewSurface;
         if (canvas.value.width!==pixelWidth) canvas.value.width=pixelWidth;
         if (canvas.value.height!==pixelHeight) canvas.value.height=pixelHeight;
@@ -169,7 +170,7 @@ const LabRobotPreview = {
 const LabStageLayout={
   components:{LabStack},props:{model:Object,layout:String,gpu:Boolean,active:Boolean,moving:Boolean,showHuman:Boolean,showRobot:Boolean,yaw:Number,tilt:Number,zoom:Number},
   template:`<div :class="['lab-mode-layout',layout]">                <template v-if="layout==='separate'"><div class="lab-stage-group human-stage"><lab-stack v-show="showHuman" :geometry="model.humanGroup" :fit-geometry="model.bounds" :yaw="yaw" :tilt="tilt" :zoom="zoom"></lab-stack><div v-if="!showHuman" class="lab-hidden">Human blocks hidden</div><div class="lab-group-label"><b>{{model.human}}</b><span>human blocks</span><small>Solid · human contributions</small></div></div><div class="lab-stage-group robot-stage"><lab-stack v-show="showRobot" :geometry="model.robotGroup" :gpu="gpu" :active="active" :moving="moving" :fit-geometry="model.bounds" :yaw="yaw" :tilt="tilt" :zoom="zoom"></lab-stack><div v-if="!showRobot" class="lab-hidden">Robot blocks hidden</div><div class="lab-group-label"><b>{{model.robot.toLocaleString('en-US')}}</b><span>robot blocks</span><small>Transparent · effort-saved estimate</small></div></div><span class="lab-bridge" aria-hidden="true">↗</span></template>
-                <lab-stack v-else :geometry="model.combined" :yaw="yaw" :tilt="tilt" :zoom="zoom" :show-human="showHuman" :show-robot="showRobot"></lab-stack>
+                <lab-stack v-else mixed :geometry="model.combined" :gpu="gpu" :active="active" :moving="moving" :yaw="yaw" :tilt="tilt" :zoom="zoom" :show-human="showHuman" :show-robot="showRobot"></lab-stack>
 </div>`
 };
 const LabViewer={
@@ -178,7 +179,10 @@ const LabViewer={
     const {ref,shallowReactive,watch,onMounted,onBeforeUnmount}=Vue;
     const yaw=ref(-32),tilt=ref(-22),zoom=ref(1),orbit=ref(false),inView=ref(true),dragging=ref(false);
     const shownModels=shallowReactive({separate:null,combined:null});
-    watch(()=>[props.layout,props.model],([layout,model])=>{shownModels[layout]=model;},{immediate:true});
+    watch(()=>[props.layout,props.model],([layout,model])=>{
+      shownModels[layout]=model;
+      if(layout!=='combined')shownModels.combined=null;
+    },{immediate:true});
     const motion=window.matchMedia('(prefers-reduced-motion: reduce)'),reducedMotion=ref(motion.matches);
     let pointer=null,animation=0,last=0,observer;
     function stop(){cancelAnimationFrame(animation);animation=0;last=0;}
@@ -199,7 +203,7 @@ const LabViewer={
 <template v-for="mode in ['separate','combined']" :key="mode"><div v-if="shownModels[mode]" v-show="layout===mode" class="lab-mode"><lab-stage-layout :model="shownModels[mode]" :layout="mode" :gpu="gpu" :active="inView && layout===mode" :moving="dragging || orbit" :show-human="showHuman" :show-robot="showRobot" :yaw="layout===mode?yaw:-32" :tilt="layout===mode?tilt:-22" :zoom="layout===mode?zoom:1"></lab-stage-layout></div></template>                <div v-if="!showHuman&&!showRobot" class="lab-hidden full">Turn on a block type to explore it.</div>
                 <span class="lab-stage-corner">{{layout==='combined'?'RECORDED PERIOD ORDER / BOTTOM LAYER FIRST':'HUMAN INPUT → ESTIMATED EXPANSION'}}</span><span v-if="busy" class="lab-loading" role="status">Preparing the stack…</span>
               </div>
-              <div class="lab-camera"><div><button @click="yaw-=15" aria-label="Rotate left">↶</button><button @click="yaw+=15" aria-label="Rotate right">↷</button><button @click="reset" aria-label="Reset stack view">Reset view</button></div><div><button @click="zoom=Math.max(.5,zoom-.15)" aria-label="Zoom out">−</button><span>{{Math.round(zoom*100)}}%</span><button @click="zoom=Math.min(2,zoom+.15)" aria-label="Zoom in">+</button></div><label><input type="checkbox" v-model="orbit" :disabled="reducedMotion"> Slow orbit</label></div>
+              <div class="lab-camera"><div><button class="lab-rotate" @click="yaw-=15" aria-label="Rotate left"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 9a6.5 6.5 0 1 1 1.45 5.7M3.5 4.5V9H8"/></svg></button><button class="lab-rotate lab-rotate-right" @click="yaw+=15" aria-label="Rotate right"><svg viewBox="0 0 20 20" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3.5 9a6.5 6.5 0 1 1 1.45 5.7M3.5 4.5V9H8"/></svg></button><button @click="reset" aria-label="Reset stack view">Reset view</button></div><div><button @click="zoom=Math.max(.5,zoom-.15)" aria-label="Zoom out">−</button><span>{{Math.round(zoom*100)}}%</span><button @click="zoom=Math.min(2,zoom+.15)" aria-label="Zoom in">+</button></div><label><input type="checkbox" v-model="orbit" :disabled="reducedMotion"> Slow orbit</label></div>
 `
 };
 Vue.createApp({

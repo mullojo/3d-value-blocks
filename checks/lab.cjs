@@ -48,6 +48,10 @@ assert.equal(typeof Object.getOwnPropertyDescriptor(cached,'combined').get,'func
 session.build('deep');session.build('working',ledger.periods[0].id);
 assert.strictEqual(session.build(),cached,'Returning to a scenario/scope reuses its model');
 assert.strictEqual(session.build().robotGroup,robotGeometry,'Geometry identity survives view visits');
+const boundedSession=model.createSession(ledger);
+const leastRecent=boundedSession.build();
+for(const period of ledger.periods.slice(0,6))boundedSession.build('working',period.id);
+assert.notStrictEqual(boundedSession.build(),leastRecent,'Old model geometry is evicted after six other scopes');
 const rendered=model.periods(ledger);
 assert(rendered.every(p=>p.entries.some(e=>e.contributor==='Lindsay')&&p.entries.some(e=>e.contributor==='Bob')));
 const html=fs.readFileSync(path.join(root,'lab.html'),'utf8');

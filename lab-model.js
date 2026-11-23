@@ -32,8 +32,12 @@ const ValueBlocksLabModel = (() => {
     const cache=new Map();
     return {build(scenario='working',periodId='all'){
       const key=scenario+':'+periodId;
-      if(!cache.has(key))cache.set(key,build(ledger,scenario,periodId));
-      return cache.get(key);
+      const model=cache.get(key)||build(ledger,scenario,periodId);
+      cache.delete(key);
+      cache.set(key,model);
+      // Keep recent scopes handy without retaining geometry for every visit.
+      if(cache.size>6)cache.delete(cache.keys().next().value);
+      return model;
     }};
   }
   function build(ledger,scenario='working',periodId='all') {
