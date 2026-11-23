@@ -1,0 +1,483 @@
+/* Generated from the contribution ledger. Run node scripts/build-lab-data.cjs after ledger changes. */
+const ValueBlocksLabData = {
+  "project": "Value Blocks Lab",
+  "person": {
+    "name": "Bob",
+    "image": "lab-assets/bob-profile.png"
+  },
+  "ledger": {
+    "schemaVersion": 1,
+    "prepared": "2026-11-22",
+    "timezone": "America/Los_Angeles",
+    "snapshotCommit": "5570a3d611ced84b624cc7b4220e6c5a64f7a3d9",
+    "scope": "Project work through 5570a3d; excludes preparing these records and guides.",
+    "humanBlockHours": 1,
+    "blockBaselineUSD": 100,
+    "humanBlocks": 21,
+    "humanEstimateRange": [
+      16,
+      28
+    ],
+    "humanValueUSD": 2100,
+    "giftResourcesRecorded": null,
+    "periods": [
+      {
+        "id": "vb-2026-11-04",
+        "start": "2026-11-04",
+        "end": "2026-11-04",
+        "name": "Gave the cube its shape and room to grow",
+        "blocks": 4,
+        "range": [
+          3,
+          5
+        ],
+        "evidence": [
+          "app.js",
+          "styles.css",
+          "gpu-renderer.js",
+          "build-queue.js",
+          "checks/geometry.cjs"
+        ],
+        "entries": [
+          {
+            "color": "🟧",
+            "blocks": 2,
+            "description": "Shaped the first cube’s colors, faces, edges, motion, and stacks.",
+            "emoji": "🎨🧊"
+          },
+          {
+            "color": "🟥",
+            "blocks": 2,
+            "description": "Spotted animation stalls and pushed for paced arrivals, 100,000 blocks, and the original CSS option.",
+            "emoji": "⚡🌈"
+          }
+        ],
+        "contributor": "Bob",
+        "status": "contributor-confirmed",
+        "humanValueUSD": 400,
+        "manualHours": {
+          "fast": 63,
+          "working": 170,
+          "deep": 550
+        },
+        "robotBlocks": {
+          "fast": 59,
+          "working": 166,
+          "deep": 546
+        },
+        "confirmedBy": "Bob",
+        "confirmedOn": "2026-11-22"
+      },
+      {
+        "id": "vb-2026-11-13-16",
+        "start": "2026-11-13",
+        "end": "2026-11-16",
+        "name": "Put a year of contributions into view",
+        "blocks": 4,
+        "range": [
+          3,
+          5
+        ],
+        "evidence": [
+          "time-layout.js",
+          "app.js",
+          "checks/time-layout.cjs"
+        ],
+        "entries": [
+          {
+            "color": "🟦",
+            "blocks": 2,
+            "description": "Mapped daily cubits, weeks, months, and real-year views.",
+            "emoji": "📆🧊"
+          },
+          {
+            "color": "🟧",
+            "blocks": 1,
+            "description": "Refined daily colors, totals, gradients, spacing, zoom, and pan.",
+            "emoji": "🎛️🌈"
+          },
+          {
+            "color": "🟪",
+            "blocks": 1,
+            "description": "Defined the $100–$1,000 value simulations and hour summaries.",
+            "emoji": "⏱️✨"
+          }
+        ],
+        "contributor": "Bob",
+        "status": "contributor-confirmed",
+        "humanValueUSD": 400,
+        "manualHours": {
+          "fast": 28,
+          "working": 82,
+          "deep": 275
+        },
+        "robotBlocks": {
+          "fast": 24,
+          "working": 78,
+          "deep": 271
+        },
+        "confirmedBy": "Bob",
+        "confirmedOn": "2026-11-22"
+      },
+      {
+        "id": "vb-2026-11-17",
+        "start": "2026-11-17",
+        "end": "2026-11-17",
+        "name": "Made the journals and the film credits feel alive",
+        "blocks": 2,
+        "range": [
+          1.5,
+          3
+        ],
+        "evidence": [
+          "journal.js",
+          "film-credits.js",
+          "film-finale.js",
+          "scripts/build-film-qr.cjs"
+        ],
+        "entries": [
+          {
+            "color": "🟧",
+            "blocks": 1,
+            "description": "Turned old journal examples into people, stacks, frames, and readable contribution rows.",
+            "emoji": "👥📖"
+          },
+          {
+            "color": "🟪",
+            "blocks": 1,
+            "description": "Imagined interactive film credits, a falling-block finale, and an integrated giving invitation.",
+            "emoji": "🎬✨"
+          }
+        ],
+        "contributor": "Bob",
+        "status": "contributor-confirmed",
+        "humanValueUSD": 200,
+        "manualHours": {
+          "fast": 37,
+          "working": 115,
+          "deep": 345
+        },
+        "robotBlocks": {
+          "fast": 35,
+          "working": 113,
+          "deep": 343
+        },
+        "confirmedBy": "Bob",
+        "confirmedOn": "2026-11-22"
+      },
+      {
+        "id": "vb-2026-11-18",
+        "start": "2026-11-18",
+        "end": "2026-11-18",
+        "name": "Found easier ways to record a life",
+        "blocks": 4,
+        "range": [
+          3,
+          6
+        ],
+        "evidence": [
+          "input-model.js",
+          "inputs.js",
+          "block-colors.js",
+          "checks/inputs.cjs"
+        ],
+        "entries": [
+          {
+            "color": "🟦",
+            "blocks": 2,
+            "description": "Designed text, row, project, and Tap Select entry flows with editing and saved example journals.",
+            "emoji": "✍️🧊"
+          },
+          {
+            "color": "🟩",
+            "blocks": 1,
+            "description": "Clarified life and project frames, shared daily capacity, and colors and tones by entry.",
+            "emoji": "🌱🤝"
+          },
+          {
+            "color": "🟧",
+            "blocks": 1,
+            "description": "Refined lived-action wording, quantity previews, cube faces, and journal layout from screenshots.",
+            "emoji": "💬🎨"
+          }
+        ],
+        "contributor": "Bob",
+        "status": "contributor-confirmed",
+        "humanValueUSD": 400,
+        "manualHours": {
+          "fast": 38,
+          "working": 108,
+          "deep": 295
+        },
+        "robotBlocks": {
+          "fast": 34,
+          "working": 104,
+          "deep": 291
+        },
+        "confirmedBy": "Bob",
+        "confirmedOn": "2026-11-22"
+      },
+      {
+        "id": "vb-2026-11-20-21",
+        "start": "2026-11-20",
+        "end": "2026-11-21",
+        "name": "Explored human input, robot expansion, gifts, and Bitcoin",
+        "blocks": 5,
+        "range": [
+          4,
+          7
+        ],
+        "evidence": [
+          "types.js",
+          "types.css",
+          "special-blocks.css",
+          "checks/types-reactivity.cjs",
+          "docs/embedded-bitcoin-human-value-blocks/README.md"
+        ],
+        "entries": [
+          {
+            "color": "🟨",
+            "blocks": 2,
+            "description": "Defined human, gift, and robot relationships, value totals, Gratitude notation, and human × robot expansion.",
+            "emoji": "🤖🤝"
+          },
+          {
+            "color": "🟥",
+            "blocks": 1,
+            "description": "Flagged slow Types interactions and shaped filtering, restacking, and visible stack summaries.",
+            "emoji": "⚡🔎"
+          },
+          {
+            "color": "🟪",
+            "blocks": 2,
+            "description": "Explored embedded Bitcoin, five coin-in-cube designs, and a cleaner rotating crystal block.",
+            "emoji": "₿💎"
+          }
+        ],
+        "contributor": "Bob",
+        "status": "contributor-confirmed",
+        "humanValueUSD": 500,
+        "manualHours": {
+          "fast": 43,
+          "working": 138,
+          "deep": 460
+        },
+        "robotBlocks": {
+          "fast": 38,
+          "working": 133,
+          "deep": 455
+        },
+        "confirmedBy": "Bob",
+        "confirmedOn": "2026-11-22"
+      },
+      {
+        "id": "vb-2026-11-22",
+        "start": "2026-11-22",
+        "end": "2026-11-22",
+        "name": "Opened the playground to the world",
+        "blocks": 2,
+        "range": [
+          1,
+          2
+        ],
+        "evidence": [
+          "README.md",
+          "SUPPORT.md",
+          "gallery.html",
+          "docs/PUBLISHING.md",
+          "checks/repository.cjs"
+        ],
+        "entries": [
+          {
+            "color": "🟫",
+            "blocks": 1,
+            "description": "Opened the MIT project, documented Bitcoin support, organized assets, and moved the project into Value Blocks.",
+            "emoji": "📚🌱"
+          },
+          {
+            "color": "🟦",
+            "blocks": 1,
+            "description": "Published the repository and gallery, explored GitHub Pages, and reviewed live links and the handoff commit.",
+            "emoji": "🚀🖼️"
+          }
+        ],
+        "contributor": "Bob",
+        "status": "contributor-confirmed",
+        "humanValueUSD": 200,
+        "manualHours": {
+          "fast": 16,
+          "working": 37,
+          "deep": 125
+        },
+        "robotBlocks": {
+          "fast": 14,
+          "working": 35,
+          "deep": 123
+        },
+        "confirmedBy": "Bob",
+        "confirmedOn": "2026-11-22"
+      }
+    ],
+    "manualWorkloads": [
+      {
+        "area": "Cube materials and count interactions",
+        "periodId": "vb-2026-11-04",
+        "fastHours": 15,
+        "workingHours": 35,
+        "deepHours": 90,
+        "basis": "Six-face CSS cubes, material controls, stacking and motion; no library reimplementation."
+      },
+      {
+        "area": "GPU scale and paced construction",
+        "periodId": "vb-2026-11-04",
+        "fastHours": 45,
+        "workingHours": 125,
+        "deepHours": 420,
+        "basis": "WebGL2 surfaces, shaders, occupancy, arriving/landed faces, cancellation and performance investigation."
+      },
+      {
+        "area": "Calendars, labels and cameras",
+        "periodId": "vb-2026-11-13-16",
+        "fastHours": 25,
+        "workingHours": 75,
+        "deepHours": 250,
+        "basis": "Gregorian layouts, cubits/towers, year boards, projected labels, zoom, pan and density colors."
+      },
+      {
+        "area": "Journal layouts and contribution stories",
+        "periodId": "vb-2026-11-17",
+        "fastHours": 20,
+        "workingHours": 55,
+        "deepHours": 170,
+        "basis": "People/stacks, daily rows, frames, details, sample content and selection interactions."
+      },
+      {
+        "area": "Interactive credits, finale and QR",
+        "periodId": "vb-2026-11-17",
+        "fastHours": 15,
+        "workingHours": 55,
+        "deepHours": 160,
+        "basis": "Scrolling, pause/drag, offscreen suspension, selection, final GPU stack and styled concept QR."
+      },
+      {
+        "area": "Input workflows and data rules",
+        "periodId": "vb-2026-11-18",
+        "fastHours": 35,
+        "workingHours": 100,
+        "deepHours": 260,
+        "basis": "Parsing, forms, editing, local persistence, atomic capacity validation, palettes and Tap Select."
+      },
+      {
+        "area": "Types, linked expansion and filters",
+        "periodId": "vb-2026-11-20-21",
+        "fastHours": 25,
+        "workingHours": 85,
+        "deepHours": 270,
+        "basis": "Arithmetic, supported fill order, compact/keep-position views, reusable meshes and reactive performance."
+      },
+      {
+        "area": "Embedded-Bitcoin visual variants",
+        "periodId": "vb-2026-11-20-21",
+        "fastHours": 15,
+        "workingHours": 45,
+        "deepHours": 160,
+        "basis": "Dimensional coin, glass/recess/stamp treatments, rotation and small-size/27-block comparisons."
+      },
+      {
+        "area": "Shared verification and release checks",
+        "periodId": null,
+        "fastHours": 15,
+        "workingHours": 40,
+        "deepHours": 150,
+        "basis": "Cross-module regression harness, geometry edge cases, browser inspection and integration debugging; excludes each lane’s own implementation."
+      },
+      {
+        "area": "Public docs, gallery and repository setup",
+        "periodId": "vb-2026-11-22",
+        "fastHours": 15,
+        "workingHours": 35,
+        "deepHours": 120,
+        "basis": "MIT notices, local support QR, gallery and contact sheet, Pages setup, source organization and link fixes."
+      }
+    ],
+    "sharedVerificationAllocation": {
+      "vb-2026-11-04": [
+        3,
+        10,
+        40
+      ],
+      "vb-2026-11-13-16": [
+        3,
+        7,
+        25
+      ],
+      "vb-2026-11-17": [
+        2,
+        5,
+        15
+      ],
+      "vb-2026-11-18": [
+        3,
+        8,
+        35
+      ],
+      "vb-2026-11-20-21": [
+        3,
+        8,
+        30
+      ],
+      "vb-2026-11-22": [
+        1,
+        2,
+        5
+      ]
+    },
+    "scenarios": {
+      "fast": {
+        "manualEquivalentHours": 225,
+        "humanBlocks": 21,
+        "robotBlocks": 204,
+        "grossGain": 10.714285714285714,
+        "robotMultiple": 9.714285714285714,
+        "humanValueUSD": 2100,
+        "robotEquivalentUSD": 20400,
+        "combinedEquivalentUSD": 22500
+      },
+      "working": {
+        "manualEquivalentHours": 650,
+        "humanBlocks": 21,
+        "robotBlocks": 629,
+        "grossGain": 30.952380952380953,
+        "robotMultiple": 29.952380952380953,
+        "humanValueUSD": 2100,
+        "robotEquivalentUSD": 62900,
+        "combinedEquivalentUSD": 65000
+      },
+      "deep": {
+        "manualEquivalentHours": 2050,
+        "humanBlocks": 21,
+        "robotBlocks": 2029,
+        "grossGain": 97.61904761904762,
+        "robotMultiple": 96.61904761904762,
+        "humanValueUSD": 2100,
+        "robotEquivalentUSD": 202900,
+        "combinedEquivalentUSD": 205000
+      }
+    },
+    "humanReview": {
+      "status": "contributor-confirmed",
+      "confirmedBy": "Bob",
+      "confirmedOn": "2026-11-22",
+      "periodIds": [
+        "vb-2026-11-04",
+        "vb-2026-11-13-16",
+        "vb-2026-11-17",
+        "vb-2026-11-18",
+        "vb-2026-11-20-21",
+        "vb-2026-11-22"
+      ],
+      "scope": "All six existing human contribution periods: 21 blocks and $2,100 base human value. Quantities and original work scope unchanged.",
+      "basis": "Bob reviewed the recorded human value blocks and explicitly requested confirmed status in this project chat."
+    }
+  }
+};

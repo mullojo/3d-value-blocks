@@ -17,6 +17,7 @@ The main application is a static page. `index.html` loads local styles, the Vue 
 | `input-model.js`, `inputs.js`, `inputs.css` | Entry parsing and validation, browser storage, editing, input layout variants |
 | `block-colors.js` | Persistent frame and project color configuration |
 | `types.js`, `types.css`, `special-blocks.css` | Contribution arithmetic, type filters, cached material meshes, project stories, embedded-Bitcoin cube concepts |
+| `lab.html`, `lab.js`, `lab-model.js`, `lab-data.js`, `lab.css` | Real read-only project journal, generated ledger snapshot, and existing Types cube materials |
 | `gallery.html`, `gallery.css`, `gallery.js`, `gallery-assets/` | Static design gallery, accessible image viewer, and caption manifest |
 | `journal-assets/` | Local illustrative portraits, provenance manifest, fictional film QR |
 | `project-support.json`, `assets/support-bitcoin.svg` | Real project support destination and generated payment QR |
@@ -52,3 +53,9 @@ For visual changes inspect the relevant view in light and dark modes, keyboard f
 ## Next explorations
 
 Useful directions include clearer visual distinction at very small sizes, input accessibility, performance across devices, portable journal export/import, and more contribution stories. Economic and embedded-Bitcoin rules remain draft concepts; see the [protocol summary](embedded-bitcoin-human-value-blocks/README.md) for established ideas versus unresolved proposals.
+
+## Real project journal
+
+`lab.html` presents the confirmed human ledger as Value Blocks Lab. `scripts/build-lab-data.cjs` creates a local `lab-data.js` snapshot from the authoritative JSON ledger so file-based viewing needs no fetch request. Regenerate it after changing the ledger; `checks/lab.cjs` detects stale snapshots. `lab-model.js` allocates exact block counts and per-entry colors. Combined stacks follow each period’s human contributions and estimated robot expansion, filling each bottom layer first. By-type comparisons use a common scale; filters preserve positions in the combined stack. The page is read-only and does not create or confirm additional records.
+
+The page reuses `TypesMesh` / `TypesBlock` and the six-face studio CSS. Scenario/scope changes rebuild geometry; camera changes transform the parent worlds, and combined-view filters hide existing material batches. Orbit is opt-in, pauses in background tabs, and respects reduced motion. Per-period robot previews mount only near the viewport and unmount offscreen; narrow layouts omit those extra miniatures. Bob’s contributor-supplied portrait is in `lab-assets/`, separate from fictional journal portraits.

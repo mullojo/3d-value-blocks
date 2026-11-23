@@ -2,6 +2,7 @@
 
 Start with the [project README](../README.md) to run the playground and explore its five main views.
 
+- [Value Blocks Lab · 3D project journal](../lab.html): the real confirmed human contributions and estimated robot expansion, with Bob’s profile.
 - [Human contribution journal](HUMAN_VALUE_BLOCKS.md): 21 contributor-confirmed human blocks and the observed project story.
 - [Human-block guide](HUMAN_VALUE_BLOCKS_GUIDE.md): a portable method for recognizing human contribution with an AI collaborator.
 - [Robot expansion journal](ROBOT_VALUE_BLOCKS.md): bottom-up no-AI workload scenarios, source inventory, and estimated effort saved.
