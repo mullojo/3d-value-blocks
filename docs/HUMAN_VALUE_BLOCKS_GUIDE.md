@@ -59,6 +59,8 @@ Use `docs/HUMAN_VALUE_BLOCKS.md` as the readable journal and `docs/value-block-r
 | Evidence and scope boundary | Makes a future update easy to reconcile |
 | Draft / contributor-reviewed / contributor-reported | Describes how the amount was established |
 
+When Bob reports Lindsay’s contribution, the journal identifies it as “reported by Bob.” Contributor-confirmed status identifies the person who actually reviewed that allocation. Both can be recognized without conflating their review histories.
+
 An individual block is an approximate hour; a draft allocation can be adjusted. Once a period has been recorded, append a signed adjustment with the reason instead of silently replacing its history. Keep period rows, category rows, and project totals as different views of the same work, rather than adding them together.
 
 Preparing a journal does not automatically earn another block. Say explicitly whether that work is included. Keep received gifts in a separate record. Recognized effort is not a statement of how much funding remains.

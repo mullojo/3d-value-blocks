@@ -1,12 +1,34 @@
 # Robot value blocks · The Value Blocks experiment
 
+**Current working picture: 27 human blocks + 629 robot blocks = 656 equivalent blocks.** About **24.3× total-output gain**, or **23.3× additional robot expansion** per combined human input block.
+
+## Lindsay’s collaboration update
+
+Bob reported one daily block for Lindsay’s review and collaboration on the six substantial recorded work days. The human journal now contains **Bob’s 21 confirmed blocks + Lindsay’s 6 reported blocks = 27 blocks / $2,700**.
+
+Her six hours of review are added to both human input and the comparable manual workload. The original robot estimates are preserved: this update does not invent robot expansion for her review or overwrite Bob’s original allocation.
+
+| Scenario | Human blocks | Updated manual-equivalent hours | Robot blocks saved | Total-output gain |
+| --- | ---: | ---: | ---: | ---: |
+| Fast | 27 | 231 | 204 | 8.6× |
+| Working | 27 | 656 | 629 | 24.3× |
+| Deep | 27 | 2,056 | 2,029 | 76.1× |
+
+**Working reference values:** human contribution **$2,700** + robot effort saved **$62,900** = **$65,600** combined. Gifts remain unreconciled and excluded.
+
+The structured ledger keeps the original six Bob periods and their workload allocations intact. Six additional dated human entries and matching manual-review workloads account for Lindsay. The [human journal](HUMAN_VALUE_BLOCKS.md) lists the dates and reporting status; the [live-page source](../lab.html) presents both people.
+
+## Original Bob-only baseline · retained for comparison
+
+The following analysis records the original H = 21 / W = 650 baseline through `5570a3d`. Its source inventory, budgets, timing evidence, and sensitivity examples remain useful historical context. The current team totals and ratios are the updated figures above.
+
 **Working picture: 21 human blocks + 629 robot blocks = 650 equivalent blocks.** About **31× total-output gain**, or **30× additional robot expansion** per human input block.
 
 This is a project-specific draft prepared November 22, 2026, through `5570a3d`. It asks what it might have taken Bob, a skilled developer, to produce this same visual playground without generative AI. It is a workload model, not measured hours saved. The upper scenario makes room for the very large gains Bob described; it is not a proven 100× benchmark.
 
-The contributor-confirmed [human journal](HUMAN_VALUE_BLOCKS.md) records **21 human blocks / $2,100**. The [starter guide](ROBOT_VALUE_BLOCKS_GUIDE.md) defines the ratios and method. This model recognizes the human’s ideas and judgment; it does not suggest that the AI independently invented the contribution system.
+The original Bob-only allocation in the [human journal](HUMAN_VALUE_BLOCKS.md) recorded **21 human blocks / $2,100**. The [starter guide](ROBOT_VALUE_BLOCKS_GUIDE.md) defines the ratios and method. This model recognizes the human’s ideas and judgment; it does not suggest that the AI independently invented the contribution system.
 
-## What is actually in the artifact?
+### What is actually in the artifact?
 
 | Snapshot evidence | Amount |
 | --- | ---: |
@@ -32,7 +54,7 @@ node scripts/inventory-source.cjs 5570a3d
 
 The delivered scope includes CSS materials, a WebGL2 path up to 100,000 blocks, paced preparation/arrivals, real-calendar geometry, several journal layouts, interactive film credits and finale, local input CRUD, parsing/capacity rules, project palettes, type filtering and arithmetic, embedded-Bitcoin designs, documentation, and a gallery. It is a functioning visual prototype, not a finished financial platform.
 
-## Build a comparable result without generative AI
+### Build a comparable result without generative AI
 
 All paths assume an ordinary skilled developer can still use Vue, Tailwind, QR libraries, documentation, search, browser developer tools, automated tests, and familiar software. There is no budget for writing those dependencies from scratch.
 
@@ -60,7 +82,7 @@ Each feature lane includes its design, learning, implementation, and local troub
 
 The working path is about 16 full 40-hour weeks; the deep path is about 51. These are counterfactual workloads, not a claim that Bob actually spent those weeks or that every specialist would need them. The GPU/3D learning and the cost of finding and polishing many visual alternatives make the biggest difference between the paths.
 
-## Turn the workloads into blocks
+### Turn the workloads into blocks
 
 Use **R = W − H**, with H = 21. Robot blocks show the additional effort equivalent; the human remains in the stack.
 
@@ -88,7 +110,7 @@ Shared verification is allocated once across the same periods as the human journ
 
 The 30.0× average is rounded: 629 / 21 ≈ 29.952. Setting the prototype’s whole-number multiplier to exactly 30× would show 630 robot blocks—one more than this workload model. Keep that rounding difference visible rather than changing the human record to make the display fit.
 
-## A source-volume rate cross-check
+### A source-volume rate cross-check
 
 For a complementary character-rate model, see [Robot expansion: from human bandwidth to a larger field of work](ROBOT_EXPANSION_MENTAL_MODEL.md). Its 70× raw / 700× availability example uses different assumptions and units from the project-specific budgets here; it does not revise this ledger.
 
@@ -106,7 +128,7 @@ Across the 49 completed turns, the sum of request-to-assistant-completion window
 
 Do not replace H with that 5.34-hour assistant figure to advertise a larger human gain. The human journal’s 21 blocks and the assistant’s turnaround windows answer different questions and can overlap.
 
-## What if the human estimate moves?
+### What if the human estimate moves?
 
 Hold the working manual budget at 650 hours and vary the human input as a sensitivity exercise around the confirmed 21-block allocation:
 
@@ -118,7 +140,7 @@ Hold the working manual budget at 650 hours and vary the human input as a sensit
 
 The working estimate remains about 23×–41× across that human-attention range. Workload uncertainty is larger: someone already expert in the techniques could need fewer than 225 hours, and a difficult solo learning path could exceed 2,050. The three scenarios are planning judgments, not statistical confidence limits or guaranteed lower/upper bounds.
 
-## A value picture, without losing the people
+### A value picture, without losing the people
 
 | Working scenario | Blocks | $100 reference equivalent |
 | --- | ---: | ---: |
@@ -129,7 +151,7 @@ The working estimate remains about 23×–41× across that human-attention range
 
 The $62,900 is an effort-saved reference equivalent, not market revenue, a cash gift, or extra human hours actually worked. Robot blocks are not recipients of money and are not Gratitude issuance sources. Appreciation fill multipliers are different controls again and do not increase these hours.
 
-## How to improve this next
+### How to improve this next
 
 Bob can adjust the human allocation, mark which techniques were already familiar, and revise individual manual lanes. A short comparable manual task would help calibrate the source-rate assumptions. Record revisions with their reason and keep this original draft available.
 

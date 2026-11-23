@@ -74,13 +74,13 @@ The same command is configured for GitHub Actions. Browser visual checks remain 
 
 ## Contributions, recognized
 
-[Explore the real project journal in 3D](https://mullojo.github.io/3d-value-blocks/lab.html), with Bob’s profile, the recorded contributions, and linked human/robot stacks. Switch between estimate scenarios or select one of the six work periods.
+[Explore the real project journal in 3D](https://mullojo.github.io/3d-value-blocks/lab.html), with Bob’s and Lindsay’s profiles, the recorded contributions, and linked human/robot stacks. Switch between estimate scenarios or select one of the six work periods.
 
 [![Value Blocks Lab project journal: confirmed human contributions and estimated robot expansion](docs/images/lab-journal.jpg)](https://mullojo.github.io/3d-value-blocks/lab.html)
 
-This project now has its own value-block journal. The contributor-confirmed record recognizes **21 human blocks ≈ 21 hours · $2,100 of base human value** from Bob’s direction, design review, examples, problem spotting, and publishing work through November 22, 2026.
+This project now has its own value-block journal. The record recognizes **27 human blocks ≈ 27 hours · $2,700 of base human value**: Bob’s **21 confirmed blocks** for direction, design, review, and publishing, plus **6 daily review and collaboration blocks for Lindsay, reported by Bob**.
 
-The companion AI model explores about **11×–98× total-output scenarios**, with **31× as its working estimate**: **21 human + 629 robot = 650 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
+The companion AI model explores about **9×–76× total-output scenarios**, with **24.3× as its working estimate**: **27 human + 629 robot = 656 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
 
 - [Human contribution journal](docs/HUMAN_VALUE_BLOCKS.md) · [Reusable human-block guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md)
 - [Robot expansion estimates](docs/ROBOT_VALUE_BLOCKS.md) · [Starter robot-block guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md)
@@ -111,4 +111,4 @@ Scan with a Bitcoin wallet, or copy the address. No amount is prefilled. See [SU
 - [Embedded Bitcoin Human Value Blocks: draft concepts](docs/embedded-bitcoin-human-value-blocks/README.md)
 - [Third-party notices and asset sources](THIRD_PARTY_NOTICES.md)
 
-Original project code and documentation are released under the **[MIT License](LICENSE)**. Vendored libraries retain their own notices; illustrative portraits retain the [Unsplash license](https://unsplash.com/license) and are not relicensed under MIT. Bob’s real project-journal photograph has a separate [usage note](lab-assets/README.md). See the notices before reusing third-party assets.
+Original project code and documentation are released under the **[MIT License](LICENSE)**. Vendored libraries retain their own notices; illustrative portraits retain the [Unsplash license](https://unsplash.com/license) and are not relicensed under MIT. Bob’s and Lindsay’s real project-journal photographs have a separate [usage note](lab-assets/README.md). See the notices before reusing third-party assets.

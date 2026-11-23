@@ -6,12 +6,13 @@ const generated=require('../scripts/build-lab-data.cjs').build();
 assert.equal(fs.readFileSync(path.join(root,'lab-data.js'),'utf8'),generated,'Public journal snapshot follows the ledger');
 const context=vm.createContext({});vm.runInContext(generated,context);
 const data=vm.runInContext('ValueBlocksLabData',context);
-assert.equal(data.project,'Value Blocks Lab');assert.equal(data.person.name,'Bob');assert(fs.existsSync(path.join(root,data.person.image)));
+assert.equal(data.project,'Value Blocks Lab');assert.deepEqual(Array.from(data.people,p=>p.name),['Bob','Lindsay']);for(const person of data.people)assert(fs.existsSync(path.join(root,person.image)));
+assert.equal(ledger.additionalContributions.length,6);
 assert(ledger.periods.every(p=>p.status==='contributor-confirmed'));
 for(const scenario of Object.keys(model.scenarios)) {
   const whole=model.build(ledger,scenario);
   const expected=ledger.scenarios[scenario];
-  assert.equal(whole.human,21);assert.equal(whole.robot,expected.robotBlocks);assert.equal(whole.totalValue,expected.combinedEquivalentUSD);
+  assert.equal(whole.human,27);assert.equal(whole.robot,expected.robotBlocks);assert.equal(whole.totalValue,expected.combinedEquivalentUSD);
   assert.equal(whole.gift,null,'No fictional gift records added');
   for(const periodId of ['all',...ledger.periods.map(p=>p.id)]) {
     const view=model.build(ledger,scenario,periodId);
@@ -37,10 +38,19 @@ for(const scenario of Object.keys(model.scenarios)) {
     }
   }
 }
-const working=model.build(ledger);assert.equal(working.robot,629);assert.equal(working.total,650);assert.equal(working.totalValue,65000);
+const working=model.build(ledger);assert.equal(working.robot,629);assert.equal(working.total,656);assert.equal(working.totalValue,65600);
 assert.throws(()=>model.build(ledger,'unknown'),RangeError);assert.throws(()=>model.build(ledger,'working','unknown'),RangeError);
+const session=model.createSession(ledger),cached=session.build();
+assert.equal(typeof Object.getOwnPropertyDescriptor(cached,'combined').get,'function','Combined geometry stays lazy until visited');
+const robotGeometry=cached.robotGroup;
+assert.equal(typeof Object.getOwnPropertyDescriptor(cached,'combined').get,'function','A separate group does not build the combined scene');
+session.build('deep');session.build('working',ledger.periods[0].id);
+assert.strictEqual(session.build(),cached,'Returning to a scenario/scope reuses its model');
+assert.strictEqual(session.build().robotGroup,robotGeometry,'Geometry identity survives view visits');
+const rendered=model.periods(ledger);
+assert(rendered.every(p=>p.entries.some(e=>e.contributor==='Lindsay')&&p.entries.some(e=>e.contributor==='Bob')));
 const html=fs.readFileSync(path.join(root,'lab.html'),'utf8');
-assert(!/<(?:lab-stack|lab-mini|lab-robot-preview)\b[^>]*\/>/.test(html),'In-DOM Vue custom elements need explicit end tags');
+assert(!/<(?:lab-stack|lab-mini|lab-robot-preview|lab-viewer)\b[^>]*\/>/.test(html),'In-DOM Vue custom elements need explicit end tags');
 assert(html.includes('Gift blocks: not recorded'));
 const index=fs.readFileSync(path.join(root,'README.md'),'utf8');assert(index.includes('https://mullojo.github.io/3d-value-blocks/lab.html'));
-console.log('Lab passed: ledger-derived data, confirmed human identity, exact three-scenario/per-period geometry and values, uniform entry colors, supported bottom-first stacks, real portrait, no invented gifts, and file-based template structure.');
+console.log('Lab passed: ledger-derived data, two real contributors with distinct reporting status, exact three-scenario/per-period geometry and values, uniform entry colors, supported bottom-first stacks, real portrait, no invented gifts, and file-based template structure.');

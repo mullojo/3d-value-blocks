@@ -1,6 +1,7 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
 const root=path.join(__dirname,'..'),context=vm.createContext({ValueBlockColors:{families:['emerald']}});
 vm.runInContext(fs.readFileSync(path.join(root,'vendor/vue.global.prod.js'),'utf8'),context);
+vm.runInContext(fs.readFileSync(path.join(root,'cube-materials.js'),'utf8'),context);
 vm.runInContext(fs.readFileSync(path.join(root,'types.js'),'utf8'),context);
 const lab=vm.runInContext('TypesLab.setup()',context),tick=()=>vm.runInContext('Vue.nextTick()',context);
 (async()=>{

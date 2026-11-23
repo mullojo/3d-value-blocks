@@ -70,6 +70,8 @@ Offer combined and separated groups. Label **human blocks**, **estimated effort 
 
 The current Types slider supports up to **30× robot expansion**. This is an interface limit, not the upper bound of an estimate. The worked journal’s high scenario exceeds that control; the documents record it without changing or clamping the prototype UI.
 
+Additional collaboration can be recognized without inventing new robot expansion. When the same review would be needed in the manual comparison, add it equally to H and W: R stays unchanged. The [team update](ROBOT_VALUE_BLOCKS.md) applies that rule to Lindsay’s six daily blocks.
+
 ## Value arithmetic
 
 ```text

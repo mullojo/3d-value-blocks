@@ -119,7 +119,9 @@ gross output per human input = W / H
 
 Hours in W describe active effort, including appropriate design and debugging. Hours spent asleep, waiting overnight, or away from the project do not inflate W. Where H and W are approximate, the resulting multiplier is approximate too.
 
-Our existing working example is **H = 21**, **W = 650**, and **R = 629**: about **30× additional robot expansion** and **31× total-output gain**. The new 70×/700× capacity model is another lens for reasoning about that estimate. It does not independently replace W, revalue the source inventory, or multiply the recorded blocks by 700.
+The original Bob-only example is **H = 21**, **W = 650**, and **R = 629**: about **30× additional robot expansion** and **31× total-output gain**. The new 70×/700× capacity model is another lens for reasoning about that estimate. It does not independently replace W, revalue the source inventory, or multiply the recorded blocks by 700.
+
+The later team update adds Lindsay’s six daily review blocks to both human input and the comparable manual workload: **H = 27**, **W = 656**, and the same **R = 629**. That is about **24.3× total output** per combined human input. The additional recognition does not automatically create additional robot blocks.
 
 A collaborator can have low human-attention cost even when an AI job takes many machine hours. Conversely, a fast stream can demand substantial review. Track **human input**, **machine/calendar duration**, and **accepted result** separately. This is how very large expansion can be explored without losing its meaning.
 

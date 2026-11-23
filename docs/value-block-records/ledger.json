@@ -6,12 +6,12 @@
   "scope": "Project work through 5570a3d; excludes preparing these records and guides.",
   "humanBlockHours": 1,
   "blockBaselineUSD": 100,
-  "humanBlocks": 21,
+  "humanBlocks": 27,
   "humanEstimateRange": [
-    16,
-    28
+    22,
+    34
   ],
-  "humanValueUSD": 2100,
+  "humanValueUSD": 2700,
   "giftResourcesRecorded": null,
   "periods": [
     {
@@ -427,34 +427,34 @@
   },
   "scenarios": {
     "fast": {
-      "manualEquivalentHours": 225,
-      "humanBlocks": 21,
+      "manualEquivalentHours": 231,
+      "humanBlocks": 27,
       "robotBlocks": 204,
-      "grossGain": 10.714285714285714,
-      "robotMultiple": 9.714285714285714,
-      "humanValueUSD": 2100,
+      "grossGain": 8.555555555555555,
+      "robotMultiple": 7.555555555555555,
+      "humanValueUSD": 2700,
       "robotEquivalentUSD": 20400,
-      "combinedEquivalentUSD": 22500
+      "combinedEquivalentUSD": 23100
     },
     "working": {
-      "manualEquivalentHours": 650,
-      "humanBlocks": 21,
+      "manualEquivalentHours": 656,
+      "humanBlocks": 27,
       "robotBlocks": 629,
-      "grossGain": 30.952380952380953,
-      "robotMultiple": 29.952380952380953,
-      "humanValueUSD": 2100,
+      "grossGain": 24.296296296296298,
+      "robotMultiple": 23.296296296296298,
+      "humanValueUSD": 2700,
       "robotEquivalentUSD": 62900,
-      "combinedEquivalentUSD": 65000
+      "combinedEquivalentUSD": 65600
     },
     "deep": {
-      "manualEquivalentHours": 2050,
-      "humanBlocks": 21,
+      "manualEquivalentHours": 2056,
+      "humanBlocks": 27,
       "robotBlocks": 2029,
-      "grossGain": 97.61904761904762,
-      "robotMultiple": 96.61904761904762,
-      "humanValueUSD": 2100,
+      "grossGain": 76.14814814814815,
+      "robotMultiple": 75.14814814814815,
+      "humanValueUSD": 2700,
       "robotEquivalentUSD": 202900,
-      "combinedEquivalentUSD": 205000
+      "combinedEquivalentUSD": 205600
     }
   },
   "humanReview": {
@@ -471,5 +471,225 @@
     ],
     "scope": "All six existing human contribution periods: 21 blocks and $2,100 base human value. Quantities and original work scope unchanged.",
     "basis": "Bob reviewed the recorded human value blocks and explicitly requested confirmed status in this project chat."
-  }
+  },
+  "originalBaseline": {
+    "humanBlocks": 21,
+    "humanValueUSD": 2100,
+    "humanEstimateRange": [
+      16,
+      28
+    ],
+    "scenarios": {
+      "fast": {
+        "manualEquivalentHours": 225,
+        "humanBlocks": 21,
+        "robotBlocks": 204,
+        "grossGain": 10.714285714285714,
+        "robotMultiple": 9.714285714285714,
+        "humanValueUSD": 2100,
+        "robotEquivalentUSD": 20400,
+        "combinedEquivalentUSD": 22500
+      },
+      "working": {
+        "manualEquivalentHours": 650,
+        "humanBlocks": 21,
+        "robotBlocks": 629,
+        "grossGain": 30.952380952380953,
+        "robotMultiple": 29.952380952380953,
+        "humanValueUSD": 2100,
+        "robotEquivalentUSD": 62900,
+        "combinedEquivalentUSD": 65000
+      },
+      "deep": {
+        "manualEquivalentHours": 2050,
+        "humanBlocks": 21,
+        "robotBlocks": 2029,
+        "grossGain": 97.61904761904762,
+        "robotMultiple": 96.61904761904762,
+        "humanValueUSD": 2100,
+        "robotEquivalentUSD": 202900,
+        "combinedEquivalentUSD": 205000
+      }
+    },
+    "scope": "Original Bob-only allocation through 5570a3d, retained as history."
+  },
+  "contributors": [
+    {
+      "id": "bob",
+      "name": "Bob",
+      "image": "lab-assets/bob-profile.png",
+      "role": "Direction, design & implementation review",
+      "blocks": 21,
+      "status": "contributor-confirmed"
+    },
+    {
+      "id": "lindsay",
+      "name": "Lindsay",
+      "image": "lab-assets/lindsay-profile.png",
+      "role": "Review & collaboration",
+      "blocks": 6,
+      "status": "reported-by-Bob"
+    }
+  ],
+  "additionalContributions": [
+    {
+      "id": "lindsay-2026-11-04",
+      "periodId": "vb-2026-11-04",
+      "date": "2026-11-04",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed and collaborated on the Value Blocks Lab work.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22"
+    },
+    {
+      "id": "lindsay-2026-11-16",
+      "periodId": "vb-2026-11-13-16",
+      "date": "2026-11-16",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed and collaborated on the Value Blocks Lab work.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22"
+    },
+    {
+      "id": "lindsay-2026-11-17",
+      "periodId": "vb-2026-11-17",
+      "date": "2026-11-17",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed and collaborated on the Value Blocks Lab work.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22"
+    },
+    {
+      "id": "lindsay-2026-11-18",
+      "periodId": "vb-2026-11-18",
+      "date": "2026-11-18",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed and collaborated on the Value Blocks Lab work.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22"
+    },
+    {
+      "id": "lindsay-2026-11-20",
+      "periodId": "vb-2026-11-20-21",
+      "date": "2026-11-20",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed and collaborated on the Value Blocks Lab work.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22"
+    },
+    {
+      "id": "lindsay-2026-11-22",
+      "periodId": "vb-2026-11-22",
+      "date": "2026-11-22",
+      "contributor": "Lindsay",
+      "personId": "lindsay",
+      "blocks": 1,
+      "humanValueUSD": 100,
+      "color": "🟩",
+      "description": "Reviewed and collaborated on the Value Blocks Lab work.",
+      "emoji": "🤝✨",
+      "status": "reported-by-Bob",
+      "reportedBy": "Bob",
+      "recordedOn": "2026-11-22"
+    }
+  ],
+  "additionalHumanWorkloads": [
+    {
+      "contributionId": "lindsay-2026-11-04",
+      "periodId": "vb-2026-11-04",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    },
+    {
+      "contributionId": "lindsay-2026-11-16",
+      "periodId": "vb-2026-11-13-16",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    },
+    {
+      "contributionId": "lindsay-2026-11-17",
+      "periodId": "vb-2026-11-17",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    },
+    {
+      "contributionId": "lindsay-2026-11-18",
+      "periodId": "vb-2026-11-18",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    },
+    {
+      "contributionId": "lindsay-2026-11-20",
+      "periodId": "vb-2026-11-20-21",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    },
+    {
+      "contributionId": "lindsay-2026-11-22",
+      "periodId": "vb-2026-11-22",
+      "fastHours": 1,
+      "workingHours": 1,
+      "deepHours": 1,
+      "basis": "The additional collaborator review is included on both sides of the comparison; no extra robot expansion is attributed."
+    }
+  ],
+  "recognitionUpdates": [
+    {
+      "recordedOn": "2026-11-22",
+      "contributor": "Lindsay",
+      "blocksAdded": 6,
+      "valueAddedUSD": 600,
+      "reportedBy": "Bob",
+      "dates": [
+        "2026-11-04",
+        "2026-11-16",
+        "2026-11-17",
+        "2026-11-18",
+        "2026-11-20",
+        "2026-11-22"
+      ],
+      "basis": "Bob requested one block per calendar day of Lindsay’s review and collaboration. Allocated to the six substantial project work dates in the recorded scope; brief server-start dates November 13 and 21 are excluded.",
+      "effect": "Bob’s confirmed allocation and all original robot estimates are preserved. Each scenario adds six human-equivalent review hours to its manual budget."
+    }
+  ]
 }

@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const ledger = require('../docs/value-block-records/ledger.json');
 function build() {
-  const data = { project:'Value Blocks Lab',person:{name:'Bob',image:'lab-assets/bob-profile.png'},ledger };
+  const data = { project:'Value Blocks Lab',people:ledger.contributors,ledger };
   return '/* Generated from the contribution ledger. Run node scripts/build-lab-data.cjs after ledger changes. */\nconst ValueBlocksLabData = '+JSON.stringify(data,null,2)+';\n';
 }
 if (require.main === module) {

@@ -1,5 +1,5 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm'),path=require('node:path');
-const context=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(__dirname,'../types.js'),'utf8'),context);const m=vm.runInContext('ValueBlockTypes',context);
+const context=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(__dirname,'../cube-materials.js'),'utf8'),context);vm.runInContext(fs.readFileSync(path.join(__dirname,'../types.js'),'utf8'),context);const m=vm.runInContext('ValueBlockTypes',context);
 const demo=m.calculate({human:3,gift:3,robotMultiplier:10});assert.equal(demo.totalValue,3600);assert.equal(demo.total,36);assert.equal(demo.gratitude,300);assert.equal(demo.humanHours,3);assert.equal(demo.savedHours,30);
 const fills=m.calculate({human:3,gift:3,robotMultiplier:10,humanFill:10,giftFill:5});assert.equal(fills.humanGifts,3000);assert.equal(fills.giftGifts,1500);assert.equal(fills.totalValue,demo.totalValue,'Appreciation does not double count contributions');assert.equal(fills.gratitude,300);
 const noHuman=m.calculate({human:0,gift:3,robotMultiplier:10});assert.equal(noHuman.robot,0);assert.equal(noHuman.robotMultiplier,10);assert.equal(noHuman.gratitude,0);assert.equal(noHuman.totalValue,300);

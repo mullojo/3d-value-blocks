@@ -8,7 +8,7 @@ The root [MIT License](LICENSE) covers original project code and documentation. 
 | Tailwind CSS | 4.3.4 · MIT | Compiled `vendor/tailwind.css` and retained `vendor/tailwind-browser.js`; copyright Tailwind Labs, Inc.; [vendor notice](vendor/NOTICE.md) |
 | QR Code Generator for JavaScript | 1.4.4 · MIT | `vendor/qrcode-generator.js`; copyright Kazuhiko Arase; [vendor notice](vendor/NOTICE.md). Used by local SVG generators. |
 | jsQR | 1.4.0 · Apache-2.0 | `vendor/jsqr.js`; [full license](vendor/jsqr-LICENSE.txt). Used for QR verification, not the main application. |
-| Bob’s project-journal photograph | Contributor-supplied; project use permitted | `lab-assets/bob-profile.png`; [usage note](lab-assets/README.md). This photograph is separate from the MIT software license. |
+| Bob’s and Lindsay’s project-journal photographs | Contributor-supplied; project use permitted | `lab-assets/bob-profile.png` and `lab-assets/lindsay-profile.png`; [usage note](lab-assets/README.md). These photographs are separate from the MIT software license. |
 | Illustrative portrait photographs | Unsplash license | `journal-assets/portrait-*.jpg`; [individual image sources](journal-assets/README.md), [license](https://unsplash.com/license) |
 
 Archived experiments contain their own vendored library copies and license notices. Preserve those too.
