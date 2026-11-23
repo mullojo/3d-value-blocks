@@ -28,3 +28,4 @@
 .lab-glass-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .lab-render-option{margin:12px 25px 0;font:10px ui-sans-serif,sans-serif;color:var(--muted)}
 .lab-render-option input{accent-color:var(--accent)}
+.lab-preview-canvas{display:block;width:100%;max-width:180px;height:130px;margin-inline:auto;object-fit:contain}

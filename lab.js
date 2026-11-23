@@ -37,7 +37,7 @@ const LabStaticMesh={
 };
 const LabStack = {
   components:{LabStaticMesh},
-  props:{geometry:Object,fitGeometry:Object,yaw:Number,tilt:Number,zoom:Number,compact:Boolean,gpu:Boolean,showHuman:{default:true},showRobot:{default:true}},
+  props:{geometry:Object,fitGeometry:Object,yaw:Number,tilt:Number,zoom:Number,compact:Boolean,gpu:Boolean,active:{default:true},moving:Boolean,showHuman:{default:true},showRobot:{default:true}},
   setup(props) {
     const {ref,computed,onMounted,onBeforeUnmount,shallowReactive}=Vue;
     const pending=shallowReactive({});
@@ -61,15 +61,17 @@ const LabStack = {
     });
     const transform=computed(()=>`rotateX(${props.tilt}deg) rotateY(${props.yaw}deg) scale3d(${scale.value},${scale.value},${scale.value})`);
     function paintGlass(){
-      cancelAnimationFrame(paint);
-      if(!renderer || !robotBatch.value || !props.showRobot || !scale.value)return;
+      if (paint || !renderer || !robotBatch.value || !props.active || !props.showRobot || !scale.value) return;
       paint=requestAnimationFrame(()=>{
-        renderer.draw(robotBatch.value.blocks,width.value,height.value,props.yaw,props.tilt,scale.value);
+        paint=0;
+        if (!props.active || !props.showRobot || !renderer) return;
+        renderer.draw(robotBatch.value.blocks,width.value,height.value,props.yaw,props.tilt,scale.value,props.moving);
       });
     }
     function loseGlass(){
       glassReady.value=false;
       cancelAnimationFrame(paint);
+      paint=0;
       renderer?.dispose();
       renderer=null;
     }
@@ -93,7 +95,7 @@ const LabStack = {
       checkingGlass.value=false;
       paintGlass();
     },{flush:'post'});
-    watch([width,height,scale,robotBatch,()=>props.yaw,()=>props.tilt,()=>props.showRobot],paintGlass,{flush:'post'});
+    watch([width,height,scale,robotBatch,()=>props.yaw,()=>props.tilt,()=>props.showRobot,()=>props.active,()=>props.moving],paintGlass,{flush:'post'});
     onBeforeUnmount(()=>{observer?.disconnect();loseGlass();});
     return {frame,canvas,scale,transform,building,setBuilding,robotBatch,glassReady,checkingGlass,loseGlass};
   },
@@ -113,21 +115,60 @@ const LabMini = {
   computed:{family(){return ValueBlocksLabModel.families[this.entry.color]||'orange';}},
   template:`<div class="lab-mini" role="img" :aria-label="entry.blocks+' solid '+family+' human '+(entry.blocks===1?'block':'blocks')"><div class="lab-mini-world" aria-hidden="true"><types-block v-for="i in entry.blocks" :key="i" kind="human" :family="family" :fill="0" :position="[(i-1-(entry.blocks-1)/2)*136,0,0]"/></div></div>`
 };
+// Journal thumbnails share one scratch renderer. Each row keeps only a still image.
+let labPreviewSurface,labPreviewRenderer;
 const LabRobotPreview = {
   components:{LabStack},props:{count:Number},
   setup(props){
-    const {ref,computed,onMounted,onBeforeUnmount}=Vue;
-    const frame=ref(null),visible=ref(false);let observer;
-    onMounted(()=>{observer=new IntersectionObserver(entries=>{visible.value=entries[0].isIntersecting;},{rootMargin:'180px'});observer.observe(frame.value);});
-    onBeforeUnmount(()=>observer?.disconnect());
-    const geometry=computed(()=>ValueBlocksLabModel.geometry([{id:'period-preview',kind:'robot',family:'cyan',count:visible.value?props.count:0}]));
-    return {frame,visible,geometry};
+    const {ref,computed,watch,onMounted,onBeforeUnmount}=Vue;
+    const frame=ref(null),canvas=ref(null),nearby=ref(false),fallback=ref(false);
+    let observer,paint=0,lastCount;
+    const geometry=computed(()=>ValueBlocksLabModel.geometry([{id:'period-preview',kind:'robot',family:'cyan',count:props.count}]));
+    function queuePreview(){
+      if (paint || !nearby.value || fallback.value || lastCount===props.count) return;
+      paint=requestAnimationFrame(()=>{
+        paint=0;
+        if (!nearby.value || !canvas.value) return;
+        if (!labPreviewSurface) {
+          labPreviewSurface=document.createElement('canvas');
+          try {labPreviewRenderer=LabGlass.create(labPreviewSurface);} catch {labPreviewRenderer=null;}
+          labPreviewSurface.addEventListener('webglcontextlost',()=>{
+            labPreviewRenderer?.dispose();
+            labPreviewRenderer=null;
+          });
+        }
+        const context=canvas.value.getContext('2d');
+        if (!labPreviewRenderer || !context) {
+          fallback.value=true;
+          return;
+        }
+        const width=180,height=130,g=geometry.value;
+        const span=Math.hypot(g.side,g.height,g.side)*136;
+        labPreviewRenderer.draw(g.blocks,width,height,-32,-22,(height-14)/(span*(1+height/3600)));
+        const {width:pixelWidth,height:pixelHeight}=labPreviewSurface;
+        if (canvas.value.width!==pixelWidth) canvas.value.width=pixelWidth;
+        if (canvas.value.height!==pixelHeight) canvas.value.height=pixelHeight;
+        context.clearRect(0,0,pixelWidth,pixelHeight);
+        context.drawImage(labPreviewSurface,0,0);
+        lastCount=props.count;
+      });
+    }
+    onMounted(()=>{
+      observer=new IntersectionObserver(([entry])=>{nearby.value=entry.isIntersecting;},{rootMargin:'180px'});
+      observer.observe(frame.value);
+    });
+    watch([nearby,()=>props.count],queuePreview);
+    onBeforeUnmount(()=>{observer?.disconnect();cancelAnimationFrame(paint);});
+    return {frame,canvas,nearby,fallback,geometry};
   },
-  template:`<div ref="frame" class="lab-period-preview" role="img" :aria-label="count+' translucent robot value blocks'"><lab-stack v-if="visible" :geometry="geometry" :yaw="-32" :tilt="-22" :zoom="1" compact/></div>`
+  template:`<div ref="frame" class="lab-period-preview" role="img" :aria-label="count+' translucent robot value blocks'">
+    <canvas v-if="!fallback" ref="canvas" class="lab-preview-canvas" aria-hidden="true"></canvas>
+    <lab-stack v-else-if="nearby" :geometry="geometry" :yaw="-32" :tilt="-22" :zoom="1" compact/>
+  </div>`
 };
 const LabStageLayout={
-  components:{LabStack},props:{model:Object,layout:String,gpu:Boolean,showHuman:Boolean,showRobot:Boolean,yaw:Number,tilt:Number,zoom:Number},
-  template:`<div :class="['lab-mode-layout',layout]">                <template v-if="layout==='separate'"><div class="lab-stage-group human-stage"><lab-stack v-show="showHuman" :geometry="model.humanGroup" :fit-geometry="model.bounds" :yaw="yaw" :tilt="tilt" :zoom="zoom"></lab-stack><div v-if="!showHuman" class="lab-hidden">Human blocks hidden</div><div class="lab-group-label"><b>{{model.human}}</b><span>human blocks</span><small>Solid · human contributions</small></div></div><div class="lab-stage-group robot-stage"><lab-stack v-show="showRobot" :geometry="model.robotGroup" :gpu="gpu" :fit-geometry="model.bounds" :yaw="yaw" :tilt="tilt" :zoom="zoom"></lab-stack><div v-if="!showRobot" class="lab-hidden">Robot blocks hidden</div><div class="lab-group-label"><b>{{model.robot.toLocaleString('en-US')}}</b><span>robot blocks</span><small>Transparent · effort-saved estimate</small></div></div><span class="lab-bridge" aria-hidden="true">↗</span></template>
+  components:{LabStack},props:{model:Object,layout:String,gpu:Boolean,active:Boolean,moving:Boolean,showHuman:Boolean,showRobot:Boolean,yaw:Number,tilt:Number,zoom:Number},
+  template:`<div :class="['lab-mode-layout',layout]">                <template v-if="layout==='separate'"><div class="lab-stage-group human-stage"><lab-stack v-show="showHuman" :geometry="model.humanGroup" :fit-geometry="model.bounds" :yaw="yaw" :tilt="tilt" :zoom="zoom"></lab-stack><div v-if="!showHuman" class="lab-hidden">Human blocks hidden</div><div class="lab-group-label"><b>{{model.human}}</b><span>human blocks</span><small>Solid · human contributions</small></div></div><div class="lab-stage-group robot-stage"><lab-stack v-show="showRobot" :geometry="model.robotGroup" :gpu="gpu" :active="active" :moving="moving" :fit-geometry="model.bounds" :yaw="yaw" :tilt="tilt" :zoom="zoom"></lab-stack><div v-if="!showRobot" class="lab-hidden">Robot blocks hidden</div><div class="lab-group-label"><b>{{model.robot.toLocaleString('en-US')}}</b><span>robot blocks</span><small>Transparent · effort-saved estimate</small></div></div><span class="lab-bridge" aria-hidden="true">↗</span></template>
                 <lab-stack v-else :geometry="model.combined" :yaw="yaw" :tilt="tilt" :zoom="zoom" :show-human="showHuman" :show-robot="showRobot"></lab-stack>
 </div>`
 };
@@ -135,7 +176,7 @@ const LabViewer={
   components:{LabStageLayout},props:{model:Object,layout:String,gpu:Boolean,showHuman:Boolean,showRobot:Boolean,busy:Boolean},
   setup(props){
     const {ref,shallowReactive,watch,onMounted,onBeforeUnmount}=Vue;
-    const yaw=ref(-32),tilt=ref(-22),zoom=ref(1),orbit=ref(false),inView=ref(true);
+    const yaw=ref(-32),tilt=ref(-22),zoom=ref(1),orbit=ref(false),inView=ref(true),dragging=ref(false);
     const shownModels=shallowReactive({separate:null,combined:null});
     watch(()=>[props.layout,props.model],([layout,model])=>{shownModels[layout]=model;},{immediate:true});
     const motion=window.matchMedia('(prefers-reduced-motion: reduce)'),reducedMotion=ref(motion.matches);
@@ -144,18 +185,18 @@ const LabViewer={
     function tick(time){if(!orbit.value||document.hidden||!inView.value||reducedMotion.value||(!props.showHuman&&!props.showRobot)){stop();return;}if(last)yaw.value+=(time-last)*.004;last=time;animation=requestAnimationFrame(tick);}
     function sync(){stop();if(orbit.value&&!document.hidden&&inView.value&&!reducedMotion.value&&(props.showHuman||props.showRobot))animation=requestAnimationFrame(tick);}
     function reset(){yaw.value=-32;tilt.value=-22;zoom.value=1;orbit.value=false;}
-    function down(e){if(e.button!==0)return;orbit.value=false;pointer={x:e.clientX,y:e.clientY,yaw:yaw.value,tilt:tilt.value};e.currentTarget.setPointerCapture(e.pointerId);}
+    function down(e){if(e.button!==0)return;orbit.value=false;dragging.value=true;pointer={x:e.clientX,y:e.clientY,yaw:yaw.value,tilt:tilt.value};e.currentTarget.setPointerCapture(e.pointerId);}
     function move(e){if(!pointer)return;yaw.value=pointer.yaw+(e.clientX-pointer.x)*.35;tilt.value=Math.max(-65,Math.min(-5,pointer.tilt-(e.clientY-pointer.y)*.25));}
-    function up(){pointer=null;}
+    function up(){pointer=null;dragging.value=false;}
     function key(e){if(!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','+','=','-'].includes(e.key))return;e.preventDefault();orbit.value=false;if(e.key==='Home')reset();else if(e.key==='ArrowLeft')yaw.value-=10;else if(e.key==='ArrowRight')yaw.value+=10;else if(e.key==='ArrowUp')tilt.value=Math.max(-65,tilt.value-5);else if(e.key==='ArrowDown')tilt.value=Math.min(-5,tilt.value+5);else zoom.value=Math.max(.5,Math.min(2,zoom.value+(e.key==='-'?-.15:.15)));}
     function motionChange(){reducedMotion.value=motion.matches;if(motion.matches)orbit.value=false;sync();}
     watch([orbit,inView],sync);watch(()=>props.showHuman||props.showRobot,sync);
     onMounted(()=>{document.addEventListener('visibilitychange',sync);motion.addEventListener('change',motionChange);observer=new IntersectionObserver(entries=>{inView.value=entries[0].isIntersecting;});observer.observe(document.getElementById('project-stack'));});
     onBeforeUnmount(()=>{stop();observer?.disconnect();document.removeEventListener('visibilitychange',sync);motion.removeEventListener('change',motionChange);});
-    return {yaw,tilt,zoom,orbit,reducedMotion,shownModels,down,move,up,key,reset};
+    return {yaw,tilt,zoom,orbit,inView,dragging,reducedMotion,shownModels,down,move,up,key,reset};
   },
   template:`              <div id="project-stack" class="lab-stage" :class="{'is-busy':busy}" tabindex="0" role="group" :aria-label="'3D contribution stacks: '+model.human+' human and '+model.robot+' estimated robot blocks. Drag or use arrow keys to rotate; plus and minus zoom; Home resets.'" @pointerdown="down" @pointermove="move" @pointerup="up" @pointercancel="up" @lostpointercapture="up" @keydown="key">
-<template v-for="mode in ['separate','combined']" :key="mode"><div v-if="shownModels[mode]" v-show="layout===mode" class="lab-mode"><lab-stage-layout :model="shownModels[mode]" :layout="mode" :gpu="gpu" :show-human="showHuman" :show-robot="showRobot" :yaw="layout===mode?yaw:-32" :tilt="layout===mode?tilt:-22" :zoom="layout===mode?zoom:1"></lab-stage-layout></div></template>                <div v-if="!showHuman&&!showRobot" class="lab-hidden full">Turn on a block type to explore it.</div>
+<template v-for="mode in ['separate','combined']" :key="mode"><div v-if="shownModels[mode]" v-show="layout===mode" class="lab-mode"><lab-stage-layout :model="shownModels[mode]" :layout="mode" :gpu="gpu" :active="inView && layout===mode" :moving="dragging || orbit" :show-human="showHuman" :show-robot="showRobot" :yaw="layout===mode?yaw:-32" :tilt="layout===mode?tilt:-22" :zoom="layout===mode?zoom:1"></lab-stage-layout></div></template>                <div v-if="!showHuman&&!showRobot" class="lab-hidden full">Turn on a block type to explore it.</div>
                 <span class="lab-stage-corner">{{layout==='combined'?'RECORDED PERIOD ORDER / BOTTOM LAYER FIRST':'HUMAN INPUT → ESTIMATED EXPANSION'}}</span><span v-if="busy" class="lab-loading" role="status">Preparing the stack…</span>
               </div>
               <div class="lab-camera"><div><button @click="yaw-=15" aria-label="Rotate left">↶</button><button @click="yaw+=15" aria-label="Rotate right">↷</button><button @click="reset" aria-label="Reset stack view">Reset view</button></div><div><button @click="zoom=Math.max(.5,zoom-.15)" aria-label="Zoom out">−</button><span>{{Math.round(zoom*100)}}%</span><button @click="zoom=Math.min(2,zoom+.15)" aria-label="Zoom in">+</button></div><label><input type="checkbox" v-model="orbit" :disabled="reducedMotion"> Slow orbit</label></div>
@@ -165,10 +206,13 @@ Vue.createApp({
   components:{LabViewer,LabMini,LabRobotPreview},
   setup() {
     const {ref,computed,markRaw,nextTick}=Vue;
-    const data=markRaw(ValueBlocksLabData),periods=markRaw(ValueBlocksLabModel.periods(data.ledger)),scenarios=ValueBlocksLabModel.scenarios;
+    const data=markRaw(ValueBlocksLabData),scenarios=ValueBlocksLabModel.scenarios;
+    const recordedPeriods=ValueBlocksLabModel.periods(data.ledger);
+    // The page reads newest first, while the stack model fills in recorded order.
+    const periods=markRaw([...recordedPeriods].reverse());
     const session=ValueBlocksLabModel.createSession(data.ledger),people=data.people;
     const peopleById=Object.fromEntries(people.map(p=>[p.id,p]));
-    const statusSummary=periods.flatMap(p=>p.entries).reduce((counts,e)=>{const label=e.status==='contributor-confirmed'?'confirmed':e.status==='chat-estimated'?'estimated':'reported';counts[label]=(counts[label]||0)+e.blocks;return counts;},{});
+    const statusSummary=recordedPeriods.flatMap(p=>p.entries).reduce((counts,e)=>{const label=e.status==='contributor-confirmed'?'confirmed':e.status==='chat-estimated'?'estimated':'reported';counts[label]=(counts[label]||0)+e.blocks;return counts;},{});
     const statusSummaryText=Object.entries(statusSummary).map(([label,n])=>n+' '+label).join(' · ')+' human blocks';
     const theme=ref('dark'),scenario=ref('working'),periodId=ref('all'),layout=ref('separate');
     const showHuman=ref(true),showRobot=ref(true),busy=ref(false),gpu=ref(true);

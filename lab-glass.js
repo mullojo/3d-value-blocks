@@ -70,7 +70,7 @@ const LabGlass = (() => {
 
     let previousBlocks;
     return {
-      draw(blocks, width, height, yaw, tilt, scale) {
+      draw(blocks, width, height, yaw, tilt, scale, moving = false) {
         if (!width || !height || gl.isContextLost()) return;
         if (blocks !== previousBlocks) {
           const positions = new Float32Array(blocks.length * 3);
@@ -78,7 +78,8 @@ const LabGlass = (() => {
           gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
           previousBlocks = blocks;
         }
-        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        // Blending many interior faces is pixel-heavy. Restore full detail when the camera settles.
+        const ratio = Math.min(window.devicePixelRatio || 1, moving ? .85 : 1.5);
         const pixelWidth = Math.round(width * ratio), pixelHeight = Math.round(height * ratio);
         if (canvas.width !== pixelWidth) canvas.width = pixelWidth;
         if (canvas.height !== pixelHeight) canvas.height = pixelHeight;
