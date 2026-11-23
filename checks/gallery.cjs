@@ -12,7 +12,7 @@ const names = new Set(fs.readdirSync(path.join(root, 'gallery-assets/captures'))
 assert.equal(names.size, items.length, 'Every published capture is represented');
 for (const item of items) {
   assert(names.has(item.file));
-  assert(item.title && item.description && ['Count','Time','Journal','Inputs','Types','Bitcoin'].includes(item.category));
+  assert(item.title && item.description && ['Count','Time','Journal','Inputs','Types','Bitcoin','Lab'].includes(item.category));
 }
 // Validate real local asset resolution from a project Pages subpath, not /.
 const base = new URL('https://example.github.io/value-blocks/gallery.html');

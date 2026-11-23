@@ -2,11 +2,53 @@
 
 **Life recognized.** An open-source visual playground for seeing human effort, care, gifts, and AI-assisted contributions as beautiful, stackable 3D blocks.
 
-**[Our real project · Value Blocks Lab journal](https://mullojo.github.io/3d-value-blocks/lab.html) · [Open the playground](https://mullojo.github.io/3d-value-blocks/) · [Explore the gallery](https://mullojo.github.io/3d-value-blocks/gallery.html)**
+| Page | What you’ll find | Local file |
+| --- | --- | --- |
+| [Lab](https://mullojo.github.io/3d-value-blocks/) | Explore 3D blocks, calendars, example journals, and ways to record contributions. | [index.html](index.html) |
+| [Real Value Blocks](https://mullojo.github.io/3d-value-blocks/lab.html) | See Bob and Lindsay’s actual work on the Lab and the estimated AI effort saved. | [lab.html](lab.html) |
+| [Gallery](https://mullojo.github.io/3d-value-blocks/gallery.html) | Browse 46 screenshots from the first cube to the current project journal. | [gallery.html](gallery.html) |
 
 Built with Vue 3, Tailwind CSS 4, CSS 3D, and an optional WebGL2 renderer. This is an ongoing New Game economy design experiment: a place to explore visual language and interactions before building the larger systems behind them.
 
 ![Human, gift, and robot contributions arranged in a shared 3D stack](docs/images/types-stack.jpg)
+
+## Lab
+
+Style a cube or explore five views of value in the playground. [Open the Lab](https://mullojo.github.io/3d-value-blocks/)
+
+| View | What you can try |
+| --- | --- |
+| **Count** | Style one cube or build large groups. Explore Tailwind palettes, face shading, edges, rotation, zoom, pan, and paced falling blocks. Keep the original CSS finish or switch to GPU rendering for counts up to 100,000. |
+| **Time** | Real calendar layouts for a day, week, month, or year. Explore daily towers, 3×3×3 cubits, compact spacing, and contribution-density gradients. |
+| **Journal** | Fictional life and project journals: daily flow, people with stacks, frame stories, and interactive scrolling film credits with a falling-block finale. Click entries for details. |
+| **Inputs** | Record, edit, and delete playful local entries using text parsing, row forms, project/team entry, or Tap Select. Watch people’s daily stacks grow. |
+| **Types** | Compare human, gift, and robot blocks, filter or restack them, explore project stories and contribution totals, and try embedded-Bitcoin human-block designs. |
+
+The earlier [single-cube](https://mullojo.github.io/3d-value-blocks/archived/v1-simple-start/index.html), [paced CSS](https://mullojo.github.io/3d-value-blocks/archived/v2-paced-css/index.html), and [GPU count](https://mullojo.github.io/3d-value-blocks/archived/v3-gpu-counts/index.html) experiments remain available in `archived/`.
+
+## Real Value Blocks
+
+[Explore the real project journal in 3D](https://mullojo.github.io/3d-value-blocks/lab.html), with Bob’s and Lindsay’s profiles, the recorded contributions, and linked human/robot stacks. Switch between estimate scenarios or select one of the seven work periods. This is a self-reference: the Lab uses its own blocks to tell the real story of making the Lab.
+
+[![Value Blocks Lab project journal: recorded human contributions and estimated robot expansion](docs/images/lab-journal.jpg)](https://mullojo.github.io/3d-value-blocks/lab.html)
+
+This project now has its own value-block journal. The record recognizes **31 human blocks ≈ 31 hours · $3,100 of base human value**: Bob’s **21 confirmed blocks + 3 new chat-estimated blocks**, plus **7 review and collaboration blocks for Lindsay, reported by Bob**. The latest chapter covers the guides, real project journal, and rendering improvements.
+
+The companion AI model explores about **8×–71× total-output scenarios**, with **23.2× as its working estimate**: **31 human + 689 robot = 720 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
+
+- [Human contribution journal](docs/HUMAN_VALUE_BLOCKS.md) · [Reusable human-block guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md)
+- [Robot expansion estimates](docs/ROBOT_VALUE_BLOCKS.md) · [Starter robot-block guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md)
+- [Robot expansion mental model](docs/ROBOT_EXPANSION_MENTAL_MODEL.md): human bandwidth, AI capacity, availability, and useful work.
+
+For the underlying numbers and evidence, explore the [structured contribution ledger](docs/value-block-records/ledger.json), [source inventory](docs/value-block-records/source-inventory.json), and [chat chronology](docs/value-block-records/chat-evidence.json).
+
+## Gallery
+
+[Explore all 46 design captures](https://mullojo.github.io/3d-value-blocks/gallery.html): filter by study, search the notebook, or open a full-size image and browse with the arrow keys. The Overview layout gathers every capture into one view. Select **Lab** to find the three current project journal captures. The other studies trace the earlier design iterations.
+
+[![Overview of all 46 Value Blocks design captures](docs/images/gallery-overview.jpg)](https://mullojo.github.io/3d-value-blocks/gallery.html)
+
+The gallery’s images are included locally in `gallery-assets/captures/`, so it works from a file or a static host without relying on a separate folder. See [publishing with GitHub Desktop and GitHub Pages](docs/PUBLISHING.md) to put the playground and gallery online.
 
 ## Run it
 
@@ -19,26 +61,6 @@ python3 -m http.server 8317 --bind 127.0.0.1
 ```
 
 Visit [http://127.0.0.1:8317](http://127.0.0.1:8317). Stop with Ctrl-C. File opening works too, but storage and clipboard support depend on the browser. Records saved at one origin do not automatically appear at another.
-
-## Explore five views
-
-| View | What you can try |
-| --- | --- |
-| **Count** | Style one cube or build large groups. Explore Tailwind palettes, face shading, edges, rotation, zoom, pan, and paced falling blocks. Keep the original CSS finish or switch to GPU rendering for counts up to 100,000. |
-| **Time** | Real calendar layouts for a day, week, month, or year. Explore daily towers, 3×3×3 cubits, compact spacing, and contribution-density gradients. |
-| **Journal** | Fictional life and project journals: daily flow, people with stacks, frame stories, and interactive scrolling film credits with a falling-block finale. Click entries for details. |
-| **Inputs** | Record, edit, and delete playful local entries using text parsing, row forms, project/team entry, or Tap Select. Watch people’s daily stacks grow. |
-| **Types** | Compare human, gift, and robot blocks, filter or restack them, explore project stories and contribution totals, and try embedded-Bitcoin human-block designs. |
-
-The earlier [single-cube](https://mullojo.github.io/3d-value-blocks/archived/v1-simple-start/index.html), [paced CSS](https://mullojo.github.io/3d-value-blocks/archived/v2-paced-css/index.html), and [GPU count](https://mullojo.github.io/3d-value-blocks/archived/v3-gpu-counts/index.html) experiments remain available in `archived/`.
-
-## Design gallery
-
-[Explore all 43 design captures](https://mullojo.github.io/3d-value-blocks/gallery.html): filter by study, search the notebook, or open a full-size image and browse with the arrow keys. The Overview layout gathers every capture into one view. These are historical experiments, including earlier versions of today’s interfaces.
-
-[![Overview of all 43 Value Blocks design captures](docs/images/gallery-overview.jpg)](https://mullojo.github.io/3d-value-blocks/gallery.html)
-
-The gallery’s images are included locally in `gallery-assets/captures/`, so it works from a file or a static host without relying on a separate folder. See [publishing with GitHub Desktop and GitHub Pages](docs/PUBLISHING.md) to put the playground and gallery online.
 
 ## What is a value block?
 
@@ -72,22 +94,6 @@ node scripts/check.cjs
 
 The same command is configured for GitHub Actions. Browser visual checks remain important for 3D materials, motion, and interactions; the script checks the models and rendering assumptions, not every browser pixel.
 
-## Contributions, recognized
-
-[Explore the real project journal in 3D](https://mullojo.github.io/3d-value-blocks/lab.html), with Bob’s and Lindsay’s profiles, the recorded contributions, and linked human/robot stacks. Switch between estimate scenarios or select one of the seven work periods. This is a self-reference: the Lab uses its own blocks to tell the real story of making the Lab.
-
-[![Value Blocks Lab project journal: recorded human contributions and estimated robot expansion](docs/images/lab-journal.jpg)](https://mullojo.github.io/3d-value-blocks/lab.html)
-
-This project now has its own value-block journal. The record recognizes **31 human blocks ≈ 31 hours · $3,100 of base human value**: Bob’s **21 confirmed blocks + 3 new chat-estimated blocks**, plus **7 review and collaboration blocks for Lindsay, reported by Bob**. The latest chapter covers the guides, real project journal, and rendering improvements.
-
-The companion AI model explores about **8×–71× total-output scenarios**, with **23.2× as its working estimate**: **31 human + 689 robot = 720 human-equivalent blocks**. Robot blocks describe estimated additional effort saved, rather than extra human hours or cash received. The no-AI workload budgets and assumptions are open to inspection and revision.
-
-- [Human contribution journal](docs/HUMAN_VALUE_BLOCKS.md) · [Reusable human-block guide](docs/HUMAN_VALUE_BLOCKS_GUIDE.md)
-- [Robot expansion estimates](docs/ROBOT_VALUE_BLOCKS.md) · [Starter robot-block guide](docs/ROBOT_VALUE_BLOCKS_GUIDE.md)
-- [Robot expansion mental model](docs/ROBOT_EXPANSION_MENTAL_MODEL.md): human bandwidth, AI capacity, availability, and useful work.
-
-For the underlying numbers and evidence, explore the [structured contribution ledger](docs/value-block-records/ledger.json), [source inventory](docs/value-block-records/source-inventory.json), and [chat chronology](docs/value-block-records/chat-evidence.json).
-
 ## Support this open-source experiment
 
 Bitcoin giving helps support Value Blocks as an open-source New Game economy project: design exploration, implementation, documentation, and continued experiments in recognizing human value.
@@ -98,7 +104,7 @@ Bitcoin giving helps support Value Blocks as an open-source New Game economy pro
 bc1q5qk0kln078zcky3ylk2axvr69jjrfxewmutwzqcgkvhwhnmtvynsdveyu5
 ```
 
-<img src="assets/support-bitcoin.svg" width="240" alt="Bitcoin QR code for supporting the Value Blocks project">
+<img src="assets/support-bitcoin-lab.png" width="320" alt="Scan to give Bitcoin to Value Blocks Lab, Bob and Lindsay">
 
 Scan with a Bitcoin wallet, or copy the address. No amount is prefilled. See [SUPPORT.md](SUPPORT.md) for the payment URI and verification details. Giving is optional; it does not purchase blocks or promise financial returns, tokens, or draft-protocol eligibility.
 

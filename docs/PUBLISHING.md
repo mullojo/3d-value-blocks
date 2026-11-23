@@ -28,7 +28,7 @@ Click **Create Repository**. Desktop should initialize Git in the existing proje
 
 Review the Changes and History tabs. If the project files appear as uncommitted changes, use the summary `Open source the Value Blocks playground` and click **Commit to main**. If Desktop already included them in its initial commit, there may be nothing left to commit. Confirm the current branch is `main`; use Desktop’s branch menu to rename it if needed.
 
-The 43 gallery images are intentionally included in `gallery-assets/captures/`. Loose `preview*` captures and local browser benchmark files remain ignored. The gallery now adds about 3 MB to the project; it is self-contained for publishing. Original off-project captures remain preserved separately.
+The 46 gallery images are included in `gallery-assets/captures/` so the gallery is self-contained. Loose `preview*` captures and local browser benchmark files remain ignored. Original off-project captures remain preserved separately.
 
 ## 2. Publish the public repository
 

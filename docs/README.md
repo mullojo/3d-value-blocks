@@ -14,7 +14,7 @@ Start with the [project README](../README.md) to run the playground and explore 
 - [Contributing](../CONTRIBUTING.md): workflow, design conventions, and asset licensing.
 - [Supporting the project](../SUPPORT.md): real Bitcoin receiving address and QR.
 - [Third-party notices](../THIRD_PARTY_NOTICES.md): library licenses and illustrative portrait sources.
-- [Design gallery](../gallery.html): all 43 historical captures, with filters and a full-size viewer.
+- [Design gallery](../gallery.html): 46 historical and current captures, with filters and a full-size viewer.
 - [Publishing the first repository](PUBLISHING.md): local Git setup and the first GitHub push, when you are ready.
 
 The live page is a visual prototype. Economic scenarios and fictional giving demos are separate from the real project support address.

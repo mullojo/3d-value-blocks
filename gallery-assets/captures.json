@@ -256,5 +256,23 @@
     "category": "Bitcoin",
     "title": "A coin inside a crystal cube",
     "description": "A glass human block with the coin visible as it rotates."
+  },
+  {
+    "file": "lab-real-journal.jpg",
+    "title": "The Lab records its own work",
+    "category": "Lab",
+    "description": "Bob and Lindsay’s real journal with 31 human blocks and 689 estimated robot blocks in the Working view."
+  },
+  {
+    "file": "lab-deep-webgl.jpg",
+    "title": "Glass at a larger scale",
+    "category": "Lab",
+    "description": "The Deep estimate draws 2,179 translucent robot blocks with WebGL2."
+  },
+  {
+    "file": "lab-combined-chapter.jpg",
+    "title": "A chapter in one stack",
+    "category": "Lab",
+    "description": "The latest journal chapter shows 4 human blocks and 60 estimated robot blocks together in the original CSS style."
   }
 ]
